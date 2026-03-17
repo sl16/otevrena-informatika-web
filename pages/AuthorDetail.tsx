@@ -11,7 +11,7 @@ const AuthorDetail: React.FC = () => {
   const author = authors.find(a => a.id === id);
 
   if (!author) {
-    return <Navigate to="/o-projektu" replace />;
+    return <Navigate to="/zapojte-se" replace />;
   }
 
   const authorMaterials = materials.filter(m => m.authorId === id);
@@ -24,7 +24,7 @@ const AuthorDetail: React.FC = () => {
     <div className="py-24 bg-brand-dark min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
-          to="/o-projektu" 
+          to="/zapojte-se" 
           className="inline-flex items-center gap-2 text-slate-500 hover:text-white transition-colors mb-12 group"
         >
           ⬅️ Zpět na projekt
@@ -171,6 +171,9 @@ const AuthorDetail: React.FC = () => {
                         </p>
                         <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
                           <span className="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{post.date}</span>
+                          <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300">
+                            ➡️
+                          </div>
                         </div>
                       </div>
                     </Link>

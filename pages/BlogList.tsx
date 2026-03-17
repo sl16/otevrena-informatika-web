@@ -17,7 +17,7 @@ const BlogList: React.FC = () => {
             <Link 
               key={post.id}
               to={`/blog/${post.id}`}
-              className="bg-brand-card/40 backdrop-blur-xl rounded-[40px] border border-white/5 overflow-hidden hover:border-brand-neon/30 hover:bg-brand-card transition-all duration-500 group flex flex-col h-full shadow-2xl"
+              className="bg-brand-card/50 backdrop-blur-sm rounded-3xl border border-white/5 overflow-hidden hover:border-brand-neon/30 hover:bg-brand-card transition-all duration-500 group flex flex-col h-full shadow-2xl"
             >
               <div className="aspect-video overflow-hidden">
                 <img 
@@ -27,24 +27,24 @@ const BlogList: React.FC = () => {
                    referrerPolicy="no-referrer"
                  />
               </div>
-              <div className="p-10 flex flex-col flex-grow">
-                <div className="mb-6">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-cyan bg-brand-cyan/10 px-3 py-1.5 rounded-lg border border-brand-cyan/20">
+              <div className="p-8 flex flex-col flex-grow">
+                <div className="mb-4">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20">
                     {post.category}
                   </span>
                 </div>
-                <h3 className="text-2xl font-black text-white group-hover:text-brand-cyan transition-colors mb-4 leading-tight tracking-tighter">
+                <h3 className="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">
                   {post.title}
                 </h3>
-                <p className="text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">
+                <p className="text-slate-400 text-sm mb-6 line-clamp-2 leading-relaxed">
                   {post.excerpt}
                 </p>
-                <div className="mt-auto pt-8 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+                <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <span className="flex items-center gap-2">👤 {post.author}</span>
-                    <span className="flex items-center gap-2">📅 {post.date}</span>
+                    <span className="text-[10px] text-slate-500 flex items-center gap-1.5 font-mono">👤 {post.author}</span>
+                    <span className="text-[10px] text-slate-500 flex items-center gap-1.5 font-mono">📅 {post.date}</span>
                   </div>
-                  <div className="text-brand-neon group-hover:translate-x-1 transition-transform text-lg">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300">
                     ➡️
                   </div>
                 </div>

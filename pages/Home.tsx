@@ -108,7 +108,7 @@ const Home: React.FC = () => {
                 </p>
                 <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
                   <span className="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{post.date}</span>
-                  <div className="text-brand-neon group-hover:translate-x-1 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300">
                     ➡️
                   </div>
                 </div>

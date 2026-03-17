@@ -11,7 +11,6 @@ import BlogList from './pages/BlogList';
 import BlogDetail from './pages/BlogDetail';
 import GetInvolved from './pages/GetInvolved';
 import Curriculum from './pages/Curriculum';
-import AboutProject from './pages/AboutProject';
 import AuthorDetail from './pages/AuthorDetail';
 
 const App: React.FC = () => {
@@ -33,7 +32,6 @@ const App: React.FC = () => {
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/zapojte-se" element={<GetInvolved />} />
-          <Route path="/o-projektu" element={<AboutProject />} />
           <Route path="/autori/:id" element={<AuthorDetail />} />
           <Route path="*" element={<div className="py-24 text-center"><h1 className="text-4xl font-bold">404 - Nenalezeno</h1></div>} />
         </Routes>

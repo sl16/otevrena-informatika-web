@@ -7,10 +7,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/o-projektu', label: 'O projektu', icon: 'ℹ️' },
     { path: '/materialy', label: 'Materiály', icon: '📖' },
-    { path: '/tematicke-plany', label: 'Plány', icon: '🗺️' },
     { path: '/aplikace', label: 'Aplikace', icon: '💻' },
+    { path: '/tematicke-plany', label: 'Tematické plány', icon: '🗺️' },
     { path: '/blog', label: 'Blog', icon: '📰' },
     { path: '/zapojte-se', label: 'Zapojte se', icon: '👥' },
   ];
@@ -44,16 +43,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               })}
             </nav>
 
-            <div className="flex items-center gap-4">
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noreferrer"
-                className="text-slate-500 hover:text-white transition-colors"
-              >
-                <span className="text-xl">🐙</span>
-              </a>
-            </div>
+            <div />
           </div>
         </div>
       </header>
@@ -77,10 +67,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <div>
               <h3 className="text-white font-bold text-xs uppercase tracking-widest mb-6">Navigace</h3>
               <ul className="space-y-3 text-sm">
-                <li><Link to="/o-projektu" className="text-slate-400 hover:text-brand-cyan transition-colors">O projektu</Link></li>
                 <li><Link to="/materialy" className="text-slate-400 hover:text-brand-cyan transition-colors">Materiály IKT</Link></li>
-                <li><Link to="/tematicke-plany" className="text-slate-400 hover:text-brand-cyan transition-colors">Tematické plány</Link></li>
                 <li><Link to="/aplikace" className="text-slate-400 hover:text-brand-cyan transition-colors">Vzdělávací aplikace</Link></li>
+                <li><Link to="/tematicke-plany" className="text-slate-400 hover:text-brand-cyan transition-colors">Tematické plány</Link></li>
                 <li><Link to="/blog" className="text-slate-400 hover:text-brand-cyan transition-colors">Blog</Link></li>
                 <li><Link to="/zapojte-se" className="text-slate-400 hover:text-brand-cyan transition-colors">Zapojte se</Link></li>
               </ul>
