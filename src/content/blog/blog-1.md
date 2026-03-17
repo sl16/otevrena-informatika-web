@@ -1,9 +1,9 @@
 ---
-id: blog-1
-title: Jak učit AI na základní škole?
+id: test
+title: Test
 excerpt: Umělá inteligence už není sci-fi, ale realita, kterou žáci denně používají. Jak o ní mluvit v hodinách?
-author: Petra Svobodová
-authorId: petra-svobodova
+author: Vojtěch Bartoš
+authorId: vojtech-bartos
 date: 2024-06-01
 imageUrl: https://picsum.photos/seed/ai-blog/800/400
 category: Metodika

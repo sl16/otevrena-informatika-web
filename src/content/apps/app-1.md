@@ -1,11 +1,11 @@
 ---
-id: app-1
-name: Phishing Simulátor
-description: Simulujte podvodné e-maily v bezpečném školním prostředí.
+id: phishing-simulator
+name: Phishing simulátor
+description: Simulujte podvodné e-maily v bezpečném prostředí.
 url: "#"
 iconName: mail-warning
 category: Kyberbezpečnost
-authorId: lucie-bila
+authorId: vojtech-bartos
 features: ["Vlastní šablony e-mailů", "Analýza chyb žáků", "Dashboard pro učitele"]
 ---
 Nástroj umožňuje učiteli vytvořit "falešnou" přihlašovací stránku nebo e-mail. 

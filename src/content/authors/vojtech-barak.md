@@ -1,9 +1,14 @@
 ---
-id: vojtech-barak
-name: Vojtěch Barák
-role: Zakladatel projektu a vývojář
-avatarUrl: https://picsum.photos/seed/vojta/200/200
+id: vojtech-bartos
+name: Vojtěch Bartoš
+role: Zakladatel projektu, příležitostný učitel IKT a vývojář
+avatarUrl: /src/images/avatar-vojtech-bartos.jpg
 links:
-  github: "https://github.com/vojtabar"
+  github: "https://github.com/sl16"
 ---
-Vojta stojí za vizí Otevřené informatiky. Vyvíjí vzdělávací aplikace a snaží se, aby kvalitní materiály byly dostupné všem učitelům zdarma.
+V roce 2025 jsem začal působit jako učitel IKT na Podřipské škole.
+Pedagogické materiály, které jsem dohledal na internetu, byly často kvalitní,
+ale nesjednocené a neaktuální. A tak jsem se rozhodl tvořit materiály vlastní.
+S popularizací a osvojením vibecodingu jsem k tomu přidal i vzdělávací aplikace.
+A pak už nebylo daleko k tomu, aby vznikl tento web, který je bezplatně
+zprostředkuje ostatním pedagogům.
