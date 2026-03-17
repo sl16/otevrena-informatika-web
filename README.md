@@ -1,20 +1,47 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Otevrena Informatika Web
 
-# Run and deploy your AI Studio app
+React + Vite web for https://otevrenainformatika.cz.
 
-This contains everything you need to run your app locally.
+## Local development
 
-View your app in AI Studio: https://ai.studio/apps/b0b26594-4825-4428-aae6-6a222d3eb6c8
+Prerequisites:
+- Node.js 20+
 
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
+Commands:
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Start dev server:
    `npm run dev`
+3. Build production bundle:
+   `npm run build`
+
+## GitHub Pages deployment (custom domain)
+
+This repository is configured for GitHub Pages using GitHub Actions:
+- Workflow: `.github/workflows/deploy-pages.yml`
+- Output directory: `dist`
+- SPA fallback: `public/404.html`
+- Custom domain file in artifact: `public/CNAME`
+
+### One-time GitHub setup
+
+1. In GitHub repository settings, open `Pages`.
+2. Set `Build and deployment` source to `GitHub Actions`.
+3. In `Custom domain`, set `otevrenainformatika.cz` (if not auto-detected).
+4. Enable `Enforce HTTPS` after DNS is propagated.
+
+### DNS records required
+
+At your DNS provider, configure:
+- `A` record for apex `@` to GitHub Pages IPs:
+  - `185.199.108.153`
+  - `185.199.109.153`
+  - `185.199.110.153`
+  - `185.199.111.153`
+- Optional `CNAME` for `www` to `<your-username>.github.io`
+
+### Deploy flow
+
+Any push to `main` or `master` triggers deployment.
+
+You can also run deployment manually via `Actions` -> `Deploy to GitHub Pages` -> `Run workflow`.
