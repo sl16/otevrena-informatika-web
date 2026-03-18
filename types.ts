@@ -55,6 +55,8 @@ export interface AppInfo {
   category: Category;
   features: string[];
   authorId?: string;
+  runnerType?: string;
+  certificateTitle?: string;
 }
 
 export interface BlogPost {

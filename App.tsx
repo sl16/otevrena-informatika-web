@@ -7,6 +7,7 @@ import MaterialsList from './pages/MaterialsList';
 import MaterialDetail from './pages/MaterialDetail';
 import AppsList from './pages/AppsList';
 import AppDetail from './pages/AppDetail';
+import AppRunner from './pages/AppRunner';
 import BlogList from './pages/BlogList';
 import BlogDetail from './pages/BlogDetail';
 import GetInvolved from './pages/GetInvolved';
@@ -29,6 +30,7 @@ const App: React.FC = () => {
           <Route path="/tematicke-plany" element={<Curriculum />} />
           <Route path="/aplikace" element={<AppsList />} />
           <Route path="/aplikace/:id" element={<AppDetail />} />
+          <Route path="/app/:id" element={<AppRunner />} />
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/zapojte-se" element={<GetInvolved />} />

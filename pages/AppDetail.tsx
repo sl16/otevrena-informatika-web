@@ -95,12 +95,12 @@ const AppDetail: React.FC = () => {
                 <p className="text-sm text-slate-400 mb-10 leading-relaxed">
                   Aplikace běží přímo v prohlížeči, není třeba nic instalovat.
                 </p>
-                <a 
-                  href={app.url}
+                <Link
+                  to={`/app/${app.id}`}
                   className="w-full bg-brand-cyan hover:bg-white text-brand-dark px-8 py-5 rounded-2xl font-black transition-all shadow-[0_0_30px_rgba(0,229,255,0.2)] flex items-center justify-center gap-3 mb-6 text-lg"
                 >
                   Spustit aplikaci ▶️
-                </a>
+                </Link>
                 <p className="text-[10px] text-slate-600 uppercase tracking-[0.3em] font-mono">
                   OtevřenáInformatika.cz
                 </p>
