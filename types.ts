@@ -5,7 +5,8 @@ export enum Category {
   AI = 'Umělá inteligence',
   CYBERSECURITY = 'Kyberbezpečnost',
   OFFICE = 'Kancelářské aplikace',
-  ALGORITHMS = 'Algoritmizace'
+  ALGORITHMS = 'Algoritmizace',
+  MEDIA_LITERACY = 'Mediální gramotnost'
 }
 
 export interface Author {

@@ -28,6 +28,8 @@ const IconRenderer: React.FC<IconRendererProps> = ({ name, size = 24, className 
       case 'layout': return '🎨';
       case 'more-horizontal': return '💬';
       case 'map': return '🗺️';
+	  case 'footprint': return '👣';
+	  case 'television': return '📺';
       default: return '📄';
     }
   };

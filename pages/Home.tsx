@@ -68,6 +68,33 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Featured Apps */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-16">
+            <div>
+              <h2 className="text-4xl font-black text-white">Vzdělávací aplikace</h2>
+            </div>
+            <Link to="/aplikace" className="text-brand-cyan font-bold hover:text-brand-neon transition-colors flex items-center gap-2 group text-sm uppercase tracking-widest">
+              Všechny aplikace <span className="group-hover:translate-x-1 transition-transform">➡️</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {latestApps.map((app) => (
+              <Card 
+                key={app.id}
+                to={`/aplikace/${app.id}`}
+                iconName={app.iconName}
+                title={app.name}
+                description={app.description}
+                category={app.category}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Blog Section */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-16">
@@ -115,33 +142,6 @@ const Home: React.FC = () => {
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* Featured Apps */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-16">
-            <div>
-              <h2 className="text-4xl font-black text-white">Vzdělávací aplikace</h2>
-            </div>
-            <Link to="/aplikace" className="text-brand-cyan font-bold hover:text-brand-neon transition-colors flex items-center gap-2 group text-sm uppercase tracking-widest">
-              Všechny aplikace <span className="group-hover:translate-x-1 transition-transform">➡️</span>
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {latestApps.map((app) => (
-              <Card 
-                key={app.id}
-                to={`/aplikace/${app.id}`}
-                iconName={app.iconName}
-                title={app.name}
-                description={app.description}
-                category={app.category}
-              />
-            ))}
-          </div>
         </div>
       </section>
     </div>

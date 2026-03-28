@@ -23,7 +23,7 @@ blocks:
       - id: ss-t2-1
         title: AI ve škole
         materialId: mat-2
-        status: available
+        status: planned
         description: Strojové učení hrou a etické otázky.
       - id: ss-t2-2
         title: Generativní AI
@@ -34,13 +34,15 @@ blocks:
     iconName: newspaper
     topics:
       - id: ss-t3-1
-        title: Dezinformace a hoaxy
-        status: planned
-        description: Jak rozpoznat falešné zprávy na internetu.
+        materialId: medialni-gramotnost
+        title: Mediální gramotnost
+        status: available
+        description: Seznámení se světem médií v éře informačního přehlcení.
       - id: ss-t3-2
-        title: Algoritmy sociálních sítí
-        status: planned
-        description: Vliv personalizovaného obsahu na společnost.
+        title: Digitální stopa
+        materialId: digitalni-stopa
+        status: available
+        description: Naše chování v kyberprostoru může mít nepředvídané dopady.
   - id: ss-block-4
     title: Kyberbezpečnost
     iconName: shield-lock
@@ -48,7 +50,7 @@ blocks:
       - id: ss-t4-1
         title: Bezpečné heslo a šifrování
         materialId: mat-4
-        status: available
+        status: planned
         description: Kryptografie v praxi a ochrana identity.
       - id: ss-t4-2
         title: Sociální inženýrství
@@ -61,7 +63,7 @@ blocks:
       - id: ss-t5-1
         title: Základy Pythonu
         materialId: mat-1
-        status: available
+        status: planned
         description: Proměnné, cykly a podmínky.
       - id: ss-t5-2
         title: Datové struktury
@@ -98,7 +100,7 @@ blocks:
       - id: ss-t8-1
         title: Sestav si svůj počítač
         materialId: mat-3
-        status: available
+        status: planned
         description: Identifikace komponent a základní principy fungování.
       - id: ss-t8-2
         title: Virtualizace a Cloud
