@@ -17,6 +17,7 @@ const IconRenderer: React.FC<IconRendererProps> = ({ name, size = 24, className 
       case 'cpu': return '⚙️';
       case 'shield-lock': return '🔒';
       case 'mail-warning': return '⚠️';
+	  case 'mail': return '📨';
       case 'circuit-board': return '🔌';
       case 'binary': return '🔢';
       case 'code': return '⌨️';

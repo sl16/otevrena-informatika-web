@@ -15,19 +15,19 @@ const MaterialsList: React.FC = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const categories = ['All', ...Object.values(Category)];
+  const categories: Array<Category | 'All'> = ['All', ...Object.values(Category)];
 
   return (
     <div className="py-24 bg-brand-dark min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
           <h1 className="text-5xl font-black text-white mb-6">Pedagogické materiály</h1>
-          <p className="text-slate-400 text-lg max-w-2xl">Inspirujte se materiály od kolegů nebo sdílejte ty své. Vše připraveno pro moderní výuku.</p>
+          <p className="text-slate-400 text-lg">Inspirujte se materiály od kolegů nebo sdílejte ty své. Vše připraveno pro moderní výuku.</p>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col md:flex-row gap-6 mb-16 items-center">
-          <div className="relative flex-grow w-full">
+        <div className="mb-16">
+          <div className="relative w-full mb-5">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl">🔍</span>
             <input 
               type="text" 
@@ -37,11 +37,11 @@ const MaterialsList: React.FC = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <div className="flex gap-3 overflow-x-auto w-full md:w-auto pb-4 md:pb-0 no-scrollbar">
+          <div className="flex flex-wrap gap-3 w-full">
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setSelectedCategory(cat as any)}
+                onClick={() => setSelectedCategory(cat)}
                 className={`px-6 py-3 rounded-2xl whitespace-nowrap text-xs font-bold uppercase tracking-widest border transition-all ${
                   selectedCategory === cat 
                     ? 'bg-brand-neon border-brand-neon text-brand-dark shadow-[0_0_20px_rgba(0,255,102,0.2)]' 

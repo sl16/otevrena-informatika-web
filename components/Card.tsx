@@ -57,7 +57,7 @@ const Card: React.FC<CardProps> = ({ to, iconName, title, description, category,
         <h3 className="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">
           {title}
         </h3>
-        <p className="text-slate-400 text-sm mb-6 line-clamp-2 leading-relaxed">
+        <p className="text-slate-400 text-sm mb-6 leading-relaxed">
           {description}
         </p>
         

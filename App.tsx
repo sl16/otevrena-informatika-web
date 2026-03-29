@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter, MemoryRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import MaterialsList from './pages/MaterialsList';
@@ -14,6 +14,20 @@ import GetInvolved from './pages/GetInvolved';
 import Curriculum from './pages/Curriculum';
 import AuthorDetail from './pages/AuthorDetail';
 
+const ScrollToTop: React.FC = () => {
+  const { pathname, hash } = useLocation();
+
+  React.useEffect(() => {
+    // Keep native anchor behavior when navigating to hash fragments.
+    if (hash) {
+      return;
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return null;
+};
+
 const App: React.FC = () => {
   // Use MemoryRouter in blob/preview environments to avoid "Access denied" errors,
   // but use BrowserRouter for the actual deployment on GitHub Pages with custom domain.
@@ -22,6 +36,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

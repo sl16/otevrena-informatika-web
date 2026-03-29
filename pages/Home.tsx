@@ -19,12 +19,30 @@ const Home: React.FC = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-6xl md:text-8xl font-black text-white mb-8 leading-[0.9] tracking-tighter">
-              Otevřené zdroje pro <span className="text-brand-cyan">informatiku</span>
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[0.9] tracking-tighter">
+              Bezplatné <span className="text-brand-cyan">vzdělávací materiály</span> pro informatiku
             </h1>
             <p className="text-xl text-slate-400 mb-12 leading-relaxed max-w-2xl mx-auto">
-              Sdílíme kvalitní pedagogické materiály a vyvíjíme vzdělávací aplikace, které učitelům usnadňují výuku moderních technologií. Zcela zdarma a open-source. Pro učitele od učitelů.
+              Sdílíme pedagogické materiály a vyvíjíme vzdělávací aplikace, které učitelům usnadňují výuku moderních technologií.
             </p>
+            <ul className="mb-10 flex flex-wrap md:flex-nowrap justify-center gap-3 text-sm">
+              <li className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-slate-200 whitespace-nowrap">
+                <span aria-hidden="true">🫰</span>
+                <span>Zcela zdarma</span>
+              </li>
+              <li className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-slate-200 whitespace-nowrap">
+                <span aria-hidden="true">🎯</span>
+                <span>Vizuálně a metodicky sjednocené</span>
+              </li>
+			  <li className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-slate-200 whitespace-nowrap">
+                <span aria-hidden="true">👩‍🏫</span>
+                <span>Pro učitele od učitelů</span>
+              </li>
+			  <li className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-slate-200 whitespace-nowrap">
+                <span aria-hidden="true">🔓</span>
+                <span>Open-source</span>
+              </li>
+            </ul>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link to="/materialy" className="bg-brand-neon hover:bg-white text-brand-dark px-10 py-5 rounded-xl font-black transition-all shadow-[0_0_40px_rgba(0,102,255,0.3)] flex items-center justify-center gap-2 text-lg">
                 ✨ Procházet materiály
@@ -49,7 +67,7 @@ const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             {latestMaterials.map((mat) => (
               <Card 
                 key={mat.id}
@@ -80,7 +98,7 @@ const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             {latestApps.map((app) => (
               <Card 
                 key={app.id}
@@ -96,52 +114,54 @@ const Home: React.FC = () => {
       </section>
 
       {/* Blog Section */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-16">
-          <div>
-            <h2 className="text-4xl font-black text-white">Z našeho blogu</h2>
+      <section className="py-24 bg-black/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-16">
+            <div>
+              <h2 className="text-4xl font-black text-white">Z našeho blogu</h2>
+            </div>
+            <Link to="/blog" className="text-brand-cyan font-bold hover:text-brand-neon transition-colors flex items-center gap-2 group text-sm uppercase tracking-widest">
+              Všechny články <span className="group-hover:translate-x-1 transition-transform">➡️</span>
+            </Link>
           </div>
-          <Link to="/blog" className="text-brand-cyan font-bold hover:text-brand-neon transition-colors flex items-center gap-2 group text-sm uppercase tracking-widest">
-            Všechny články <span className="group-hover:translate-x-1 transition-transform">➡️</span>
-          </Link>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {latestBlogPosts.map((post) => (
-            <Link 
-              key={post.id}
-              to={`/blog/${post.id}`}
-              className="bg-brand-card/50 backdrop-blur-sm rounded-3xl border border-white/5 overflow-hidden hover:border-brand-neon/30 hover:bg-brand-card transition-all duration-500 group flex flex-col h-full shadow-2xl"
-            >
-              <div className="aspect-video overflow-hidden">
-                <img 
-                  src={post.imageUrl} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="p-8 flex flex-col flex-grow">
-                <div className="mb-4">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20">
-                    {post.category}
-                  </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            {latestBlogPosts.map((post) => (
+              <Link 
+                key={post.id}
+                to={`/blog/${post.id}`}
+                className="bg-brand-card/50 backdrop-blur-sm rounded-3xl border border-white/5 overflow-hidden hover:border-brand-neon/30 hover:bg-brand-card transition-all duration-500 group flex flex-col h-full shadow-2xl"
+              >
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src={post.imageUrl} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
-                <h3 className="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">
-                  {post.title}
-                </h3>
-                <p className="text-slate-400 text-sm mb-6 line-clamp-2 leading-relaxed">
-                  {post.excerpt}
-                </p>
-                <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
-                  <span className="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{post.date}</span>
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300">
-                    ➡️
+                <div className="p-8 flex flex-col flex-grow">
+                  <div className="mb-4">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20">
+                      {post.category}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">
+                    {post.title}
+                  </h3>
+                  <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                    <span className="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{post.date}</span>
+                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300">
+                      ➡️
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </div>
