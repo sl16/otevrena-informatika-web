@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
+import { getMaterials } from '../../lib/content';
+import { ogImageUrl } from '../../lib/seo';
+
+const materials = await getMaterials();
+---
+
+<BaseLayout
+  title="Materiály | Otevřená informatika"
+  description="Bezplatné výukové materiály pro informatiku: pracovní listy, prezentace a metodiky."
+  image={ogImageUrl({ type: 'material' })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Materiály</h1>
+          <p class="text-slate-400 mt-4 leading-relaxed">
+            Připravené lekce a metodiky pro výuku informatiky na ZŠ i SŠ.
+          </p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          {materials.map((mat) => (
+            <Card
+              href={`/materialy/${mat.id}`}
+              iconName={mat.iconName}
+              title={mat.title}
+              description={mat.description}
+              category={mat.category}
+              tags={mat.tags}
+              duration={mat.duration}
+              targetAudience={mat.targetAudience}
+              meta={{ author: mat.authorName ?? mat.author, date: mat.date }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

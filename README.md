@@ -22,11 +22,6 @@ Web je postavený na moderním frontendu:
 - Vite
 - Tailwind CSS
 
-## Jak přispět
+## Poznámka
 
-Příspěvky jsou vítané. Nejlepší cesta je přes pull request:
-
-1. Vytvořte fork repozitáře.
-2. Založte novou větev pro změnu.
-3. Upravte obsah nebo kód (materiály, texty, opravy, vylepšení).
-4. Otevřete pull request s krátkým popisem změn a jejich přínosu.
+Repozitář slouží jako zdrojový kód webu a obsahové databáze (materiály, aplikace, blog, tematické plány).

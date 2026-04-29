@@ -1,0 +1,18 @@
+---
+import Logo from './Logo.astro';
+---
+
+<footer class="border-t border-white/5 bg-black/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div class="flex items-center gap-4">
+        <Logo size={24} withText={true} />
+      </div>
+
+      <div class="text-sm text-slate-400">
+        <p>Obsah: CC BY-NC-SA 4.0</p>
+        <p class="text-slate-500">{new Date().getFullYear()} otevrenainformatika.cz</p>
+      </div>
+    </div>
+  </div>
+</footer>

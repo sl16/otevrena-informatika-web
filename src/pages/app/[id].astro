@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AppRunner from '../../components/AppRunner';
+import type { AppInfo } from '../../../types';
+import { ogImageUrl } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const apps = await getCollection('apps');
+  return apps
+    .filter((entry) => entry.data.url?.startsWith('/app/'))
+    .map((entry) => ({
+      params: { id: entry.data.id },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props as any;
+const app = entry.data as AppInfo;
+---
+
+<BaseLayout
+  title={`${app.name} | Aplikace`}
+  description={app.description}
+  image={ogImageUrl({ type: 'app', id: app.id })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <a href={`/aplikace/${app.id}`} class="text-sm text-brand-cyan hover:text-white underline underline-offset-4">
+            ⬅️ Detail aplikace
+          </a>
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter mt-3">{app.name}</h1>
+          <p class="text-slate-400 mt-4">{app.description}</p>
+        </div>
+
+        <div class="rounded-3xl border border-white/5 bg-brand-card/50 p-6 sm:p-10">
+          <AppRunner app={app} client:only="react" />
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

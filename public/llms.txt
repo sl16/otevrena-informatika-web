@@ -1,0 +1,20 @@
+# Otevřená informatika
+
+Otevrenainformatika.cz je web s bezplatnými vzdělávacími materiály a aplikacemi pro výuku informatiky (ZŠ i SŠ) v češtině.
+
+## Důležité URL
+- Domů: https://otevrenainformatika.cz/
+- Materiály: https://otevrenainformatika.cz/materialy/
+- Aplikace: https://otevrenainformatika.cz/aplikace/
+- Tematické plány: https://otevrenainformatika.cz/tematicke-plany/
+- Blog: https://otevrenainformatika.cz/blog/
+
+## Struktura obsahu
+- Materiály: /materialy/{id}
+- Aplikace: /aplikace/{id}
+- Interaktivní aplikace: /app/{id}
+- Články: /blog/{id}
+- Autoři: /autori/{id}
+
+## Licence
+Obsah je publikován pod licencí CC BY-NC-SA 4.0 (pokud není uvedeno jinak).

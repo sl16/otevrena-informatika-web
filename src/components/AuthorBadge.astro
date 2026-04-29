@@ -1,0 +1,32 @@
+---
+interface Props {
+  name: string;
+  role?: string;
+  href?: string;
+  date?: string;
+}
+
+const { name, role, href, date } = Astro.props;
+---
+
+<div class="flex items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/5 px-5 py-4">
+  <div class="flex items-center gap-3">
+    <div
+      class="w-12 h-12 rounded-2xl bg-brand-neon/10 border border-brand-neon/20 flex items-center justify-center text-2xl"
+      aria-hidden="true"
+    >
+      👨
+    </div>
+    <div>
+      {href ? (
+        <a href={href} class="font-black text-white hover:text-brand-cyan transition-colors">
+          {name}
+        </a>
+      ) : (
+        <p class="font-black text-white">{name}</p>
+      )}
+      {role && <p class="text-xs text-slate-400">{role}</p>}
+    </div>
+  </div>
+  {date && <p class="text-xs font-mono text-slate-500">{date}</p>}
+</div>

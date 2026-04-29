@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://otevrenainformatika.cz/sitemap-index.xml
+Sitemap: https://otevrenainformatika.cz/sitemap.xml

@@ -1,0 +1,120 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Prose from '../../components/Prose.astro';
+import AuthorBadge from '../../components/AuthorBadge.astro';
+import IconRenderer from '../../components/IconRenderer.astro';
+import { getAuthors } from '../../lib/content';
+import { ogImageUrl } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const materials = await getCollection('materials');
+  return materials.map((entry) => ({
+    params: { id: entry.data.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<'materials'> };
+const mat = entry.data;
+const { Content } = await entry.render();
+
+const authorHref = mat.authorId ? `/autori/${mat.authorId}` : undefined;
+const authors = await getAuthors();
+const author = mat.authorId ? authors.find((a) => a.id === mat.authorId) : undefined;
+---
+
+<BaseLayout
+  title={`${mat.title} | Materiály`}
+  description={mat.description}
+  image={ogImageUrl({ type: 'material', id: mat.id })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-start gap-6">
+          <div class="shrink-0">
+            <IconRenderer name={mat.iconName} category={mat.category} size={44} className="w-20 h-20" />
+          </div>
+          <div class="flex-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono mb-3">{mat.category}</p>
+            <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter leading-tight">{mat.title}</h1>
+            <p class="text-slate-300 mt-5 leading-relaxed">{mat.description}</p>
+
+            <div class="mt-8 flex flex-wrap gap-3 text-xs font-mono text-slate-400">
+              {mat.duration && (
+                <span class="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 bg-white/5">
+                  🕒 {mat.duration}
+                </span>
+              )}
+              {mat.targetAudience && (
+                <span class="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 bg-white/5">
+                  👥 {mat.targetAudience}
+                </span>
+              )}
+              <span class="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 bg-white/5">
+                📅 {mat.date}
+              </span>
+            </div>
+
+            <div class="mt-10 flex flex-col sm:flex-row gap-4">
+              <a
+                href={mat.downloadUrl}
+                class="bg-brand-neon hover:bg-white text-brand-dark px-6 py-4 rounded-xl font-black transition-colors inline-flex items-center justify-center gap-2"
+                target="_blank"
+                rel="noreferrer"
+              >
+                ⬇️ Otevřít / stáhnout
+              </a>
+              <a
+                href="/materialy"
+                class="bg-white/5 hover:bg-white/10 text-white px-6 py-4 rounded-xl font-bold transition-colors border border-white/10 inline-flex items-center justify-center gap-2"
+              >
+                ⬅️ Zpět na materiály
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <AuthorBadge
+            name={author?.name ?? mat.author}
+            role={author?.role}
+            href={authorHref}
+            date={mat.date}
+          />
+        </div>
+
+        <div class="mt-12 rounded-3xl border border-white/5 bg-brand-card/50 p-8">
+          <Prose>
+            <article>
+              <Content />
+            </article>
+          </Prose>
+        </div>
+
+        {mat.supportingMaterials && mat.supportingMaterials.length > 0 && (
+          <div class="mt-12 rounded-3xl border border-white/5 bg-black/20 p-8">
+            <h2 class="text-2xl font-black text-white">Podpůrné materiály</h2>
+            <ul class="mt-6 space-y-3">
+              {mat.supportingMaterials.map((sm: { id: string; title: string; type: string; url: string }) => (
+                <li class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p class="font-bold text-white">{sm.title}</p>
+                  <p class="text-xs font-mono text-slate-500 mt-1">{sm.type}</p>
+                  <a
+                    href={sm.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="text-sm text-brand-cyan hover:text-white underline underline-offset-4 mt-3 inline-block break-all"
+                  >
+                    {sm.url}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

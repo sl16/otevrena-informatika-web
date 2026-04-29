@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IconRenderer from '../../components/IconRenderer.astro';
+import { getCollection } from 'astro:content';
+import { getMaterials } from '../../lib/content';
+import type { CurriculumBlock, CurriculumPlan, CurriculumTopic } from '../../../types';
+import { ogImageUrl } from '../../lib/seo';
+
+const [curriculum, materials] = await Promise.all([getCollection('curriculum'), getMaterials()]);
+const plans = curriculum
+  .map((e) => e.data as CurriculumPlan)
+  .sort((a, b) => (a.schoolType === b.schoolType ? 0 : a.schoolType === 'SŠ' ? -1 : 1));
+const materialById = new Map(materials.map((m) => [m.id, m] as const));
+---
+
+  <BaseLayout
+    title="Tematické plány | Otevřená informatika"
+    description="Návrhy tematických plánů pro výuku informatiky na ZŠ i SŠ."
+    image={ogImageUrl({ type: 'home' })}
+  >
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Tematické plány</h1>
+          <p class="text-slate-400 mt-4 leading-relaxed">
+            Doporučené rozložení témat a navazující materiály.
+          </p>
+        </div>
+
+        <div class="mt-12 space-y-10">
+          {plans.map((plan) => (
+            <div class="rounded-3xl border border-white/5 bg-brand-card/40 p-8">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono">{plan.schoolType}</p>
+                  <h2 class="text-2xl md:text-3xl font-black text-white mt-2">{plan.title}</h2>
+                  <p class="text-slate-400 mt-3">{plan.description}</p>
+                </div>
+              </div>
+
+              <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {plan.blocks.map((block: CurriculumBlock) => (
+                  <div class="rounded-3xl border border-white/10 bg-black/20 p-6">
+                    <div class="flex items-center gap-4">
+                      <IconRenderer
+                        name={block.iconName}
+                        size={26}
+                        className="w-12 h-12"
+                      />
+                      <h3 class="text-xl font-black text-white">{block.title}</h3>
+                    </div>
+
+                    <ul class="mt-5 space-y-3">
+                      {block.topics.map((topic: CurriculumTopic) => {
+                        const material = topic.materialId ? materialById.get(topic.materialId) : undefined;
+                        const href = material ? `/materialy/${material.id}` : undefined;
+
+                        return (
+                          <li class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                            <div class="flex items-start justify-between gap-4">
+                              <div>
+                                {href ? (
+                                  <a
+                                    href={href}
+                                    class="font-bold text-white hover:text-brand-cyan transition-colors"
+                                  >
+                                    {topic.title}
+                                  </a>
+                                ) : (
+                                  <p class="font-bold text-white">{topic.title}</p>
+                                )}
+                                {topic.description && <p class="text-sm text-slate-400 mt-1">{topic.description}</p>}
+                              </div>
+                              <span
+                                class={`text-[10px] font-mono uppercase tracking-[0.2em] px-2 py-1 rounded-md border ${
+                                  topic.status === 'available'
+                                    ? 'text-emerald-300 bg-emerald-400/10 border-emerald-400/20'
+                                    : 'text-slate-300 bg-white/5 border-white/10'
+                                }`}
+                              >
+                                {topic.status === 'available' ? 'Dostupné' : 'Plánované'}
+                              </span>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

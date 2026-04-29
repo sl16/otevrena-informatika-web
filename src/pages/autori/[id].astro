@@ -1,0 +1,188 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Prose from '../../components/Prose.astro';
+import Card from '../../components/Card.astro';
+import { getMaterials, getApps, getBlogPosts } from '../../lib/content';
+import { ogImageUrl } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const authors = await getCollection('authors');
+  return authors.map((entry) => ({
+    params: { id: entry.data.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<'authors'> };
+const author = entry.data;
+const { Content } = await entry.render();
+
+const [materials, apps, posts] = await Promise.all([getMaterials(), getApps(), getBlogPosts()]);
+const authoredMaterials = materials.filter((m) => m.authorId === author.id);
+const authoredApps = apps.filter((a) => a.authorId === author.id);
+const authoredPosts = posts.filter((p) => p.authorId === author.id);
+---
+
+<BaseLayout
+  title={`${author.name} | Autor`}
+  description={author.role}
+  image={ogImageUrl({ type: 'author', id: author.id })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-start gap-6">
+          <div
+            class="w-24 h-24 rounded-3xl bg-brand-neon/10 border border-brand-neon/20 flex items-center justify-center text-5xl"
+            aria-hidden="true"
+          >
+            👨
+          </div>
+          <div class="flex-1">
+            <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">{author.name}</h1>
+            <p class="text-slate-400 mt-3">{author.role}</p>
+
+            {author.links && (
+              <div class="mt-6 flex flex-wrap gap-3 text-sm">
+                {author.links.web && (
+                  <a
+                    href={author.links.web}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors"
+                  >
+                    Web
+                  </a>
+                )}
+                {author.links.github && (
+                  <a
+                    href={author.links.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors"
+                  >
+                    GitHub
+                  </a>
+                )}
+                {author.links.twitter && (
+                  <a
+                    href={author.links.twitter}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors"
+                  >
+                    Twitter
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div class="mt-12 rounded-3xl border border-white/5 bg-brand-card/50 p-8">
+          <Prose>
+            <article>
+              <Content />
+            </article>
+          </Prose>
+        </div>
+
+        {(authoredMaterials.length > 0 || authoredApps.length > 0 || authoredPosts.length > 0) && (
+          <div class="mt-14 space-y-14">
+            {authoredMaterials.length > 0 && (
+              <div>
+                <h2 class="text-2xl font-black text-white">Materiály</h2>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                  {authoredMaterials.map((m) => (
+                    <Card
+                      href={`/materialy/${m.id}`}
+                      iconName={m.iconName}
+                      title={m.title}
+                      description={m.description}
+                      category={m.category}
+                      tags={m.tags}
+                      duration={m.duration}
+                      targetAudience={m.targetAudience}
+                      meta={{ author: author.name, date: m.date }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {authoredApps.length > 0 && (
+              <div>
+                <h2 class="text-2xl font-black text-white">Aplikace</h2>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                  {authoredApps.map((a) => (
+                    <Card
+                      href={`/aplikace/${a.id}`}
+                      iconName={a.iconName}
+                      title={a.name}
+                      description={a.description}
+                      category={a.category}
+                      tags={a.features}
+                      meta={{ author: author.name }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {authoredPosts.length > 0 && (
+              <div>
+                <h2 class="text-2xl font-black text-white">Články</h2>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                  {authoredPosts.map((p) => (
+                    <a
+                      href={`/blog/${p.id}`}
+                      class="bg-brand-card/50 backdrop-blur-sm rounded-3xl border border-white/5 overflow-hidden hover:border-brand-neon/30 hover:bg-brand-card transition-all duration-500 group flex flex-col h-full shadow-2xl"
+                    >
+                      <div class="aspect-video overflow-hidden">
+                        <img
+                          src={p.imageUrl}
+                          alt={p.title}
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          referrerpolicy="no-referrer"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="p-8 flex flex-col flex-grow">
+                        <div class="mb-4 flex items-center justify-between gap-4">
+                          <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20">
+                            {p.category}
+                          </span>
+                          <span class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{p.date}</span>
+                        </div>
+                        <h3 class="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">
+                          {p.title}
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">{p.excerpt}</p>
+                        <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                          <span class="text-[10px] text-slate-500 font-mono">👤 {author.name}</span>
+                          <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300">
+                            ➡️
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div class="mt-12">
+          <a
+            href="/"
+            class="bg-white/5 hover:bg-white/10 text-white px-6 py-4 rounded-xl font-bold transition-colors border border-white/10 inline-flex items-center justify-center gap-2"
+          >
+            ⬅️ Zpět domů
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
