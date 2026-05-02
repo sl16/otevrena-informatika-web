@@ -58,25 +58,25 @@ const getIcon = () => {
 const getBgColor = () => {
   switch (category) {
     case 'Programování':
-      return 'bg-brand-neon/10 text-brand-neon border-brand-neon/20';
+      return 'bg-brand-neon/10 text-brand-neon';
     case 'Umělá inteligence':
-      return 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan/20';
+      return 'bg-brand-cyan/10 text-brand-cyan';
     case 'Hardware':
-      return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
+      return 'bg-orange-500/10 text-orange-400';
     case 'Kyberbezpečnost':
-      return 'bg-red-500/10 text-red-400 border-red-500/20';
+      return 'bg-red-500/10 text-red-400';
     case 'Algoritmizace':
-      return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+      return 'bg-emerald-500/10 text-emerald-400';
     case 'Kancelářské aplikace':
-      return 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20';
+      return 'bg-indigo-500/10 text-indigo-400';
     default:
-      return 'bg-white/5 text-slate-400 border-white/10';
+      return 'bg-white/5 text-slate-400';
   }
 };
 ---
 
 <div
-  class={`flex items-center justify-center rounded-3xl border transition-all duration-500 ${getBgColor()} ${className}`}
+  class={`flex items-center justify-center rounded-3xl transition-all duration-500 ${getBgColor()} ${className}`}
   style={`font-size: ${size}px;`}
 >
   {getIcon()}

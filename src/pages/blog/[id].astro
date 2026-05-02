@@ -1,9 +1,10 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Prose from '../../components/Prose.astro';
 import AuthorBadge from '../../components/AuthorBadge.astro';
 import { getAuthors } from '../../lib/content';
+import { formatCzDate } from '../../lib/date';
 import { ogImageUrl } from '../../lib/seo';
 
 export async function getStaticPaths() {
@@ -16,7 +17,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props as { entry: CollectionEntry<'blog'> };
 const post = entry.data;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
+
+const postDateCz = formatCzDate(post.date);
 
 const authorHref = post.authorId ? `/autori/${post.authorId}` : undefined;
 const authors = await getAuthors();
@@ -37,7 +40,7 @@ const author = post.authorId ? authors.find((a) => a.id === post.authorId) : und
           <p class="text-slate-300 mt-5 leading-relaxed">{post.excerpt}</p>
         </div>
 
-        <div class="mt-10 rounded-3xl overflow-hidden border border-white/5 bg-black/20">
+        <div class="mt-10 rounded-3xl overflow-hidden bg-black/20">
           <img
             src={post.imageUrl}
             alt={post.title}
@@ -52,11 +55,11 @@ const author = post.authorId ? authors.find((a) => a.id === post.authorId) : und
             name={author?.name ?? post.author}
             role={author?.role}
             href={authorHref}
-            date={post.date}
+            date={postDateCz}
           />
         </div>
 
-        <div class="mt-12 rounded-3xl border border-white/5 bg-brand-card/50 p-8">
+        <div class="mt-12 rounded-3xl bg-brand-card/50 p-8">
           <Prose>
             <article>
               <Content />
@@ -67,7 +70,7 @@ const author = post.authorId ? authors.find((a) => a.id === post.authorId) : und
         <div class="mt-12">
           <a
             href="/blog"
-            class="bg-white/5 hover:bg-white/10 text-white px-6 py-4 rounded-xl font-bold transition-colors border border-white/10 inline-flex items-center justify-center gap-2"
+            class="bg-white/5 hover:bg-white/10 text-white px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2"
           >
             ⬅️ Zpět na blog
           </a>

@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { formatCzDate, parseDate } from './date';
 
 async function buildAuthorIndex() {
   const authors = await getCollection('authors');
@@ -16,10 +17,12 @@ export async function getMaterials() {
       ...entry.data,
       body: entry.body,
       entry,
+      dateCz: formatCzDate(entry.data.date),
+      _dateSort: parseDate(entry.data.date)?.getTime() ?? 0,
       authorName: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.name ?? entry.data.author : entry.data.author,
       authorRole: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.role : undefined,
     }))
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => b._dateSort - a._dateSort);
 }
 
 export async function getApps() {
@@ -42,10 +45,12 @@ export async function getBlogPosts() {
       ...entry.data,
       body: entry.body,
       entry,
+      dateCz: formatCzDate(entry.data.date),
+      _dateSort: parseDate(entry.data.date)?.getTime() ?? 0,
       authorName: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.name ?? entry.data.author : entry.data.author,
       authorRole: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.role : undefined,
     }))
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => b._dateSort - a._dateSort);
 }
 
 export async function getAuthors() {

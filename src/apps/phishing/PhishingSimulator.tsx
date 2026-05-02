@@ -83,24 +83,24 @@ const PhishingSimulator: React.FC<AppRunnerChildProps> = ({
 
     return (
       <div className="space-y-6">
-        <div className="bg-brand-card/50 border border-white/10 rounded-3xl p-8 sm:p-10">
+        <div className="bg-brand-card/50 rounded-3xl p-8 sm:p-10">
           <h2 className="text-3xl font-black text-white mb-4">Hotovo! Simulaci jste dokončil/a.</h2>
           <p className="text-slate-300 text-lg mb-8 leading-relaxed">
             Prošli jste všech 10 situací. Níže najdete výsledky, certifikát a kompletní rozbor odpovědí.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+            <div className="bg-white/5 rounded-2xl p-5">
               <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono mb-2">Skóre</p>
               <p className="text-3xl font-black text-brand-cyan">{scorePercent} %</p>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+            <div className="bg-white/5 rounded-2xl p-5">
               <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono mb-2">Správné odpovědi</p>
               <p className="text-3xl font-black text-brand-neon">{correctAnswers} / {totalCases}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-brand-card/50 border border-white/10 rounded-3xl p-8 sm:p-10">
+        <div className="bg-brand-card/50 rounded-3xl p-8 sm:p-10">
           <h3 className="text-2xl font-black text-white mb-3">Certifikát</h3>
           <p className="text-slate-300 mb-6 leading-relaxed">
             Vyplňte jméno a vygenerujte certifikát v PDF.
@@ -113,7 +113,7 @@ const PhishingSimulator: React.FC<AppRunnerChildProps> = ({
                 value={studentName}
                 onChange={(event) => setStudentName(event.target.value)}
                 placeholder="Například: Jan Novák"
-                className="mt-2 w-full bg-white/5 border border-white/20 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-brand-cyan"
+                className="mt-2 w-full bg-white/5 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-brand-cyan"
               />
             </label>
 
@@ -143,15 +143,15 @@ const PhishingSimulator: React.FC<AppRunnerChildProps> = ({
           </div>
         </div>
 
-        <div className="bg-brand-card/50 border border-white/10 rounded-3xl p-8 sm:p-10 space-y-4">
+        <div className="bg-brand-card/50 rounded-3xl p-8 sm:p-10 space-y-4">
           <h3 className="text-2xl font-black text-white">Souhrn všech odpovědí</h3>
           {answerSummary.map(({ testCase, selected, expected, isCorrect }, index) => (
             <div
               key={testCase.id}
-              className={`rounded-2xl border p-5 ${
+              className={`rounded-2xl p-5 ${
                 isCorrect
-                  ? 'bg-brand-neon/10 border-brand-neon/40'
-                  : 'bg-red-400/10 border-red-400/40'
+                  ? 'bg-brand-neon/10'
+                  : 'bg-red-400/10'
               }`}
             >
               <p className="text-xs uppercase tracking-[0.2em] text-slate-400 font-mono mb-2">
@@ -214,7 +214,7 @@ const PhishingSimulator: React.FC<AppRunnerChildProps> = ({
         </div>
       </div>
 
-      <div className="bg-brand-card/50 border border-white/10 rounded-3xl overflow-hidden">
+      <div className="bg-brand-card/50 border-white/10 rounded-3xl overflow-hidden">
         <div className="border-b border-white/10 px-6 py-5 bg-white/5">
           <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono mb-2">Příchozí zpráva</p>
           <p className="text-sm text-slate-300"><span className="text-slate-500">Od:</span> {activeCase.from}</p>

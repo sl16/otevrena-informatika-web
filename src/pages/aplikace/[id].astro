@@ -1,10 +1,8 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Prose from '../../components/Prose.astro';
-import AuthorBadge from '../../components/AuthorBadge.astro';
 import IconRenderer from '../../components/IconRenderer.astro';
-import { getAuthors } from '../../lib/content';
 import { ogImageUrl } from '../../lib/seo';
 
 export async function getStaticPaths() {
@@ -17,11 +15,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props as { entry: CollectionEntry<'apps'> };
 const app = entry.data;
-const { Content } = await entry.render();
-
-const authors = await getAuthors();
-const author = app.authorId ? authors.find((a) => a.id === app.authorId) : undefined;
-const authorHref = app.authorId ? `/autori/${app.authorId}` : undefined;
+const { Content } = await render(entry);
 ---
 
 <BaseLayout
@@ -44,7 +38,7 @@ const authorHref = app.authorId ? `/autori/${app.authorId}` : undefined;
             {app.features && app.features.length > 0 && (
               <div class="mt-8 flex flex-wrap gap-2">
                 {app.features.map((f: string) => (
-                  <span class="inline-flex items-center gap-1 text-[10px] font-mono font-medium text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20">
+                  <span class="inline-flex items-center gap-1 text-[10px] font-mono font-medium text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md">
                     {f}
                   </span>
                 ))}
@@ -54,13 +48,13 @@ const authorHref = app.authorId ? `/autori/${app.authorId}` : undefined;
             <div class="mt-10 flex flex-col sm:flex-row gap-4">
               <a
                 href={app.url}
-                class="bg-brand-cyan hover:bg-white text-brand-dark px-6 py-4 rounded-xl font-black transition-colors inline-flex items-center justify-center gap-2"
+                class="bg-brand-cyan hover:bg-white text-brand-dark px-6 py-3 rounded-xl font-black transition-colors inline-flex items-center justify-center gap-2"
               >
                 ▶️ Spustit aplikaci
               </a>
               <a
                 href="/aplikace"
-                class="bg-white/5 hover:bg-white/10 text-white px-6 py-4 rounded-xl font-bold transition-colors border border-white/10 inline-flex items-center justify-center gap-2"
+                class="bg-white/5 hover:bg-white/10 text-white px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2"
               >
                 ⬅️ Zpět na aplikace
               </a>
@@ -68,13 +62,7 @@ const authorHref = app.authorId ? `/autori/${app.authorId}` : undefined;
           </div>
         </div>
 
-        {app.authorId && (
-          <div class="mt-12">
-            <AuthorBadge name={author?.name ?? app.authorId} role={author?.role} href={authorHref} />
-          </div>
-        )}
-
-        <div class="mt-12 rounded-3xl border border-white/5 bg-brand-card/50 p-8">
+        <div class="mt-12 rounded-3xl bg-brand-card/50 p-8">
           <Prose>
             <article>
               <Content />

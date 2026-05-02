@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const categoryEnum = z.enum([
   'Programování',
@@ -11,7 +12,7 @@ const categoryEnum = z.enum([
 ]);
 
 const materials = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/materials' }),
   schema: z.object({
     id: z.string(),
     title: z.string(),
@@ -39,7 +40,7 @@ const materials = defineCollection({
 });
 
 const apps = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/apps' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
@@ -55,7 +56,7 @@ const apps = defineCollection({
 });
 
 const blog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
     id: z.string(),
     title: z.string(),
@@ -69,7 +70,7 @@ const blog = defineCollection({
 });
 
 const authors = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/authors' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
@@ -86,7 +87,7 @@ const authors = defineCollection({
 });
 
 const curriculum = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/curriculum' }),
   schema: z.object({
     id: z.string(),
     schoolType: z.enum(['ZŠ', 'SŠ']),

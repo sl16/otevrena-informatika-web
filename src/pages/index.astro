@@ -104,7 +104,7 @@ const latestBlogPosts = blogPosts.slice(0, 3);
               tags={mat.tags}
               duration={mat.duration}
               targetAudience={mat.targetAudience}
-              meta={{ author: mat.authorName ?? mat.author, date: mat.date }}
+              meta={{ author: mat.authorName ?? mat.author, date: mat.dateCz }}
             />
           ))}
         </div>
@@ -182,7 +182,7 @@ const latestBlogPosts = blogPosts.slice(0, 3);
                 </h3>
                 <p class="text-slate-400 text-sm mb-6 leading-relaxed">{post.excerpt}</p>
                 <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
-                  <span class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{post.date}</span>
+                  <span class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{post.dateCz}</span>
                   <div
                     class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300"
                   >

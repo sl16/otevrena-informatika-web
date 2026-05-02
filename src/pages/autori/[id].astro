@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Prose from '../../components/Prose.astro';
 import Card from '../../components/Card.astro';
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props as { entry: CollectionEntry<'authors'> };
 const author = entry.data;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 const [materials, apps, posts] = await Promise.all([getMaterials(), getApps(), getBlogPosts()]);
 const authoredMaterials = materials.filter((m) => m.authorId === author.id);
@@ -104,7 +104,7 @@ const authoredPosts = posts.filter((p) => p.authorId === author.id);
                       tags={m.tags}
                       duration={m.duration}
                       targetAudience={m.targetAudience}
-                      meta={{ author: author.name, date: m.date }}
+                      meta={{ author: author.name, date: m.dateCz }}
                     />
                   ))}
                 </div>
@@ -153,7 +153,7 @@ const authoredPosts = posts.filter((p) => p.authorId === author.id);
                           <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20">
                             {p.category}
                           </span>
-                          <span class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{p.date}</span>
+                          <span class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{p.dateCz}</span>
                         </div>
                         <h3 class="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">
                           {p.title}

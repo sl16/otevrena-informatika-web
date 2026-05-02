@@ -13,7 +13,7 @@ export default function AppRunner({ app }: Props) {
 
   if (!Renderer) {
     return (
-      <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+      <div className="rounded-3xl bg-white/5 p-8">
         <h2 className="text-2xl font-black text-white mb-2">Aplikace nenalezena</h2>
         <p className="text-slate-300">Pro tuto aplikaci zatím není dostupný běh v prohlížeči.</p>
       </div>
@@ -32,7 +32,7 @@ export default function AppRunner({ app }: Props) {
 
       {result && (
         <div className="text-xs font-mono text-slate-500">
-          Dokončeno: {result.correctAnswers} / {result.totalCases} ({result.scorePercent} %)
+          Dokonceno: {result.correctAnswers} / {result.totalCases} ({result.scorePercent} %)
         </div>
       )}
     </div>

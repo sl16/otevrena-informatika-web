@@ -1,6 +1,18 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet, Font, Link } from '@react-pdf/renderer';
-import { Material } from '../../types';
+
+export interface MaterialPDFData {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string; // Markdown content
+  category: string;
+  author: string;
+  date: string;
+  duration?: string;
+  targetAudience?: 'ZŠ' | 'SŠ' | 'ZŠ/SŠ' | string;
+  supportingMaterials?: { id?: string; title: string; type: 'video' | 'presentation' | 'link' | 'file' | string; url: string }[];
+}
 
 // Register fonts for Czech characters (Latin Extended)
 Font.register({
@@ -375,8 +387,22 @@ const renderMarkdownBlocks = (markdown: string): React.ReactNode => {
   });
 };
 
+const supportingTypeLabel = (type?: string) => {
+  switch (type) {
+    case 'video':
+      return 'Video';
+    case 'presentation':
+      return 'Prezentace';
+    case 'file':
+      return 'Soubor';
+    case 'link':
+    default:
+      return 'Odkaz';
+  }
+};
+
 interface MaterialPDFProps {
-  material: Material;
+  material: MaterialPDFData;
 }
 
 export const MaterialPDF: React.FC<MaterialPDFProps> = ({ material }) => (
@@ -418,11 +444,11 @@ export const MaterialPDF: React.FC<MaterialPDFProps> = ({ material }) => (
         </View>
       </View>
 
-      {/* Description */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>O materiálu</Text>
-        <View>{renderMarkdownBlocks(material.longDescription)}</View>
-      </View>
+       {/* "O materiálu" */}
+       <View style={styles.section}>
+         <Text style={styles.sectionTitle}>O materiálu</Text>
+         <View>{renderMarkdownBlocks(material.longDescription)}</View>
+       </View>
 
       {/* Supporting Materials */}
       {material.supportingMaterials && material.supportingMaterials.length > 0 && (
@@ -434,7 +460,7 @@ export const MaterialPDF: React.FC<MaterialPDFProps> = ({ material }) => (
                 <View style={styles.supportingTopLine}>
                   <Text style={styles.listBullet}>•</Text>
                   <Text style={styles.supportingTitle}>{sm.title}</Text>
-                  <Text style={styles.supportingType}>({sm.type})</Text>
+                  <Text style={styles.supportingType}>{`(${supportingTypeLabel(sm.type)})`}</Text>
                 </View>
                 <Link src={sm.url} style={styles.supportingUrl}>{sm.url}</Link>
               </View>

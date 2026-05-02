@@ -35,7 +35,7 @@ const app = entry.data as AppInfo;
           <p class="text-slate-400 mt-4">{app.description}</p>
         </div>
 
-        <div class="rounded-3xl border border-white/5 bg-brand-card/50 p-6 sm:p-10">
+        <div class="rounded-3xl bg-brand-card/50 p-6 sm:p-10">
           <AppRunner app={app} client:only="react" />
         </div>
       </div>
