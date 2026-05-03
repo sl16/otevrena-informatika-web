@@ -1,47 +1,27 @@
-# Otevrena Informatika Web
+# Otevřená informatika
 
-React + Vite web for https://otevrenainformatika.cz.
+Web [otevrenainformatika.cz](https://otevrenainformatika.cz) sdružuje kvalitní bezplatné výukové materiály a nástroje pro výuku informatiky na základních i středních školách.
 
-## Local development
+## O projektu
 
-Prerequisites:
-- Node.js 20+
+Cílem projektu je nabídnout učitelům i školám praktický, srozumitelný a volně dostupný obsah, který lze okamžitě použít ve výuce.
 
-Commands:
-1. Install dependencies:
-   `npm install`
-2. Start dev server:
-   `npm run dev`
-3. Build production bundle:
-   `npm run build`
+Na webu najdete:
+- metodicky připravené materiály k jednotlivým tématům,
+- vzdělávací aplikace použitelné přímo v hodinách,
+- tematické plány,
+- články a inspiraci z praxe.
 
-## GitHub Pages deployment (custom domain)
+Obsah vzniká s důrazem na použitelnost ve třídě, vizuální přehlednost a dlouhodobou udržitelnost.
 
-This repository is configured for GitHub Pages using GitHub Actions:
-- Workflow: `.github/workflows/deploy-pages.yml`
-- Output directory: `dist`
-- SPA fallback: `public/404.html`
-- Custom domain file in artifact: `public/CNAME`
+## Technologie
 
-### One-time GitHub setup
+Web je postavený na moderním frontendu:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
 
-1. In GitHub repository settings, open `Pages`.
-2. Set `Build and deployment` source to `GitHub Actions`.
-3. In `Custom domain`, set `otevrenainformatika.cz` (if not auto-detected).
-4. Enable `Enforce HTTPS` after DNS is propagated.
+## Poznámka
 
-### DNS records required
-
-At your DNS provider, configure:
-- `A` record for apex `@` to GitHub Pages IPs:
-  - `185.199.108.153`
-  - `185.199.109.153`
-  - `185.199.110.153`
-  - `185.199.111.153`
-- Optional `CNAME` for `www` to `<your-username>.github.io`
-
-### Deploy flow
-
-Any push to `main` or `master` triggers deployment.
-
-You can also run deployment manually via `Actions` -> `Deploy to GitHub Pages` -> `Run workflow`.
+Repozitář slouží jako zdrojový kód webu a obsahové databáze (materiály, aplikace, blog, tematické plány).

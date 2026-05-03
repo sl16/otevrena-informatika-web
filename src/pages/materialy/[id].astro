@@ -1,0 +1,255 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Prose from '../../components/Prose.astro';
+import IconRenderer from '../../components/IconRenderer.astro';
+import { getAuthors } from '../../lib/content';
+import { formatCzDate } from '../../lib/date';
+import { ogImageUrl } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const materials = await getCollection('materials');
+  return materials.map((entry) => ({
+    params: { id: entry.data.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<'materials'> };
+const mat = entry.data;
+const { Content } = await render(entry);
+
+const matDateCz = formatCzDate(mat.date);
+
+const authorHref = mat.authorId ? `/autori/${mat.authorId}` : undefined;
+const authors = await getAuthors();
+const author = mat.authorId ? authors.find((a) => a.id === mat.authorId) : undefined;
+
+const supportingTypeEmoji = (type?: string) => {
+  switch (type) {
+    case 'video':
+      return '🎥';
+    case 'presentation':
+      return '🖥️';
+    case 'file':
+      return '📄';
+    case 'link':
+    default:
+      return '🔗';
+  }
+};
+---
+
+<BaseLayout
+  title={`${mat.title} | Materiály`}
+  description={mat.description}
+  image={ogImageUrl({ type: 'material', id: mat.id })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-8">
+            <a
+              href="/materialy"
+              class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.24em] text-slate-500 hover:text-white transition-colors"
+            >
+              ⬅️ Zpět na seznam
+            </a>
+
+            <div class="mt-6 rounded-[2.5rem] overflow-hidden border border-white/5 bg-brand-card/50 backdrop-blur-sm shadow-2xl">
+              <div class="p-10 sm:p-14">
+                <div class="grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] gap-10 items-center">
+                  <div class="flex justify-center md:justify-start">
+                    <div class="w-[200px] h-[200px] rounded-[2rem] bg-white/5 flex items-center justify-center">
+                      <IconRenderer name={mat.iconName} category={mat.category} size={64} className="w-24 h-24" />
+                    </div>
+                  </div>
+
+                  <div class="min-w-0">
+                    <div class="flex justify-center md:justify-start">
+                      <div class="inline-flex items-center rounded-full bg-brand-neon px-6 py-2 shadow-[0_0_40px_rgba(0,102,255,0.35)]">
+                        <p class="text-[11px] font-mono font-black uppercase tracking-[0.28em] text-brand-dark truncate">
+                          {mat.category}
+                        </p>
+                      </div>
+                    </div>
+
+                    <h1 class="mt-8 text-center md:text-left text-5xl md:text-6xl font-black text-white tracking-tighter leading-[0.95]">
+                      {mat.title}
+                    </h1>
+
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div class="flex items-center gap-3">
+                        <span class="text-lg">👤</span>
+                        <div>
+                          <p class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Autor</p>
+                          <a href={authorHref} class="text-sm font-black text-white hover:text-brand-cyan underline underline-offset-4 block">
+                            {author?.name ?? mat.author}
+                          </a>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <span class="text-lg">🗓️</span>
+                        <div>
+                          <p class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Aktualizováno</p>
+                          <p class="text-sm font-black text-white">{matDateCz}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mt-8 h-px bg-white/10" />
+
+                    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {mat.duration && (
+                        <div class="flex items-center gap-3">
+                          <span class="text-lg">🕒</span>
+                          <div>
+                            <p class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Délka lekce</p>
+                            <p class="mt-1 text-sm font-black text-white">{mat.duration}</p>
+                          </div>
+                        </div>
+                      )}
+                      {mat.targetAudience && (
+                        <div class="flex items-center gap-3">
+                          <span class="text-lg">👥</span>
+                          <div>
+                            <p class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Určeno pro</p>
+                            <p class="mt-1 text-sm font-black text-white">{mat.targetAudience === 'SŠ' ? 'Střední škola' : mat.targetAudience}</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                      <a
+                        href={mat.downloadUrl}
+                        class="bg-brand-neon hover:bg-white text-brand-dark px-6 py-3 rounded-xl font-black transition-colors inline-flex items-center justify-center gap-2 min-w-[220px]"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Prezentace 🗂️
+                      </a>
+                      <a
+                        href={`/materialy/${mat.id}/pedagogicka-prirucka.pdf`}
+                        class="bg-white/10 hover:bg-white/15 text-white px-6 py-3 rounded-xl font-black transition-colors border border-white/10 inline-flex items-center justify-center gap-2 min-w-[220px] whitespace-nowrap"
+                        download
+                      >
+                        Pedagogická příručka 📄
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-10 rounded-3xl border border-white/5 bg-brand-card/50 p-8">
+			  <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight">O materiálu</h2>
+              <p class="mt-4 text-slate-300 leading-relaxed">{mat.description}</p>
+			  <div class="mt-8 h-px bg-white/10" />
+              <Prose>
+                <article>
+                  <Content />
+                </article>
+              </Prose>
+            </div>
+
+            <div class="mt-12 rounded-[2.5rem] border border-white/5 bg-black/20 p-10">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center" aria-hidden="true">
+                  🛡️
+                </span>
+                <p class="text-xs font-black tracking-[0.24em] text-brand-cyan uppercase">Licence materiálu</p>
+              </div>
+
+              <div class="mt-6">
+                <a
+                  href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.cs"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-2xl font-black text-white hover:text-brand-cyan transition-colors"
+                >
+                  CC BY-NC-SA 4.0
+                </a>
+                <p class="mt-2 text-sm font-mono text-slate-400">
+                  (Uveďte původ – Neužívejte komerčně – Zachovejte licenci)
+                </p>
+              </div>
+
+              <div class="mt-8 h-px bg-white/10" />
+
+              <div class="mt-8">
+                <h3 class="text-lg font-black text-white">Co to prakticky znamená?</h3>
+                <ul class="mt-6 space-y-4">
+                  <li class="flex gap-4">
+                    <span class="mt-1 w-2 h-2 rounded-full bg-brand-cyan shrink-0" aria-hidden="true" />
+                    <p class="text-slate-300 leading-relaxed">
+                      <span class="font-black text-white">Můžete sdílet a upravovat:</span> Materiál si můžete stáhnout, upravit pro své žáky,
+                      vytisknout nebo sdílet s kolegy.
+                    </p>
+                  </li>
+                  <li class="flex gap-4">
+                    <span class="mt-1 w-2 h-2 rounded-full bg-brand-cyan shrink-0" aria-hidden="true" />
+                    <p class="text-slate-300 leading-relaxed">
+                      <span class="font-black text-white">Uveďte původ:</span> Pokud materiál (nebo jeho upravenou verzi) sdílíte dál, musíte uvést,
+                      že původním autorem je Otevřená informatika (nebo konkrétní autor uvedený výše).
+                    </p>
+                  </li>
+                  <li class="flex gap-4">
+                    <span class="mt-1 w-2 h-2 rounded-full bg-brand-cyan shrink-0" aria-hidden="true" />
+                    <p class="text-slate-300 leading-relaxed">
+                      <span class="font-black text-white">Nekomerční užití:</span> Materiál nesmíte prodávat nebo využívat k přímému finančnímu zisku.
+                      Je určen pro výuku a vzdělávání.
+                    </p>
+                  </li>
+                  <li class="flex gap-4">
+                    <span class="mt-1 w-2 h-2 rounded-full bg-brand-cyan shrink-0" aria-hidden="true" />
+                    <p class="text-slate-300 leading-relaxed">
+                      <span class="font-black text-white">Zachovejte licenci:</span> Pokud materiál upravíte a budete ho sdílet dál, musíte ho
+                      poskytnout ostatním za stejných podmínek (zdarma a pod stejnou licencí).
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <aside class="lg:col-span-4 lg:sticky lg:top-28">
+            {mat.supportingMaterials && mat.supportingMaterials.length > 0 && (
+              <div class="rounded-3xl border border-white/5 bg-black/20 p-8">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-brand-cyan" aria-hidden="true" />
+                  <p class="text-xs font-black tracking-[0.24em] text-white uppercase">Podpůrné materiály</p>
+                </div>
+                <ul class="mt-6 space-y-3">
+                  {mat.supportingMaterials.map((sm: { id: string; title: string; type: string; url: string }) => (
+                    <li>
+                      <a
+                        href={sm.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="block rounded-2xl bg-white/5 hover:bg-white/10 transition-colors p-4"
+                      >
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-10 h-10 flex items-center justify-center text-lg shrink-0"
+                            aria-hidden="true"
+                          >
+                            {supportingTypeEmoji(sm.type)}
+                          </div>
+                          <div class="min-w-0">
+                            <p class="text-sm font-bold text-white truncate">{sm.title}</p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

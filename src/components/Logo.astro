@@ -1,0 +1,35 @@
+---
+interface Props {
+  className?: string;
+  size?: number;
+  withText?: boolean;
+}
+
+const { className = '', size = 32, withText = true } = Astro.props;
+---
+
+<div class={`flex items-center gap-3 ${className}`}>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="drop-shadow-[0_0_8px_rgba(0,102,255,0.5)]"
+    aria-hidden="true"
+  >
+    <path
+      d="M14 8.5C10.3333 10.5 8 14.5 8 19C8 25.6274 13.3726 31 20 31C26.6274 31 32 25.6274 32 19C32 14.5 29.6667 10.5 26 8.5"
+      stroke="white"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+    <path d="M20 5V19" stroke="#0066ff" stroke-width="4" stroke-linecap="round" />
+  </svg>
+
+  {withText && (
+    <span class="font-bold tracking-tighter text-white" style={`font-size: ${size * 0.7}px;`}>
+      Otevřená<span class="text-brand-neon">Informatika</span>
+    </span>
+  )}
+</div>

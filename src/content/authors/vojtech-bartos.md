@@ -2,7 +2,7 @@
 id: vojtech-bartos
 name: Vojtěch Bartoš
 role: Zakladatel projektu, příležitostný učitel IKT a vývojář
-avatarUrl: /authors/avatar-vojtech-bartos.jpg
+avatarUrl: "emoji:👨"
 links:
   github: "https://github.com/sl16"
 ---

@@ -1,0 +1,47 @@
+---
+import Logo from './Logo.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const links: Array<{ href: string; label: string }> = [
+  { href: '/materialy', label: 'Materiály' },
+  { href: '/aplikace', label: 'Aplikace' },
+  { href: '/tematicke-plany', label: 'Tematické plány' },
+  { href: '/prompty', label: 'Prompty' },
+  { href: '/blog', label: 'Blog' },
+];
+
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<header class="sticky top-0 z-50 border-b border-white/5 bg-brand-dark/70 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="h-20 flex items-center justify-between gap-6">
+      <a href="/" class="shrink-0" aria-label="Domů">
+        <Logo size={28} />
+      </a>
+
+      <nav class="hidden md:flex items-center gap-2" aria-label="Hlavní navigace">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            class={`px-4 py-2 rounded-xl text-sm font-bold transition-colors border ${
+              isActive(l.href)
+                ? 'bg-white/10 text-white border-white/10'
+                : 'bg-transparent text-slate-300 border-transparent hover:bg-white/5 hover:text-white'
+            }`}
+          >
+            {l.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="flex items-center gap-3">
+      </div>
+    </div>
+  </div>
+</header>

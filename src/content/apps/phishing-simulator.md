@@ -1,11 +1,11 @@
 ---
 id: phishing-simulator
 name: Phishing simulátor
-description: Naučte se bezpečně rozpoznat podvodné zprávy z prostředí školy, sociálních sítí i e-mailu.
+description: Naučte se bezpečně rozpoznat podvodné zprávy nejen v prostředí e-mailu.
 url: "/app/phishing-simulator"
-iconName: mail-warning
+iconName: mail
 category: Kyberbezpečnost
-authorId: vojtech-barak
+authorId: vojtech-bartos
 runnerType: phishing-simulator
 certificateTitle: Certifikát kyberbezpečnosti - Phishing simulátor
 features: ["10 realistických případů", "Okamžité vysvětlení správně/špatně", "Certifikát v PDF"]

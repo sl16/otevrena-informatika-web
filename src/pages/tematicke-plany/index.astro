@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IconRenderer from '../../components/IconRenderer.astro';
+import { getCollection } from 'astro:content';
+import { getMaterials } from '../../lib/content';
+import type { CurriculumBlock, CurriculumTopic } from '../../../types';
+import { ogImageUrl } from '../../lib/seo';
+
+const [curriculum, materials] = await Promise.all([getCollection('curriculum'), getMaterials()]);
+const plan = curriculum
+  .map((e) => e.data)
+  .find((p) => p.schoolType === 'SŠ');
+const materialById = new Map<string, any>(materials.map((m) => [m.id, m]));
+---
+
+<BaseLayout
+  title="Tematické plány | Otevřená informatika"
+  description="Návrhy tematických plánů pro výuku informatiky na SŠ."
+  image={ogImageUrl({ type: 'home' })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Tematické plány</h1>
+          <p class="text-slate-400 mt-4 leading-relaxed">
+            Doporučené rozložení témat a navazující materiály pro střední školy.
+          </p>
+        </div>
+
+        {plan && (
+          <div class="mt-12 relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-px before:bg-white/10 space-y-12">
+            {plan.blocks.map((block: CurriculumBlock) => (
+              <div class="relative">
+                <div class="absolute left-[-2.5rem] w-8 h-8 flex items-center justify-center rounded-full bg-brand-card border border-brand-neon/30">
+                  <IconRenderer name={block.iconName} size={16} className="text-brand-neon" />
+                </div>
+                <div class="mb-6">
+                  <h2 class="text-2xl font-black text-white">{block.title}</h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                  {block.topics.map((topic: CurriculumTopic) => {
+                    const material = topic.materialId ? materialById.get(topic.materialId) : undefined;
+                    const href = material ? `/materialy/${material.id}` : undefined;
+
+                    return (
+                      <a
+                        href={href ?? '#'}
+                        class={`rounded-2xl border p-5 ml-2 ${
+                          href
+                            ? 'bg-brand-card/40 border-white/10 hover:border-brand-cyan/40'
+                            : 'bg-black/20 border-white/5 pointer-events-none opacity-60'
+                        }`}
+                      >
+                        <div class="flex items-start justify-between gap-3">
+                          <div class="flex-1">
+                            {href ? (
+                              <p class="font-bold text-white hover:text-brand-cyan transition-colors">{topic.title}</p>
+                            ) : (
+                              <p class="font-bold text-white">{topic.title}</p>
+                            )}
+                            {topic.description && <p class="text-sm text-slate-400 mt-1">{topic.description}</p>}
+                          </div>
+                          <span
+                            class={`text-[10px] font-mono uppercase tracking-[0.2em] px-2 py-1 rounded-md border shrink-0 ${
+                              topic.status === 'available'
+                                ? 'text-emerald-300 bg-emerald-400/10 border-emerald-400/20'
+                                : 'text-slate-300 bg-white/5 border-white/10'
+                            }`}
+                          >
+                            {topic.status === 'available' ? 'Dostupné' : 'Plánované'}
+                          </span>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

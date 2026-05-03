@@ -1,0 +1,100 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Prose from '../../components/Prose.astro';
+import DetailBackLink from '../../components/DetailBackLink.astro';
+import { getAuthors } from '../../lib/content';
+import { formatCzDate } from '../../lib/date';
+import { ogImageUrl } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((entry) => ({
+    params: { id: entry.data.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<'blog'> };
+const post = entry.data;
+const { Content } = await render(entry);
+
+const postDateCz = formatCzDate(post.date);
+
+const authorHref = post.authorId ? `/autori/${post.authorId}` : undefined;
+const authors = await getAuthors();
+const author = post.authorId ? authors.find((a) => a.id === post.authorId) : undefined;
+---
+
+<BaseLayout
+  title={`${post.title} | Blog`}
+  description={post.excerpt}
+  image={ogImageUrl({ type: 'blog', id: post.id })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <DetailBackLink labelBack="Zpět na blog" hrefBack="/blog" />
+
+        <div class="mt-6 rounded-[2.5rem] overflow-hidden border border-white/5 bg-brand-card/50 backdrop-blur-sm shadow-2xl">
+          <div class="p-10 sm:p-14">
+            <div class="rounded-3xl overflow-hidden">
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                class="w-full aspect-[16/7] object-cover"
+                referrerpolicy="no-referrer"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="mt-10">
+              <div class="flex justify-center md:justify-start">
+                <div class="inline-flex items-center rounded-full bg-brand-neon px-6 py-2 shadow-[0_0_40px_rgba(0,102,255,0.35)]">
+                  <p class="text-[11px] font-mono font-black uppercase tracking-[0.28em] text-brand-dark truncate">
+                    {post.category}
+                  </p>
+                </div>
+              </div>
+
+              <h1 class="mt-8 text-5xl md:text-6xl font-black text-white tracking-tighter leading-[0.95]">
+                {post.title}
+              </h1>
+
+              <p class="mt-6 text-xl text-slate-300 leading-relaxed">{post.excerpt}</p>
+
+              <div class="mt-8 h-px bg-white/10" />
+
+              <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">👤</span>
+                  <div>
+                    <p class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Autor</p>
+                    <a href={authorHref} class="text-sm font-black text-white hover:text-brand-cyan underline underline-offset-4 block">
+                      {author?.name ?? post.author}
+                    </a>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🗓️</span>
+                  <div>
+                    <p class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Publikováno</p>
+                    <p class="text-sm font-black text-white">{postDateCz}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 rounded-3xl border border-white/5 bg-brand-card/50 p-8">
+          <Prose>
+            <article>
+              <Content />
+            </article>
+          </Prose>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,68 @@
+---
+import IconRenderer from './IconRenderer.astro';
+import type { Category } from '../lib/types';
+
+interface Props {
+  href: string;
+  iconName: string;
+  title: string;
+  description: string;
+  category: Category;
+  meta?: {
+    author?: string;
+    date?: string;
+  };
+  tags?: string[];
+  duration?: string;
+  targetAudience?: string;
+}
+
+const { href, iconName, title, description, category, meta, tags, duration, targetAudience } = Astro.props;
+---
+
+<a
+  href={href}
+  class="bg-brand-card/50 backdrop-blur-sm rounded-3xl border border-white/5 overflow-hidden hover:border-brand-neon/30 hover:bg-brand-card transition-all duration-500 group flex flex-col h-full shadow-2xl"
+>
+  <div class="p-8 pb-0">
+    <IconRenderer name={iconName} category={category} size={48} className="w-full h-48 group-hover:scale-105" />
+  </div>
+
+  <div class="p-8 flex flex-col flex-grow">
+    <div class="mb-4 flex justify-between items-center">
+      <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500 group-hover:text-brand-neon transition-colors">
+        {category}
+      </span>
+      {(duration || targetAudience) && (
+        <div class="flex gap-3 text-[10px] font-mono text-slate-500">
+          {duration && <span class="flex items-center gap-1">🕒 {duration}</span>}
+          {targetAudience && <span class="flex items-center gap-1">👥 {targetAudience}</span>}
+        </div>
+      )}
+    </div>
+    <h3 class="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">{title}</h3>
+    <p class="text-slate-400 text-sm mb-6 leading-relaxed">{description}</p>
+
+    <div class="mt-auto space-y-4">
+      {tags && (
+        <div class="flex flex-wrap gap-2">
+          {tags.slice(0, 2).map((tag) => (
+            <span class="inline-flex items-center gap-1 text-[10px] font-mono font-medium text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <div class="flex items-center justify-between pt-6 border-t border-white/5">
+        <div class="flex flex-col gap-1">
+          {meta?.author && <span class="text-[10px] text-slate-500 flex items-center gap-1.5 font-mono">👤 {meta.author}</span>}
+          {meta?.date && <span class="text-[10px] text-slate-500 flex items-center gap-1.5 font-mono">📅 {meta.date}</span>}
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300">
+          ➡️
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

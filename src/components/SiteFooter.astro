@@ -1,0 +1,41 @@
+---
+import Logo from './Logo.astro';
+---
+
+<footer class="border-t border-white/5 bg-gradient-to-b from-black/0 via-black/20 to-black/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <div class="md:col-span-6">
+        <a href="/" class="inline-flex" aria-label="Domů">
+          <Logo size={26} withText={true} />
+        </a>
+
+        <p class="mt-6 text-sm leading-7 text-slate-400 max-w-md">
+          Portál pro učitele informatiky, kteří chtějí sdílet, tvořit a učit moderně. Všechny materiály jsou dostupné
+          zdarma pod licencí Creative Commons.
+        </p>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="text-xs font-black tracking-[0.24em] text-white uppercase">Navigace</p>
+        <nav class="mt-6 flex flex-col gap-3 text-sm" aria-label="Navigace ve footeru">
+          <a class="text-slate-300 hover:text-white transition-colors" href="/materialy">Materiály IKT</a>
+          <a class="text-slate-300 hover:text-white transition-colors" href="/aplikace">Vzdělávací aplikace</a>
+          <a class="text-slate-300 hover:text-white transition-colors" href="/tematicke-plany">Tematické plány</a>
+          <a class="text-slate-300 hover:text-white transition-colors" href="/blog">Blog</a>
+        </nav>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="text-xs font-black tracking-[0.24em] text-white uppercase">Kontakt</p>
+        <p class="mt-6 text-sm leading-7 text-slate-400">Máte dotaz nebo nápad na spolupráci?</p>
+        <a
+          class="mt-4 inline-block text-sm font-black text-brand-cyan hover:text-white transition-colors"
+          href="mailto:info@otevrenainformatika.cz"
+        >
+          info@otevrenainformatika.cz
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

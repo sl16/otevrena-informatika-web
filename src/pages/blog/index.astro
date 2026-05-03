@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getBlogPosts } from '../../lib/content';
+import { ogImageUrl } from '../../lib/seo';
+
+const posts = await getBlogPosts();
+---
+
+<BaseLayout
+  title="Blog | Otevřená informatika"
+  description="Novinky a články k projektu Otevřená informatika."
+  image={ogImageUrl({ type: 'blog' })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Blog</h1>
+          <p class="text-slate-400 mt-4 leading-relaxed">Poznámky z vývoje a z praxe ve výuce.</p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          {posts.map((post) => (
+            <a
+              href={`/blog/${post.id}`}
+              class="bg-brand-card/50 backdrop-blur-sm rounded-3xl border border-white/5 overflow-hidden hover:border-brand-neon/30 hover:bg-brand-card transition-all duration-500 group flex flex-col h-full shadow-2xl"
+            >
+              <div class="aspect-video overflow-hidden">
+                <img
+                  src={post.imageUrl}
+                  alt={post.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerpolicy="no-referrer"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-8 flex flex-col flex-grow">
+                <div class="mb-4 flex items-center gap-4">
+                  <span
+                    class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20"
+                  >
+                    {post.category}
+                  </span>
+                </div>
+                <h3 class="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">
+                  {post.title}
+                </h3>
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed">{post.excerpt}</p>
+                <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                  <div class="flex flex-col gap-1">
+                    <span class="text-[10px] text-slate-500 flex items-center gap-1.5 font-mono">👤 {post.authorName ?? post.author}</span>
+                    <span class="text-[10px] text-slate-500 flex items-center gap-1.5 font-mono">📅 {post.dateCz}</span>
+                  </div>
+                  <div
+                    class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300"
+                  >
+                    ➡️
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
