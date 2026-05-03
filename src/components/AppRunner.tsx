@@ -32,7 +32,7 @@ export default function AppRunner({ app }: Props) {
 
       {result && (
         <div className="text-xs font-mono text-slate-500">
-          Dokonceno: {result.correctAnswers} / {result.totalCases} ({result.scorePercent} %)
+          Dokončeno: {result.correctAnswers} / {result.totalCases} ({result.scorePercent} %)
         </div>
       )}
     </div>

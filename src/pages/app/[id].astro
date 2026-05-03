@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AppRunner from '../../components/AppRunner';
+import PhishingSimulatorStatic from '../../components/phishing/PhishingSimulatorStatic.astro';
 import type { AppInfo } from '../../../types';
 import { ogImageUrl } from '../../lib/seo';
 
@@ -36,7 +37,11 @@ const app = entry.data as AppInfo;
         </div>
 
         <div class="rounded-3xl bg-brand-card/50 p-6 sm:p-10">
-          <AppRunner app={app} client:only="react" />
+          {app.id === 'phishing-simulator' ? (
+            <PhishingSimulatorStatic app={app} />
+          ) : (
+            <AppRunner app={app} client:load />
+          )}
         </div>
       </div>
     </section>

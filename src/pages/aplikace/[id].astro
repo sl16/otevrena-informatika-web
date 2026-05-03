@@ -3,6 +3,8 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Prose from '../../components/Prose.astro';
 import IconRenderer from '../../components/IconRenderer.astro';
+import DetailBackLink from '../../components/DetailBackLink.astro';
+import { getAuthors } from '../../lib/content';
 import { ogImageUrl } from '../../lib/seo';
 
 export async function getStaticPaths() {
@@ -16,6 +18,10 @@ export async function getStaticPaths() {
 const { entry } = Astro.props as { entry: CollectionEntry<'apps'> };
 const app = entry.data;
 const { Content } = await render(entry);
+
+const authorHref = app.authorId ? `/autori/${app.authorId}` : undefined;
+const authors = await getAuthors();
+const author = app.authorId ? authors.find((a) => a.id === app.authorId) : undefined;
 ---
 
 <BaseLayout
@@ -26,43 +32,74 @@ const { Content } = await render(entry);
   <main class="min-h-screen">
     <section class="py-16">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-start gap-6">
-          <div class="shrink-0">
-            <IconRenderer name={app.iconName} category={app.category} size={44} className="w-20 h-20" />
-          </div>
-          <div class="flex-1">
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono mb-3">{app.category}</p>
-            <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter leading-tight">{app.name}</h1>
-            <p class="text-slate-300 mt-5 leading-relaxed">{app.description}</p>
+        <DetailBackLink labelBack="Zpět na aplikace" hrefBack="/aplikace" />
 
-            {app.features && app.features.length > 0 && (
-              <div class="mt-8 flex flex-wrap gap-2">
-                {app.features.map((f: string) => (
-                  <span class="inline-flex items-center gap-1 text-[10px] font-mono font-medium text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md">
-                    {f}
-                  </span>
-                ))}
+        <div class="mt-6 rounded-[2.5rem] overflow-hidden border border-white/5 bg-brand-card/50 backdrop-blur-sm shadow-2xl">
+          <div class="p-10 sm:p-14">
+            <div class="grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] gap-10 items-center">
+              <div class="flex justify-center md:justify-start">
+                <div class="w-[200px] h-[200px] rounded-[2rem] bg-white/5 flex items-center justify-center">
+                  <IconRenderer name={app.iconName} category={app.category} size={64} className="w-24 h-24" />
+                </div>
               </div>
-            )}
 
-            <div class="mt-10 flex flex-col sm:flex-row gap-4">
-              <a
-                href={app.url}
-                class="bg-brand-cyan hover:bg-white text-brand-dark px-6 py-3 rounded-xl font-black transition-colors inline-flex items-center justify-center gap-2"
-              >
-                ▶️ Spustit aplikaci
-              </a>
-              <a
-                href="/aplikace"
-                class="bg-white/5 hover:bg-white/10 text-white px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center justify-center gap-2"
-              >
-                ⬅️ Zpět na aplikace
-              </a>
+              <div class="min-w-0">
+                <div class="flex justify-center md:justify-start">
+                  <div class="inline-flex items-center rounded-full bg-brand-neon px-6 py-2 shadow-[0_0_40px_rgba(0,102,255,0.35)]">
+                    <p class="text-[11px] font-mono font-black uppercase tracking-[0.28em] text-brand-dark truncate">
+                      {app.category}
+                    </p>
+                  </div>
+                </div>
+
+                <h1 class="mt-8 text-center md:text-left text-5xl md:text-6xl font-black text-white tracking-tighter leading-[0.95]">
+                  {app.name}
+                </h1>
+
+                <p class="mt-6 text-xl text-slate-300 leading-relaxed">{app.description}</p>
+
+                <div class="mt-8 h-px bg-white/10" />
+
+                <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {author && (
+                    <div class="flex items-center gap-3">
+                      <span class="text-lg">👤</span>
+                      <div>
+                        <p class="text-[10px] font-mono uppercase tracking-[0.28em] text-slate-500">Autor</p>
+                        <a href={authorHref} class="text-sm font-black text-white hover:text-brand-cyan underline underline-offset-4 block">
+                          {author.name}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {app.features && app.features.length > 0 && (
+                  <div class="mt-8 flex flex-wrap gap-2">
+                    {app.features.map((f: string) => (
+                      <span class="inline-flex items-center gap-1 text-[10px] font-mono font-medium text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md">
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                  <a
+                    href={app.url}
+                    class="bg-brand-neon hover:bg-white text-brand-dark px-6 py-3 rounded-xl font-black transition-colors inline-flex items-center justify-center gap-2 min-w-[220px]"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    ▶️ Spustit aplikaci
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="mt-12 rounded-3xl bg-brand-card/50 p-8">
+        <div class="mt-10 rounded-3xl border border-white/5 bg-brand-card/50 p-8">
           <Prose>
             <article>
               <Content />

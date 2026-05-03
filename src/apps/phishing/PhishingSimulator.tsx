@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { PDFDownloadLink } from '@react-pdf/renderer';
 import { phishingCases } from './cases';
 import { AppRunnerChildProps } from '../index';
-import { AppCertificatePDF } from '../../components/AppCertificatePDF';
 
 const totalCases = phishingCases.length;
 
@@ -28,6 +26,19 @@ const PhishingSimulator: React.FC<AppRunnerChildProps> = ({
   const [selectedByCase, setSelectedByCase] = useState<Record<string, Verdict>>({});
   const [completionSent, setCompletionSent] = useState(false);
   const [studentName, setStudentName] = useState('');
+  const [completedAt, setCompletedAt] = useState<string | null>(null);
+  const [CertificateDownload, setCertificateDownload] = useState<
+    React.ComponentType<{
+      studentName: string;
+      appName: string;
+      certificateTitle: string;
+      scorePercent: number;
+      correctAnswers: number;
+      totalCases: number;
+      completedAt: string;
+    }> | null
+  >(null);
+  const [certificateLoadError, setCertificateLoadError] = useState<string | null>(null);
 
   const isFinished = currentIndex >= totalCases;
   const currentCase = isFinished ? null : phishingCases[currentIndex];
@@ -68,18 +79,36 @@ const PhishingSimulator: React.FC<AppRunnerChildProps> = ({
       return;
     }
 
+    // Capture a stable completion timestamp when the simulation ends.
+    const finishedAt = new Date().toISOString();
+    setCompletedAt(finishedAt);
     const scorePercent = Math.round((correctAnswers / totalCases) * 100);
     onComplete?.({
       scorePercent,
       correctAnswers,
       totalCases,
-      completedAt: new Date().toISOString(),
+      completedAt: finishedAt,
     });
     setCompletionSent(true);
   }, [completionSent, correctAnswers, isFinished, onComplete]);
 
+  useEffect(() => {
+    if (!isFinished || CertificateDownload || certificateLoadError) {
+      return;
+    }
+
+    // Defer loading @react-pdf/renderer until the certificate section is shown.
+    import('./CertificateDownloadButton')
+      .then((mod) => setCertificateDownload(() => mod.default))
+      .catch((err) => {
+        console.error(err);
+        setCertificateLoadError('Nepodařilo se načíst generátor certifikátu.');
+      });
+  }, [CertificateDownload, certificateLoadError, isFinished]);
+
   if (isFinished) {
     const scorePercent = Math.round((correctAnswers / totalCases) * 100);
+    const certificateCompletedAt = completedAt ?? new Date().toISOString();
 
     return (
       <div className="space-y-6">
@@ -117,29 +146,26 @@ const PhishingSimulator: React.FC<AppRunnerChildProps> = ({
               />
             </label>
 
-            <PDFDownloadLink
-              document={
-                <AppCertificatePDF
-                  studentName={studentName.trim() || 'Neuvedeno'}
-                  appName={appName}
-                  certificateTitle={certificateTitle}
-                  scorePercent={scorePercent}
-                  correctAnswers={correctAnswers}
-                  totalCases={totalCases}
-                  completedAt={new Date().toISOString()}
-                />
-              }
-              fileName="certifikat-phishing-simulator.pdf"
-            >
-              {({ loading }) => (
-                <button
-                  disabled={loading || !studentName.trim()}
-                  className="bg-brand-cyan hover:bg-white text-brand-dark px-6 py-3 rounded-xl font-black transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loading ? 'Připravuji PDF...' : 'Stáhnout certifikát (PDF)'}
-                </button>
-              )}
-            </PDFDownloadLink>
+            {certificateLoadError ? (
+              <p className="text-sm text-red-200">{certificateLoadError}</p>
+            ) : CertificateDownload ? (
+              <CertificateDownload
+                studentName={studentName}
+                appName={appName}
+                certificateTitle={certificateTitle}
+                scorePercent={scorePercent}
+                correctAnswers={correctAnswers}
+                totalCases={totalCases}
+                completedAt={certificateCompletedAt}
+              />
+            ) : (
+              <button
+                disabled
+                className="bg-white/10 text-white px-6 py-3 rounded-xl font-black opacity-70 cursor-not-allowed"
+              >
+                Načítám certifikát...
+              </button>
+            )}
           </div>
         </div>
 

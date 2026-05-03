@@ -1,0 +1,97 @@
+---
+import { phishingCases } from '../../apps/phishing/cases';
+import type { AppInfo } from '../../../types';
+
+type Props = {
+  app: AppInfo;
+};
+
+const { app } = Astro.props;
+const totalCases = phishingCases.length;
+const firstCase = phishingCases[0];
+
+const baseOptionClass =
+  'w-full text-left rounded-2xl border px-4 py-4 transition-all border-white/10 bg-white/5 text-slate-200 hover:border-brand-cyan/40 cursor-pointer';
+
+const nextButtonClass =
+  'bg-brand-cyan hover:bg-white text-brand-dark px-6 py-3 rounded-xl font-black transition-all disabled:opacity-40 disabled:cursor-not-allowed';
+---
+
+<div class="space-y-6" data-phishing-simulator>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div>
+      <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono mb-2" data-case-counter>
+        Případ 1 z {totalCases}
+      </p>
+      <h2 class="text-2xl sm:text-3xl font-black text-white">Rozpoznej phishing</h2>
+    </div>
+    <div class="text-right">
+      <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono mb-2">Průběžné skóre</p>
+      <p class="text-2xl font-black text-brand-cyan" data-score>
+        0 / {totalCases}
+      </p>
+    </div>
+  </div>
+
+  <div class="bg-brand-card/50 border-white/10 rounded-3xl overflow-hidden">
+    <div class="border-b border-white/10 px-6 py-5 bg-white/5">
+      <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-mono mb-2">Příchozí zpráva</p>
+      <p class="text-sm text-slate-300" data-from>
+        <span class="text-slate-500">Od:</span> {firstCase.from}
+      </p>
+      <p class="text-sm text-slate-300" data-subject>
+        <span class="text-slate-500">Předmět:</span> {firstCase.subject}
+      </p>
+      <p class="text-sm text-slate-400 mt-2" data-preview>{firstCase.preview}</p>
+    </div>
+
+    <div class="px-6 py-6 border-b border-white/10 space-y-3">
+      <p class="text-slate-200 leading-relaxed" data-body>{firstCase.body}</p>
+      <a
+        class="hidden inline-flex items-center gap-2 text-brand-cyan hover:text-white underline decoration-brand-cyan/40 underline-offset-4"
+        target="_blank"
+        rel="noreferrer"
+        title="Najeď myší na odkaz a zkontroluj skutečnou URL"
+        data-link
+      ></a>
+      <p class="hidden text-slate-200 leading-relaxed" data-body-after-link></p>
+    </div>
+
+    <div class="px-6 py-6">
+      <p class="text-sm uppercase tracking-[0.2em] text-slate-500 font-mono mb-4">Je to phishing?</p>
+      <div class="space-y-3">
+        <button type="button" data-verdict="phishing" class={baseOptionClass}>Je to phishing</button>
+        <button type="button" data-verdict="safe" class={baseOptionClass}>Není to phishing</button>
+      </div>
+
+      <div
+        class="hidden mt-6 rounded-2xl border p-5"
+        data-feedback
+      >
+        <p class="font-black mb-2" data-feedback-title></p>
+        <p class="text-slate-100 leading-relaxed mb-3" data-feedback-summary></p>
+        <p class="text-slate-300 text-sm leading-relaxed mb-2" data-learning></p>
+        <p class="hidden text-brand-cyan text-sm" data-link-tip>
+          Tip k odkazům: najeď myší na odkaz a zkontroluj, co prohlížeč vpravo dole (v informační liště) ukazuje jako
+          skutečnou URL.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <button type="button" data-next disabled class={nextButtonClass}>Další případ</button>
+  </div>
+
+  <script
+    is:inline
+    type="application/json"
+    id="phishing-cases"
+    set:html={JSON.stringify({
+      appName: app.name,
+      certificateTitle: app.certificateTitle ?? app.name,
+      cases: phishingCases,
+    })}
+  ></script>
+  <script is:inline src="/js/phishing-simulator.js" defer></script>
+</div>

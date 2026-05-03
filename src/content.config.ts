@@ -112,10 +112,21 @@ const curriculum = defineCollection({
   }),
 });
 
+const prompts = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/prompts' }),
+  schema: z.object({
+    id: z.string(),
+    title: z.string(),
+    category: z.string(),
+    description: z.string(),
+  }),
+});
+
 export const collections = {
   materials,
   apps,
   blog,
   authors,
   curriculum,
+  prompts,
 };

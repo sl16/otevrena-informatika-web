@@ -32,7 +32,7 @@ const latestBlogPosts = blogPosts.slice(0, 3);
             Bezplatné <span class="text-brand-cyan">vzdělávací materiály</span> pro informatiku
           </h1>
           <p class="text-xl text-slate-400 mb-12 leading-relaxed max-w-2xl mx-auto">
-            Sdílíme pedagogické materiály a vyvíjíme vzdělávací aplikace, které učitelům usnadňují výuku moderních
+            Sdílím pedagogické materiály a vyvíjíme vzdělávací aplikace, které učitelům usnadňují výuku moderních
             technologií.
           </p>
           <ul class="mb-10 flex flex-wrap md:flex-nowrap justify-center gap-3 text-sm">
@@ -182,7 +182,10 @@ const latestBlogPosts = blogPosts.slice(0, 3);
                 </h3>
                 <p class="text-slate-400 text-sm mb-6 leading-relaxed">{post.excerpt}</p>
                 <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
-                  <span class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{post.dateCz}</span>
+                  <div class="flex flex-col gap-1">
+                    <span class="text-[10px] text-slate-500 flex items-center gap-1.5 font-mono">👤 {post.authorName ?? post.author}</span>
+                    <span class="text-[10px] text-slate-500 flex items-center gap-1.5 font-mono">📅 {post.dateCz}</span>
+                  </div>
                   <div
                     class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300"
                   >

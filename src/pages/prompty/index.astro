@@ -1,0 +1,362 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { ogImageUrl } from '../../lib/seo';
+
+const prompts = await getCollection('prompts');
+
+const categories = [
+  'Všechny',
+  'Příprava a úprava materiálů na míru dětem',
+  'Podpora individualizace',
+  'Sledování pokroku a generátor slovního hodnocení'
+];
+---
+
+<BaseLayout
+  title="Prompty | Otevřená informatika"
+  description="Knihovna AI promptů pro učitele - přizpůsobte materiály, podpořte individualizaci a sledujte pokrok žáků."
+  image={ogImageUrl({ type: 'blog' })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">AI Prompty</h1>
+          <p class="text-slate-400 mt-4 leading-relaxed">Připravené prompty pro práci s AI nástroji ve výuce. Nakonfigurujte kontext a použijte.</p>
+        </div>
+
+        <div class="mt-10 rounded-3xl border border-white/5 bg-brand-card/50 backdrop-blur-sm p-6">
+          <div class="pt-0">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-mono uppercase tracking-[0.2em] text-slate-400 mb-2">
+                  Cílová skupina <span class="text-brand-cyan">*</span>
+                </label>
+                <select
+                  id="setting-target"
+                  class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white font-bold focus:border-brand-cyan focus:outline-none"
+                >
+                  <option value="">Vyberte...</option>
+                  <option value="6 let">6 let</option>
+                  <option value="7 let">7 let</option>
+                  <option value="8 let">8 let</option>
+                  <option value="9 let">9 let</option>
+                  <option value="10 let">10 let</option>
+                  <option value="11 let">11 let</option>
+                  <option value="12 let">12 let</option>
+                  <option value="13 let">13 let</option>
+                  <option value="14 let">14 let</option>
+                  <option value="15 let">15 let</option>
+                  <option value="16 let">16 let</option>
+                  <option value="17 let">17 let</option>
+                  <option value="18 let">18 let</option>
+                  <option value="1. stupeň ZŠ">1. stupeň ZŠ</option>
+                  <option value="2. stupeň ZŠ">2. stupeň ZŠ</option>
+                  <option value="SŠ">SŠ</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono uppercase tracking-[0.2em] text-slate-400 mb-2">
+                  Předmět
+                </label>
+                <input
+                  id="setting-subject"
+                  type="text"
+                  placeholder="např. Informatika"
+                  class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white font-bold focus:border-brand-cyan focus:outline-none placeholder:text-slate-600"
+                />
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono uppercase tracking-[0.2em] text-slate-400 mb-2">
+                  Úroveň náročnosti
+                </label>
+                <select
+                  id="setting-level"
+                  class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white font-bold focus:border-brand-cyan focus:outline-none"
+                >
+                  <option value="">Neuvedeno</option>
+                  <option value="Zjednodušená">Zjednodušená</option>
+                  <option value="Základní">Základní</option>
+                  <option value="Pokročilá">Pokročilá</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono uppercase tracking-[0.2em] text-slate-400 mb-2">
+                  Tón komunikace
+                </label>
+                <select
+                  id="setting-tone"
+                  class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white font-bold focus:border-brand-cyan focus:outline-none"
+                >
+                  <option value="">Neuvedeno</option>
+                  <option value="Přátelský">Přátelský</option>
+                  <option value="Motivující">Motivující</option>
+                  <option value="Věcný a stručný">Věcný a stručný</option>
+                  <option value="Hravý">Hravý</option>
+                </select>
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-xs font-mono uppercase tracking-[0.2em] text-slate-400 mb-2">
+                  Specifické vzdělávací potřeby a SPU
+                </label>
+                <div class="flex flex-wrap gap-3">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="spu" value="Dyslexie (důraz na přehlednost)" class="w-4 h-4 rounded bg-brand-dark border-white/20" />
+                    <span class="text-sm text-slate-300">Dyslexie</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="spu" value="Dysortografie" class="w-4 h-4 rounded bg-brand-dark border-white/20" />
+                    <span class="text-sm text-slate-300">Dysortografie</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="spu" value="ADHD (kratší úseky, časté střídání aktivit)" class="w-4 h-4 rounded bg-brand-dark border-white/20" />
+                    <span class="text-sm text-slate-300">ADHD</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="spu" value="Autistické spektrum (jednoznačná, doslovná zadání)" class="w-4 h-4 rounded bg-brand-dark border-white/20" />
+                    <span class="text-sm text-slate-300">Autistické spektrum</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="spu" value="Zrakové znevýhodnení (vše popsat textově)" class="w-4 h-4 rounded bg-brand-dark border-white/20" />
+                    <span class="text-sm text-slate-300">Zrakové znevýhodnění</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              class={`filter-btn px-4 py-2 rounded-xl text-sm font-bold transition-colors ${cat === 'Všechny' ? 'bg-brand-cyan text-brand-dark' : 'bg-white/5 text-slate-300 hover:bg-white/10'}`}
+              data-category={cat}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <div id="prompts-grid" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {prompts.map((prompt) => (
+            <div class="prompt-card rounded-2xl border border-white/5 bg-brand-card/30 p-6" data-category={prompt.data.category}>
+              <div class="flex items-start justify-between gap-4 mb-4">
+                <div>
+                  <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded-md border border-brand-cyan/20">
+                    {prompt.data.category}
+                  </span>
+                  <h3 class="text-lg font-black text-white mt-2">{prompt.data.title}</h3>
+                  <p class="text-sm text-slate-400 mt-1">{prompt.data.description}</p>
+                </div>
+                <button
+                  class="copy-prompt shrink-0 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-bold transition-colors flex items-center gap-2"
+                  data-prompt-id={prompt.id}
+                >
+                  <span class="copy-icon">📋</span>
+                  <span class="copy-text">Kopírovat</span>
+                </button>
+              </div>
+              <div class="p-4 rounded-xl bg-brand-dark/50 border border-white/5">
+                <div class="prompt-text text-sm text-slate-300 font-mono leading-relaxed break-words">{prompt.body}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="fixed bottom-6 right-6 px-6 py-3 rounded-xl bg-brand-cyan text-brand-dark font-bold opacity-0 pointer-events-none transition-opacity z-50">
+    ✅ Zkopírováno!
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'otevrena-informatika-prompt-settings';
+
+    function loadSettings(): Record<string, any> {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function initSettings(): void {
+      const settings = loadSettings();
+
+      const target = document.getElementById('setting-target') as HTMLSelectElement;
+      const subject = document.getElementById('setting-subject') as HTMLInputElement;
+      const level = document.getElementById('setting-level') as HTMLSelectElement;
+      const tone = document.getElementById('setting-tone') as HTMLSelectElement;
+
+      if (target && settings.target) target.value = settings.target;
+      if (subject && settings.subject) subject.value = settings.subject;
+      if (level && settings.level) level.value = settings.level;
+      if (tone && settings.tone) tone.value = settings.tone;
+
+      if (settings.spu) {
+        const spuCheckboxes = document.querySelectorAll('input[name="spu"]') as NodeListOf<HTMLInputElement>;
+        spuCheckboxes.forEach(cb => {
+          cb.checked = settings.spu.includes(cb.value);
+        });
+      }
+
+      const applyPromptVariables = () => {
+        const currentSettings = {
+          target: (document.getElementById('setting-target') as HTMLSelectElement)?.value || '',
+          subject: (document.getElementById('setting-subject') as HTMLInputElement)?.value || '',
+          level: (document.getElementById('setting-level') as HTMLSelectElement)?.value || '',
+          tone: (document.getElementById('setting-tone') as HTMLSelectElement)?.value || '',
+          spu: Array.from(document.querySelectorAll('input[name="spu"]:checked')).map((cb: any) => cb.value),
+        };
+
+        const promptElements = document.querySelectorAll('.prompt-text');
+
+        promptElements.forEach(el => {
+          let text = el.getAttribute('data-original') || el.textContent || '';
+          if (!el.getAttribute('data-original')) {
+            el.setAttribute('data-original', text);
+          }
+
+          const replacements: Record<string, string> = {};
+
+          if (currentSettings.target) {
+            replacements['[Cílová skupina]'] = currentSettings.target;
+          }
+          if (currentSettings.subject) {
+            replacements['[Předmět]'] = currentSettings.subject;
+          }
+          if (currentSettings.level) {
+            replacements['[Úroveň náročnosti]'] = currentSettings.level;
+          }
+          if (currentSettings.tone) {
+            replacements['[Tón komunikace]'] = currentSettings.tone;
+          }
+          if (currentSettings.spu?.length > 0) {
+            replacements['[Specifické vzdělávací potřeby a SPU]'] = currentSettings.spu.join(', ');
+          }
+
+          Object.entries(replacements).forEach(([placeholder, value]) => {
+            text = text.split(placeholder).join(`<span class="text-brand-cyan font-bold">${value}</span>`);
+          });
+
+          text = text.replace(/\[([^\]]+)\]/g, '<span class="text-red-400 bg-red-900/30 px-1 rounded">[$1]</span>');
+          text = text.replace(/\n/g, '<br>');
+
+          const contextParts: string[] = [];
+          if (currentSettings.target) {
+            contextParts.push(`Cílová skupina: <span class="text-brand-cyan font-bold">${currentSettings.target}</span>`);
+          }
+          if (currentSettings.subject) {
+            contextParts.push(`Předmět: <span class="text-brand-cyan font-bold">${currentSettings.subject}</span>`);
+          }
+          if (currentSettings.level) {
+            contextParts.push(`Úroveň náročnosti: <span class="text-brand-cyan font-bold">${currentSettings.level}</span>`);
+          }
+          if (currentSettings.tone) {
+            contextParts.push(`Tón komunikace: <span class="text-brand-cyan font-bold">${currentSettings.tone}</span>`);
+          }
+          if (currentSettings.spu?.length > 0) {
+            contextParts.push(`Specifické potřeby: <span class="text-brand-cyan font-bold">${currentSettings.spu.join(', ')}</span>`);
+          }
+
+          let fullText = '';
+          if (contextParts.length > 0) {
+            fullText = `<span class="text-brand-neon font-bold">${contextParts.join('<br>')}</span><div class="border-t border-white/10 my-4"></div>`;
+          }
+          fullText += `<span class="font-bold"></span>${text}`;
+
+          el.innerHTML = fullText;
+        });
+      };
+
+      applyPromptVariables();
+
+      const formInputs = document.querySelectorAll('#setting-target, #setting-subject, #setting-level, #setting-tone, input[name="spu"]');
+      formInputs.forEach(input => {
+        input.addEventListener('input', () => {
+          const currentSettings = {
+            target: (document.getElementById('setting-target') as HTMLSelectElement)?.value || '',
+            subject: (document.getElementById('setting-subject') as HTMLInputElement)?.value || '',
+            level: (document.getElementById('setting-level') as HTMLSelectElement)?.value || '',
+            tone: (document.getElementById('setting-tone') as HTMLSelectElement)?.value || '',
+            spu: Array.from(document.querySelectorAll('input[name="spu"]:checked')).map((cb: any) => cb.value),
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(currentSettings));
+          applyPromptVariables();
+        });
+      });
+
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-brand-cyan', 'text-brand-dark');
+            b.classList.add('bg-white/5', 'text-slate-300');
+          });
+          btn.classList.add('bg-brand-cyan', 'text-brand-dark');
+          btn.classList.remove('bg-white/5', 'text-slate-300');
+
+          const category = (btn as HTMLElement).dataset.category;
+          const cards = document.querySelectorAll('.prompt-card');
+          cards.forEach(card => {
+            const cardCategory = (card as HTMLElement).dataset.category;
+            if (category === 'Všechny' || cardCategory === category) {
+              (card as HTMLElement).style.display = 'block';
+            } else {
+              (card as HTMLElement).style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+
+    const copyButtons = document.querySelectorAll('.copy-prompt');
+    const toast = document.getElementById('toast');
+
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const promptId = (btn as HTMLElement).dataset.promptId;
+        const promptWrapper = document.querySelector(`.copy-prompt[data-prompt-id="${promptId}"]`)?.closest('.prompt-card');
+        const promptTextEl = promptWrapper?.querySelector('.prompt-text');
+        
+        let html = promptTextEl?.innerHTML || '';
+        html = html.replace(/<span class="text-brand-neon font-bold">/g, '');
+        html = html.replace(/<span class="text-brand-cyan font-bold">/g, '');
+        html = html.replace(/<span class="[^"]*">/g, '');
+        html = html.replace(/<\/span>/g, '');
+        html = html.replace(/<div class="border-t border-white\/10 my-4"><\/div>/g, '\n---\n');
+        html = html.replace(/<br>/g, '\n');
+        
+        const text = html;
+
+        try {
+          await navigator.clipboard.writeText(text);
+
+          const textEl = btn.querySelector('.copy-text');
+          const iconEl = btn.querySelector('.copy-icon');
+
+          if (textEl) textEl.textContent = 'Zkopírováno!';
+          if (iconEl) iconEl.textContent = '✅';
+
+          toast?.classList.remove('opacity-0', 'pointer-events-none');
+
+          setTimeout(() => {
+            toast?.classList.add('opacity-0', 'pointer-events-none');
+            if (textEl) textEl.textContent = 'Kopírovat';
+            if (iconEl) iconEl.textContent = '📋';
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      });
+    });
+
+    initSettings();
+  </script>
+</BaseLayout>
