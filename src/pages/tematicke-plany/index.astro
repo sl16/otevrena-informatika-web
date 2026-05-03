@@ -1,16 +1,85 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import IconRenderer from '../../components/IconRenderer.astro';
-import { getCollection } from 'astro:content';
 import { getMaterials } from '../../lib/content';
-import type { CurriculumBlock, CurriculumTopic } from '../../../types';
 import { ogImageUrl } from '../../lib/seo';
 
-const [curriculum, materials] = await Promise.all([getCollection('curriculum'), getMaterials()]);
-const plan = curriculum
-  .map((e) => e.data)
-  .find((p) => p.schoolType === 'SŠ');
+const materials = await getMaterials();
 const materialById = new Map<string, any>(materials.map((m) => [m.id, m]));
+
+const blocks = [
+  {
+    title: 'Umělá inteligence',
+    iconName: 'brain',
+    topics: [
+      { title: 'Algoritmizace', status: 'planned', description: 'Jak úkolovat lidi, a jak stroje?' },
+      { title: 'Umělá inteligence jako parťák', status: 'planned', description: 'Promptování, seznámení s užitečnými AI nástroji.' },
+	  { title: 'Vibecoding s Canva AI', status: 'planned', description: 'Tvorba vizuálů a jednoduchých webů pomocí promptů.' },
+    ],
+  },
+  {
+    title: 'Mediální gramotnost',
+    iconName: 'newspaper',
+    topics: [
+      { materialId: 'medialni-gramotnost', title: 'Mediální gramotnost', status: 'available', description: 'Seznámení se světem médií v éře informačního přehlcení.' },
+      { materialId: 'digitalni-stopa', title: 'Digitální stopa', status: 'available', description: 'Naše chování v kyberprostoru může mít nepředvídané dopady.' },
+    ],
+  },
+  {
+    title: 'Kyberbezpečnost',
+    iconName: 'shield-lock',
+    topics: [
+      { title: 'Bezpečná hesla a jejich prolamování', status: 'planned', description: 'Kryptografie v praxi a ochrana identity.' },
+      { title: 'Sociální inženýrství', status: 'planned', description: 'Psychologie útoků a jak se jim bránit.' },
+    ],
+  },
+  {
+    title: 'Kancelářský balík',
+    iconName: 'layout',
+    topics: [
+      { title: 'Pokročilý textový editor', status: 'planned', description: 'Styly, revize a hromadná korespondence.' },
+      { title: 'Tabulkový procesor', status: 'planned', description: 'Funkce, kontingenční tabulky a grafy.' },
+    ],
+  },
+  {
+    title: 'Informace a data',
+    iconName: 'database',
+    topics: [
+      { title: 'Kódování informací', status: 'planned', description: 'Binární soustava, ASCII, UTF-8.' },
+    ],
+  },
+  {
+    title: 'Algoritmizace a programování',
+    iconName: 'terminal',
+    topics: [
+      { title: 'Základy Pythonu', status: 'planned', description: 'Proměnné, cykly a podmínky.' },
+      { title: 'Datové struktury', status: 'planned', description: 'Seznamy, slovníky a jejich využití.' },
+    ],
+  },
+  {
+    title: 'Digitální technologie',
+    iconName: 'smartphone',
+    topics: [
+      { title: 'Mobilní technologie', status: 'planned', description: 'Ekosystémy iOS a Android.' },
+      { title: 'Internet věcí (IoT)', status: 'planned', description: 'Propojený svět a chytrá domácnost.' },
+    ],
+  },
+  {
+    title: 'Počítače a operační systémy',
+    iconName: 'cpu',
+    topics: [
+      { title: 'Sestav si svůj počítač', status: 'planned', description: 'Identifikace komponent a základní principy fungování.' },
+      { title: 'Virtualizace a Cloud', status: 'planned', description: 'Moderní přístup k infrastruktuře.' },
+    ],
+  },
+  {
+    title: 'Jiné',
+    iconName: 'more-horizontal',
+    topics: [
+      { title: 'Právo v digitálním světě', status: 'planned', description: 'Autorské právo, licence a GDPR.' },
+    ],
+  },
+];
 ---
 
 <BaseLayout
@@ -28,58 +97,63 @@ const materialById = new Map<string, any>(materials.map((m) => [m.id, m]));
           </p>
         </div>
 
-        {plan && (
-          <div class="mt-12 relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-px before:bg-white/10 space-y-12">
-            {plan.blocks.map((block: CurriculumBlock) => (
-              <div class="relative">
-                <div class="absolute left-[-2.5rem] w-8 h-8 flex items-center justify-center rounded-full bg-brand-card border border-brand-neon/30">
-                  <IconRenderer name={block.iconName} size={16} className="text-brand-neon" />
-                </div>
-                <div class="mb-6">
-                  <h2 class="text-2xl font-black text-white">{block.title}</h2>
-                </div>
-
-                <div class="grid grid-cols-1 gap-4">
-                  {block.topics.map((topic: CurriculumTopic) => {
-                    const material = topic.materialId ? materialById.get(topic.materialId) : undefined;
-                    const href = material ? `/materialy/${material.id}` : undefined;
-
-                    return (
-                      <a
-                        href={href ?? '#'}
-                        class={`rounded-2xl border p-5 ml-2 ${
-                          href
-                            ? 'bg-brand-card/40 border-white/10 hover:border-brand-cyan/40'
-                            : 'bg-black/20 border-white/5 pointer-events-none opacity-60'
-                        }`}
-                      >
-                        <div class="flex items-start justify-between gap-3">
-                          <div class="flex-1">
-                            {href ? (
-                              <p class="font-bold text-white hover:text-brand-cyan transition-colors">{topic.title}</p>
-                            ) : (
-                              <p class="font-bold text-white">{topic.title}</p>
-                            )}
-                            {topic.description && <p class="text-sm text-slate-400 mt-1">{topic.description}</p>}
-                          </div>
-                          <span
-                            class={`text-[10px] font-mono uppercase tracking-[0.2em] px-2 py-1 rounded-md border shrink-0 ${
-                              topic.status === 'available'
-                                ? 'text-emerald-300 bg-emerald-400/10 border-emerald-400/20'
-                                : 'text-slate-300 bg-white/5 border-white/10'
-                            }`}
-                          >
-                            {topic.status === 'available' ? 'Dostupné' : 'Plánované'}
-                          </span>
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
+        <div class="mt-12 relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-px before:bg-white/10 space-y-12">
+          {blocks.map((block) => (
+            <div class="relative">
+              <div class="absolute left-[-2.5rem] w-8 h-8 flex items-center justify-center rounded-full bg-brand-card border border-brand-neon/30">
+                <IconRenderer name={block.iconName} size={16} className="text-brand-neon" />
               </div>
-            ))}
-          </div>
-        )}
+              <div class="mb-6">
+                <h2 class="text-2xl font-black text-white">{block.title}</h2>
+              </div>
+
+              <div class="grid grid-cols-1 gap-4">
+                {block.topics.map((topic) => {
+                  const material = topic.materialId ? materialById.get(topic.materialId) : undefined;
+                  const href = material ? `/materialy/${material.id}` : undefined;
+                  const duration = material?.duration;
+
+                  return (
+                    <a
+                      href={href ?? '#'}
+                      class={`rounded-2xl border p-5 ml-2 ${
+                        href
+                          ? 'bg-brand-card/40 border-white/10 hover:border-brand-cyan/40'
+                          : 'bg-black/20 border-white/5 pointer-events-none opacity-60'
+                      }`}
+                    >
+                      <div class="flex items-start justify-between gap-3">
+                        <div class="flex-1">
+                          {href ? (
+                            <p class="font-bold text-white hover:text-brand-cyan transition-colors">{topic.title}</p>
+                          ) : (
+                            <p class="font-bold text-white">{topic.title}</p>
+                          )}
+                          {topic.description && <p class="text-sm text-slate-400 mt-1">{topic.description}</p>}
+                          {duration && (
+                            <div class="flex items-center gap-2 mt-2">
+                              <span>🕒</span>
+                              <p class="text-sm font-normal text-white">{duration}</p>
+                            </div>
+                          )}
+                        </div>
+                        <span
+                          class={`text-[10px] font-mono uppercase tracking-[0.2em] px-2 py-1 rounded-md border shrink-0 ${
+                            topic.status === 'available'
+                              ? 'text-emerald-300 bg-emerald-400/10 border-emerald-400/20'
+                              : 'text-slate-300 bg-white/5 border-white/10'
+                          }`}
+                        >
+                          {topic.status === 'available' ? 'Dostupné' : 'Plánované'}
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   </main>
