@@ -7,6 +7,9 @@
     "node": ">=20",
     "npm": ">=10"
   },
+  "overrides": {
+    "vite": "^7"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "node ./node_modules/@astrojs/check/dist/bin.js && astro build",
