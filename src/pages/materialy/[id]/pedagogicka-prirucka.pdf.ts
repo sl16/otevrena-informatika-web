@@ -37,7 +37,8 @@ export const GET: APIRoute = async ({ props }) => {
     React.createElement(MaterialPDFDocument, { material: materialData }) as any
   );
 
-  return new Response(pdfBuffer, {
+  // Response expects BodyInit; use a typed array view.
+  return new Response(new Uint8Array(pdfBuffer), {
     headers: {
       'Content-Type': 'application/pdf',
       'Content-Disposition': `attachment; filename="pedagogicka-prirucka-${mat.id}.pdf"`,

@@ -12,11 +12,12 @@ const isoDate = (value?: string) => {
 export const GET: APIRoute = async ({ site }) => {
   const base = site?.toString().replace(/\/$/, '') ?? 'https://otevrenainformatika.cz';
 
-  const [materials, apps, posts, authors] = await Promise.all([
+  const [materials, apps, posts, authors, presentations] = await Promise.all([
     getCollection('materials'),
     getCollection('apps'),
     getCollection('blog'),
     getCollection('authors'),
+    getCollection('presentations'),
   ]);
 
   const urls: Url[] = [
@@ -25,6 +26,7 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${base}/aplikace/` },
     { loc: `${base}/tematicke-plany/` },
     { loc: `${base}/blog/` },
+    { loc: `${base}/prezentace/` },
   ];
 
   for (const m of materials) {
@@ -41,6 +43,10 @@ export const GET: APIRoute = async ({ site }) => {
   }
   for (const au of authors) {
     urls.push({ loc: `${base}/autori/${au.data.id}/` });
+  }
+
+  for (const p of presentations) {
+    urls.push({ loc: `${base}/prezentace/${p.data.id}/` });
   }
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

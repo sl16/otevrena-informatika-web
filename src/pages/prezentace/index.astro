@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PresentationCard from '../../components/PresentationCard.astro';
+import { ogImageUrl } from '../../lib/seo';
+
+const presentations = await getCollection('presentations');
+
+const items = presentations
+  .map((p) => ({
+    id: p.data.id,
+    title: p.data.title,
+    description: p.data.description,
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title, 'cs'));
+---
+
+<BaseLayout
+  title="Prezentace | Otevřená informatika"
+  description="Prezentace vygenerované z Markdownu (Marp)."
+  image={ogImageUrl({ type: 'home' })}
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Prezentace</h1>
+          <p class="text-slate-400 mt-4 leading-relaxed">
+            Prezentace připravené pro promítání. Otevřete odkaz a přepínejte slidy v prohlížeči.
+          </p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          {items.map((p) => (
+            <PresentationCard href={`/prezentace/${p.id}/`} title={p.title} description={p.description} />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

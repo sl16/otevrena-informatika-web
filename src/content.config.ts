@@ -1,6 +1,11 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const urlOrPath = z.union([
+  z.string().url(),
+  z.string().regex(/^\//, 'Expected an absolute URL or a path starting with /'),
+]);
+
 const categoryEnum = z.enum([
   'Programování',
   'Hardware',
@@ -23,7 +28,7 @@ const materials = defineCollection({
     date: z.coerce.string(),
     duration: z.string().optional(),
     targetAudience: z.enum(['ZŠ', 'SŠ', 'ZŠ/SŠ']).optional(),
-    downloadUrl: z.string().url(),
+    downloadUrl: urlOrPath,
     iconName: z.string(),
     tags: z.array(z.string()).default([]),
     supportingMaterials: z
@@ -32,11 +37,23 @@ const materials = defineCollection({
           id: z.string(),
           title: z.string(),
           type: z.enum(['video', 'presentation', 'link', 'file']),
-          url: z.string().url(),
+          url: urlOrPath,
         })
       )
       .optional(),
   }),
+});
+
+const presentations = defineCollection({
+  loader: glob({ pattern: '**/deck.md', base: './src/content/presentations' }),
+  schema: z
+    .object({
+      id: z.string(),
+      title: z.string(),
+      description: z.string(),
+    })
+    // Allow Marp frontmatter fields like `marp`, `theme`, `paginate`, ...
+    .passthrough(),
 });
 
 const apps = defineCollection({
@@ -129,4 +146,5 @@ export const collections = {
   authors,
   curriculum,
   prompts,
+  presentations,
 };

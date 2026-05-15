@@ -1,3 +1,6 @@
 /node_modules
 /dist
 /.astro
+
+# Generated Marp presentations
+/public/prezentace

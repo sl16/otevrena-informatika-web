@@ -1,0 +1,198 @@
+/*
+ * Otevrena informatika Marp theme.
+ *
+ * @theme oi
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap');
+
+section {
+  --oi-bg: #020b1d;
+  --oi-bg-soft: #08152e;
+  --oi-text: #ffffff;
+  --oi-muted: #8ea2c7;
+  --oi-blue: #0d6efd;
+  --oi-orange: #ffab40;
+  --oi-cyan: #6b5cff;
+  --oi-link: #0097a7;
+  --oi-logo: url("data:image/svg+xml,%3Csvg%20width%3D%22400%22%20height%3D%2280%22%20viewBox%3D%220%200%20400%2080%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cg%20transform%3D%22translate(20%2C%2020)%22%3E%20%3Cpath%20d%3D%22M12%204.5C7.3%206.1%204%2010.7%204%2016c0%206.6%205.4%2012%2012%2012s12-5.4%2012-12c0-5.3-3.3-9.9-8-11.5%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%2F%3E%20%3Cline%20x1%3D%2216%22%20y1%3D%222%22%20x2%3D%2216%22%20y2%3D%2214%22%20stroke%3D%22%23007bff%22%20stroke-width%3D%223.5%22%20stroke-linecap%3D%22round%22%2F%3E%20%3Ctext%20x%3D%2245%22%20y%3D%2224%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22bold%22%20font-size%3D%2226%22%20letter-spacing%3D%22-0.8%22%3E%20%3Ctspan%20fill%3D%22white%22%3EOtevrena%3C%2Ftspan%3E%3Ctspan%20fill%3D%22%23007bff%22%3EInformatika%3C%2Ftspan%3E%3Ctspan%20fill%3D%22white%22%3E.cz%3C%2Ftspan%3E%20%3C%2Ftext%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: var(--oi-logo), radial-gradient(circle at 85% 12%, rgba(13, 110, 253, 0.16), transparent 32%), linear-gradient(135deg, var(--oi-bg) 0%, var(--oi-bg-soft) 100%);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: right 0 bottom 0, center, center;
+  background-size: 480px auto, auto, auto;
+  color: var(--oi-text);
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-size: 28px;
+  line-height: 1.3;
+  padding: 44px 52px;
+}
+
+section :is(h1, marp-h1), section :is(h2, marp-h2), section :is(h3, marp-h3) {
+  color: var(--oi-blue);
+  margin: 0 0 0.42em;
+  line-height: 1.1;
+  letter-spacing: 0;
+  font-weight: 800;
+}
+
+section :is(h1, marp-h1) {
+  font-size: 1.62em;
+}
+
+section :is(h2, marp-h2) {
+  font-size: 1.12em;
+  font-weight: 500;
+  color: #dbe7ff;
+}
+
+section p, section li {
+  font-size: 0.84em;
+  color: #e9f0ff;
+}
+
+section ul, section ol {
+  margin: 0.3em 0 0;
+  padding-left: 0.95em;
+}
+
+section li {
+  margin: 0.16em 0;
+}
+
+section strong {
+  color: var(--oi-orange);
+  font-weight: 700;
+}
+
+section em {
+  color: #b5c8ef;
+}
+
+section a {
+  color: var(--oi-link);
+}
+
+section :not(:is(pre, marp-pre)) > code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #eaf1ff;
+  border-radius: 4px;
+  padding: 0.04em 0.16em;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+  letter-spacing: 0;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 0.78em;
+  display: inline;
+}
+
+section :is(pre, marp-pre) {
+  margin: 0.25em 0 0.7em;
+  background: #f3f6fb;
+  border: 1px solid #c6d3ea;
+  border-radius: 10px;
+  padding: 0.62em 0.75em;
+  box-sizing: border-box;
+}
+
+section :is(pre, marp-pre) code {
+  background: transparent !important;
+  color: #0f2d5c !important;
+  font-size: 0.78em;
+  line-height: 1.25;
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+section blockquote {
+  background: rgba(18, 29, 49, 0.84);
+  border-left: 8px solid var(--oi-blue);
+  margin: 0.7em 0;
+  padding: 0.5em 0.75em;
+  border-radius: 8px;
+}
+
+section img {
+  border-style: none;
+  box-sizing: content-box;
+  max-width: 100%;
+}
+
+/* Title slide */
+section.title {
+  text-align: center;
+  background-image: var(--oi-logo), radial-gradient(circle at 20% 20%, rgba(13, 110, 253, 0.18), transparent 36%), linear-gradient(135deg, #030c20 0%, #08152e 100%);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: right 0 bottom 0, center, center;
+  background-size: 480px auto, auto, auto;
+}
+
+section.title > * {
+  width: auto;
+}
+
+section.title :is(h1, marp-h1) {
+  font-size: 2.3em;
+  margin-bottom: 0.28em;
+  color: var(--oi-blue);
+}
+
+section.title :is(h2, marp-h2) {
+  color: #eef4ff;
+  font-size: 0.95em;
+  font-weight: 500;
+  margin-bottom: 1.05em;
+}
+
+/* Task slide */
+section.task {
+  background-image: var(--oi-logo), linear-gradient(135deg, rgba(10, 19, 39, 0.98), rgba(18, 31, 58, 0.95));
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 0 bottom 0, center;
+  background-size: 480px auto, auto;
+  border: 3px solid rgba(13, 110, 253, 0.52);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+section.task :is(h1, marp-h1), section.task :is(h2, marp-h2) {
+  color: #81b0ff;
+}
+
+/* Closing slide */
+section.closing {
+  text-align: center;
+  background-image: radial-gradient(circle at 20% 20%, rgba(13, 110, 253, 0.18), transparent 36%), linear-gradient(135deg, #030c20 0%, #08152e 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: auto, auto;
+}
+
+section.closing > * {
+  width: auto;
+}
+
+section.closing::after {
+  display: none;
+}
+
+/* Pagination - disabled globally in reference, but keep for flexibility */
+section::after {
+  bottom: 0;
+  content: attr(data-marpit-pagination);
+  padding: inherit;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 14px;
+  color: var(--oi-muted);
+}

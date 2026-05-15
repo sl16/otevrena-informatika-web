@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node ./node_modules/@astrojs/check/dist/bin.js && astro build",
-    "lint": "node ./node_modules/@astrojs/check/dist/bin.js",
+    "build": "astro sync && node ./node_modules/@astrojs/check/dist/bin.js && node ./src/scripts/build-presentations.mjs && astro build",
+    "lint": "astro sync && node ./node_modules/@astrojs/check/dist/bin.js",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/tailwind": "^6.0.2",
+    "@marp-team/marp-cli": "^4.3.1",
     "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
