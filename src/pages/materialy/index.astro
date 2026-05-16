@@ -5,6 +5,8 @@ import { getMaterials } from '../../lib/content';
 import { ogImageUrl } from '../../lib/seo';
 
 const materials = await getMaterials();
+
+const categories = [...new Set(materials.map((m) => m.category))].filter(Boolean).sort();
 ---
 
 <BaseLayout
@@ -22,22 +24,158 @@ const materials = await getMaterials();
           </p>
         </div>
 
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <div class="mt-8 flex flex-col gap-4">
+          <div class="flex flex-wrap gap-2" id="category-toggles">
+            <button
+              type="button"
+              data-category=""
+              class="category-toggle bg-brand-neon text-brand-dark border border-brand-neon rounded-xl px-4 py-2 font-mono text-xs font-bold tracking-[0.12em] uppercase"
+            >
+              Vše
+            </button>
+            {categories.map((cat) => (
+              <button
+                type="button"
+                data-category={cat}
+                class="category-toggle bg-brand-card/50 backdrop-blur-sm border border-white/10 text-slate-200 rounded-xl px-4 py-2 font-mono text-xs font-bold tracking-[0.12em] uppercase hover:border-brand-neon/40 hover:text-white transition-colors"
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Hledat materiály..."
+            class="bg-brand-card/50 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 font-mono text-sm focus:outline-none focus:border-brand-neon/50 w-full sm:w-96"
+          />
+        </div>
+
+        <div id="materials-grid" class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {materials.map((mat) => (
-            <Card
-              href={`/materialy/${mat.id}`}
-              iconName={mat.iconName}
-              title={mat.title}
-              description={mat.description}
-              category={mat.category}
-              tags={mat.tags}
-              duration={mat.duration}
-              targetAudience={mat.targetAudience}
-              meta={{ author: mat.authorName ?? mat.author, date: mat.dateCz }}
-            />
+            <div
+              class="material-card"
+              data-category={mat.category}
+              data-title={mat.title.toLowerCase()}
+              data-description={mat.description?.toLowerCase() || ''}
+              data-tags={mat.tags?.map((t) => t.toLowerCase()).join(',') || ''}
+            >
+              <Card
+                href={`/materialy/${mat.id}`}
+                iconName={mat.iconName}
+                title={mat.title}
+                description={mat.description}
+                category={mat.category}
+                tags={mat.tags}
+                duration={mat.duration}
+                targetAudience={mat.targetAudience}
+                meta={{ author: mat.authorName ?? mat.author, date: mat.dateCz }}
+              />
+            </div>
           ))}
         </div>
+
+        <p id="no-results" class="hidden mt-12 text-center text-slate-500 font-mono text-sm">
+          Žádné materiály neodpovídají vašemu hledání.
+        </p>
       </div>
     </section>
   </main>
+
+  <script>
+    const togglesWrap = document.getElementById('category-toggles') as HTMLElement | null;
+    const toggleButtons = Array.from(document.querySelectorAll('.category-toggle')) as HTMLButtonElement[];
+    const allButton = toggleButtons.find((b) => (b.dataset.category ?? '') === '');
+
+    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+    const cards = document.querySelectorAll('.material-card');
+    const noResults = document.getElementById('no-results');
+
+    const activeCategories = new Set<string>();
+
+    const setButtonActive = (btn: HTMLButtonElement, active: boolean) => {
+      btn.classList.toggle('bg-brand-neon', active);
+      btn.classList.toggle('text-brand-dark', active);
+      btn.classList.toggle('border-brand-neon', active);
+      btn.classList.toggle('bg-brand-card/50', !active);
+      btn.classList.toggle('text-slate-200', !active);
+      btn.classList.toggle('border-white/10', !active);
+    };
+
+    const syncAllButtonState = () => {
+      if (!allButton) return;
+      setButtonActive(allButton, activeCategories.size === 0);
+    };
+
+    const filterMaterials = () => {
+      const searchTerm = (searchInput?.value ?? '').toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const el = card as HTMLElement;
+        const category = el.dataset.category?.toLowerCase() || '';
+        const title = el.dataset.title || '';
+        const description = el.dataset.description || '';
+        const tags = el.dataset.tags || '';
+
+        const matchesCategory = activeCategories.size === 0 || activeCategories.has(category);
+        const matchesSearch =
+          !searchTerm || title.includes(searchTerm) || description.includes(searchTerm) || tags.includes(searchTerm);
+
+        if (matchesCategory && matchesSearch) {
+          el.style.display = 'block';
+          visibleCount++;
+        } else {
+          el.style.display = 'none';
+        }
+      });
+
+      if (noResults) noResults.classList.toggle('hidden', visibleCount > 0);
+    };
+
+    const onToggleClick = (btn: HTMLButtonElement) => {
+      const raw = btn.dataset.category ?? '';
+      const category = raw.toLowerCase();
+
+      if (category === '') {
+        // "Vše" resets category filtering.
+        activeCategories.clear();
+        toggleButtons.forEach((b) => {
+          if ((b.dataset.category ?? '') !== '') setButtonActive(b, false);
+        });
+        syncAllButtonState();
+        filterMaterials();
+        return;
+      }
+
+      if (activeCategories.has(category)) {
+        activeCategories.delete(category);
+        setButtonActive(btn, false);
+      } else {
+        activeCategories.add(category);
+        setButtonActive(btn, true);
+      }
+
+      syncAllButtonState();
+      filterMaterials();
+    };
+
+    // Ensure correct initial styling ("Vše" active).
+    toggleButtons.forEach((btn) => {
+      const raw = btn.dataset.category ?? '';
+      if (raw === '') return;
+      setButtonActive(btn, false);
+    });
+    syncAllButtonState();
+
+    togglesWrap?.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      const btn = target?.closest('button.category-toggle') as HTMLButtonElement | null;
+      if (!btn) return;
+      onToggleClick(btn);
+    });
+
+    searchInput?.addEventListener('input', filterMaterials);
+  </script>
 </BaseLayout>

@@ -121,10 +121,12 @@ section blockquote {
   border-radius: 8px;
 }
 
-section img {
+section img:not([data-marp-twemoji]) {
   border-style: none;
   box-sizing: content-box;
-  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 5px 5px 0 var(--oi-blue);
 }
 
 /* Title slide */
@@ -196,3 +198,12 @@ section::after {
   font-size: 14px;
   color: var(--oi-muted);
 }
+
+/* Columns */
+.cols {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .cols img { width: 100%; height: auto; }

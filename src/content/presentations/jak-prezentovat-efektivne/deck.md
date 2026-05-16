@@ -5,6 +5,7 @@ paginate: true
 title: Jak prezentovat (efektivně)
 description: Praktické tipy jak připravit a odprezentovat srozumitelnou prezentaci.
 id: jak-prezentovat-efektivne
+transition: cover
 ---
 
 <!-- _class: title -->
@@ -53,19 +54,15 @@ Licence: CC BY-NC-SA
 
 ---
 
-# ℹ️ Promítací režimy (Systém -> Nastavení)
+# ℹ️ Promítací režimy (Systém -> Obrazovka)
 
-Obrázek zatím chybí.
-
-<!-- Původně v HTML: jak-prezentovat-efektivne-1.png -->
+![w:450px](windows-rozsireni.png)
 
 ---
 
 # ℹ️ Promítací režimy (kláv. zkratka `Win + P`)
 
-Obrázek zatím chybí.
-
-<!-- Původně v HTML: jak-prezentovat-efektivne-2.png -->
+![w:300px](windows-p-zkratka.png)
 
 ---
 

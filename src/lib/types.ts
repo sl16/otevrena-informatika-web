@@ -3,6 +3,6 @@ export type Category =
   | 'Hardware'
   | 'Umělá inteligence'
   | 'Kyberbezpečnost'
-  | 'Kancelářské aplikace'
+  | 'Kancelářský balík'
   | 'Algoritmizace'
   | 'Mediální gramotnost';

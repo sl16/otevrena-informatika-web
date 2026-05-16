@@ -4,7 +4,7 @@ export enum Category {
   HARDWARE = 'Hardware',
   AI = 'Umělá inteligence',
   CYBERSECURITY = 'Kyberbezpečnost',
-  OFFICE = 'Kancelářské aplikace',
+  OFFICE = 'Kancelářský balík',
   ALGORITHMS = 'Algoritmizace',
   MEDIA_LITERACY = 'Mediální gramotnost'
 }

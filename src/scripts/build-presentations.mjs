@@ -110,8 +110,23 @@ async function main() {
       outFile,
     ]);
 
-    // Copy optional assets folder next to deck.
-    await copyDir(path.join(deckDir, 'assets'), path.join(outDir, 'assets'));
+    // Copy all supporting files (non-markdown) from deck directory to output.
+    const copySupportFiles = async (fromDir, toDir) => {
+      if (!(await existsDir(fromDir))) return;
+      const entries = await readdir(fromDir, { withFileTypes: true });
+      for (const ent of entries) {
+        if (ent.name === 'deck.md') continue;
+        const from = path.join(fromDir, ent.name);
+        const to = path.join(toDir, ent.name);
+        if (ent.isDirectory()) {
+          await copyDir(from, to);
+        } else if (ent.isFile()) {
+          await mkdir(path.dirname(to), { recursive: true });
+          await copyFile(from, to);
+        }
+      }
+    };
+    await copySupportFiles(deckDir, outDir);
   }
 }
 
