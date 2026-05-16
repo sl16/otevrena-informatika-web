@@ -18,29 +18,28 @@ Licence: CC BY-NC-SA
 
 ---
 
-## 🎯 Cíle lekce
+# 🎯 Cíle lekce
 
-- ovládnout pokročilé formátování v Google Docs (styly, záhlaví, práce s objekty)
-- naučit se kolaborovat v online dokumentu
-- pochopit význam typografické čistoty a profesionálního sdílení dokumentů
+- ovládnout základní formátování (nadpis, odrážky, styly, sloupce)
+- pochopit význam typografické čistoty
 - kriticky pracovat s AI výstupy a aplikovat je na vlastní text
+- naučit se kolaborovat v online dokumentu
 
 ---
 
-## ℹ Co je to textový procesor?
+# ℹ️ Co je to textový procesor?
 
-- oproti jednoduchému editoru (Poznámkový blok) umožňuje:
+- oproti jednoduchému editoru (např. Poznámkový blok) umožňuje:
+	- komplexní formátování;
+	- práci s objekty;
+	- pokročilou typografii.
 
-1. komplexní formátování
-2. práci s objekty
-3. pokročilou typografii
-
-- tvoří strukturované dokumenty s jasnou hierarchií
-- typické funkce: styly, automatický obsah, citace, kontrola pravopisu
+- tvoří **strukturované** dokumenty s jasnou hierarchií
+- typické funkce: styly, automatický obsah, citace, **kontrola pravopisu**
 
 ---
 
-## ℹ Proč právě Google Docs?
+# ℹ️ Proč právě Google Docs?
 
 - integrace se školním ekosystémem
 - přístup z libovolného zařízení, ukládání v reálném čase (cloud)
@@ -51,34 +50,28 @@ Licence: CC BY-NC-SA
 
 <!-- _class: task -->
 
-## 💼 Úkol: Můj první profi životopis
+# 💼 Úkol: Můj první profi životopis
 
-🎯 Cíl: vytvořit vizuálně a obsahově přesvědčivý životopis
+🎯 **Cíl**: vytvořit vizuálně a obsahově přesvědčivý životopis
 
-📋 Zadání:
+📋 **Zadání**:
 
 - vytvořte životopis s fotkou, jménem, kontakty, vzděláním, praxí
 - použijte strukturované formátování a více sloupců
 - text si nechte konstruktivně zhodnotit AI
 - nasdílejte dokument sousedům ke zpětné vazbě
 
-✅ Výstup:
+✅ **Výstup**:
 
-- životopis v PDF odevzdaný do Google Classroom
-
----
-
-## ℹ (doplňující slide)
-
-Tady v původní verzi chybí obsah. Pokud chceš, doplním konkrétní techniky (styly, záhlaví/zápatí, stránkování, tabulky, obrázky, export a sdílení).
+- životopis v Google Docs odevzdaný do Google Classroom
 
 ---
 
 ## 🧠 Souhrn lekce
 
-- dokument má mít logickou strukturu (nadpisy), ne jen vizuální (tučné písmo)
-- zpětná vazba (od AI i od lidí) pomáhá k profesionálnímu výsledku
-- finální kontrola gramatiky i typografie odděluje amatéry od profíků
+- dokument má mít **logickou strukturu** (nadpisy), ne jen vizuální (tučné písmo)
+- **zpětná vazba** (od AI i od lidí) pomáhá k profesionálnímu výsledku
+- nezapomeňte na finální kontrolu gramatiky i typografie
 
 ---
 

@@ -19,38 +19,38 @@ Licence: CC BY-NC-SA
 
 # 🎯 Cíle lekce
 
-- Pochopit, proč prezentace rozhoduje o úspěchu nápadu.
-- Rozlišit slabou a kvalitní prezentaci.
-- Umět připravit techniku bez stresu.
-- Nacvičit krátké vystoupení se zpětnou vazbou.
+- pochopit, proč prezentace rozhoduje o úspěchu nápadu
+- rozlišit slabou a kvalitní prezentaci
+- umět připravit techniku bez stresu
+- nacvičit krátké vystoupení se zpětnou vazbou
 
 ---
 
 # ℹ️ Proč byste měli umět prezentovat
 
-- U maturity, seminárky i na pohovoru neprodáváte slidy, ale myšlenku.
-- Nestačí „vědět hodně“ , důležité je být srozumitelný.
-- Dobrá prezentace zvyšuje důvěru i šanci na úspěch.
-- Kdo mluví jasně, působí profesionálněji.
+- u maturity, seminárky i na pohovoru neprodáváte slidy, ale myšlenku
+- nestačí „vědět hodně“ , důležité je být srozumitelný
+- dobrá prezentace zvyšuje důvěru i šanci na úspěch
+- kdo mluví jasně, působí profesionálněji
 
 ---
 
 # ❌ 5 největších průšvihů v prezentaci
 
-- Přeplněné slidy bez jasné hlavní myšlenky.
-- Čtení textu ze slidu místo skutečného výkladu.
-- Chaos ve struktuře: publikum neví, kam směřujete.
-- Technické zdržení, které rozbije tempo vystoupení.
-- Nulový kontakt s publikem a monotónní přednes.
+- přeplněné slidy bez jasné hlavní myšlenky
+- čtení textu ze slidu místo skutečného výkladu
+- chaos ve struktuře: publikum neví, kam směřujete
+- technické zdržení, které rozbije tempo vystoupení
+- nulový kontakt s publikem a monotónní přednes
 
 ---
 
 # ℹ️ Technika, která vás podrží
 
-- Před začátkem vždy otestujte kabel a možnost připojení.
-- Použijte režim „Rozšířit“ nebo „Duplikovat“ (kláv. zkratka `Win + P`).
-- Prezentační režim vám dává čas, poznámky a náhled dalších slidů.
-- Mějte plán B: PDF v cloudu, náhradní adaptér, záložní médium.
+- před začátkem vždy otestujte kabel a možnost připojení
+- použijte režim „Rozšířit“ nebo „Duplikovat“ (kláv. zkratka `Win + P`)
+- prezentační režim vám dává čas, poznámky a náhled dalších slidů
+- mějte plán B: PDF v cloudu, náhradní adaptér, záložní médium
 
 ---
 
@@ -68,30 +68,30 @@ Licence: CC BY-NC-SA
 
 # ℹ️ Vystoupení naživo
 
-- Řeč těla: postoj mimo kužel projektoru, oční kontakt, klidná gesta.
-- Krizové situace: zaseknuté video, výpadek obrazu, „okno“ v textu.
-- V každé krizi funguje stejné pořadí: pauza → nádech → stručné shrnutí.
-- Prezentující má řídit místnost, ne být řízen technikou.
+- řeč těla: postoj mimo kužel projektoru, oční kontakt, klidná gesta
+- krizové situace: zaseknuté video, výpadek obrazu, „okno“ v textu
+- v každé krizi funguje stejné pořadí: pauza → nádech → stručné shrnutí
+- prezentující má řídit místnost, ne být řízen technikou
 
 ---
 
 # ℹ️ Struktura prezentace
 
-- Začněte jasným cílem: co si má publikum odnést po skončení.
-- Úvod (10 %): zaujmout a stručně říct, proč je téma důležité.
-- Jádro (80 %): 2-3 hlavní body, každý podpořený příkladem nebo ukázkou.
-- Závěr (10 %): shrnutí, hlavní sdělení a konkrétní výzva k akci.
-- Plynulé přechody mezi částmi udržují pozornost a logiku výkladu.
+- začněte jasným cílem: co si má publikum odnést po skončení
+- úvod (10 %): zaujmout a stručně říct, proč je téma důležité
+- jádro (80 %): 2-3 hlavní body, každý podpořený příkladem nebo ukázkou
+- závěr (10 %): shrnutí, hlavní sdělení a konkrétní výzva k akci
+- plynulé přechody mezi částmi udržují pozornost a logiku výkladu
 
 ---
 
 # ℹ️ Jak dávat zpětnou vazbu
 
-- Začněte tím, co fungovalo: konkrétní silná stránka prezentace.
-- Buďte konkrétní: místo „bylo to slabé“ řekněte, co přesně zlepšit.
-- Mluvte věcně o projevu, ne osobně o člověku.
-- Nabídněte návrh: co udělat příště lépe a jak toho dosáhnout.
-- Držte poměr 1:1: ocenění + doporučení ke zlepšení.
+- začněte tím, co fungovalo: konkrétní silná stránka prezentace
+- buďte konkrétní: místo „bylo to slabé“ řekněte, co přesně zlepšit
+- mluvte věcně o projevu, ne osobně o člověku
+- nabídněte návrh: co udělat příště lépe a jak toho dosáhnout
+- držte poměr 1:1: ocenění + doporučení ke zlepšení
 
 ---
 
@@ -99,26 +99,27 @@ Licence: CC BY-NC-SA
 
 # 💼 Úkol: Týmová aktivita
 
-🎯 **Cíl:** Okamžitě si v praxi vyzkoušet tvorbu stručné a přesvědčivé prezentace.
+🎯 **Cíl:** Okamžitě si v praxi vyzkoušet tvorbu stručné a přesvědčivé prezentace
 
 📋 **Zadání:**
 
-- Týmy po 3 dostanou 15 minut na vytvoření přesně 3 slidů na absurdní téma.
-- Příklady témat: „Proč jsou holubi ve skutečnosti vládní drony“ nebo „Proč by se ve škole mělo spát“.
-- Poté má každý tým 2 minuty na výstup.
-- Publikum hodnotí: srozumitelnost, strukturu, přesvědčivost.
+- týmy po 3 dostanou 15 minut na vytvoření přesně 3 slidů na absurdní téma
+- příklady témat: „Proč jsou holubi ve skutečnosti vládní drony“ nebo „Proč by se ve škole mělo spát“
+- poté má každý tým 2 minuty na výstup
+- publikum hodnotí: srozumitelnost, strukturu, přesvědčivost
 
-✅ **Výstup:** Tříslidová mini prezentace + stručná zpětná vazba od spolužáků.
+✅ **Výstup:**:
+- tříslidová mini prezentace + stručná zpětná vazba od spolužáků
 
 ---
 
 # 🧠 Souhrn lekce
 
-- Prezentace rozhoduje o tom, zda nápad „projde“.
-- Nejčastější chyby jsou opravitelné.
-- Struktura a stručnost zvyšují srozumitelnost.
-- Technická příprava snižuje stres a chyby.
-- **Zlaté pravidlo:** Jedna hlavní myšlenka na slide, jeden jasný cíl pro publikum.
+- prezentace rozhoduje o tom, zda nápad „projde“
+- nejčastější chyby jsou opravitelné
+- struktura a stručnost zvyšují srozumitelnost
+- technická příprava snižuje stres a chyby
+- **zlaté pravidlo:** Jedna hlavní myšlenka na slide, jeden jasný cíl pro publikum
 
 ---
 

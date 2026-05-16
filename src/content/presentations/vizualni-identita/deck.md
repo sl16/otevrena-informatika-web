@@ -113,17 +113,16 @@ Pilíře:
 
 # 💼 Úkol: Tvorba Brand Kitu
 
-🎯 Cíl: vytvořit základ vizuální identity pro fiktivní projekt
+🎯 **Cíl**: vytvořit základ vizuální identity pro fiktivní projekt
 
-📋 Zadání:
+📋 **Zadání**:
 
 - vyberte si téma (influencer, školní projekt, podnikání, neziskovka, ...)
 - vyberte 2 fonty (nadpis + tělo) a 3 barvy (včetně HEX kódů)
 - vytvořte logo pomocí geometrických tvarů nebo AI generátoru
 
-✅ Výstup: Brand board
-
-- ucelená prezentace spojující všechny prvky
+✅ **Výstup**:
+- brand board = ucelená prezentace spojující všechny prvky
 
 ---
 
