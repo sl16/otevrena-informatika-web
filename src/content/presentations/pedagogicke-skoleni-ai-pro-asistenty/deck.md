@@ -2,8 +2,6 @@
 marp: true
 theme: oi
 paginate: true
-header: ''
-footer: '© Licence: CC BY-NC-SA | Autor: Mgr. Vojtěch Bartoš'
 title: Umělá inteligence ve školní praxi
 description: Pedagogické školení AI pro asistenty pedagoga zaměřené na praktické využití umělé inteligence ve školní praxi.
 id: pedagogicke-skoleni-ai-pro-asistenty
