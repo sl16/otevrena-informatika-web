@@ -5,6 +5,7 @@ paginate: true
 id: medialni-gramotnost
 title: "Mediální gramotnost"
 description: "Mediální gramotnost aneb Jste to, co jíte (a čtete)"
+transition: cover
 ---
 
 <!-- _class: title -->
