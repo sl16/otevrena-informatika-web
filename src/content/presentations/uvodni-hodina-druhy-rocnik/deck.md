@@ -2,9 +2,9 @@
 marp: true
 theme: oi
 paginate: true
-id: uvodni-hodina
-title: "Informační a komunikační technologie"
-description: "Úvodní hodina IKT pro 2. ročník střední školy"
+id: uvodni-hodina-druhy-rocnik
+title: "Úvodní hodina IKT pro 2. ročník střední školy"
+description: "Vzájemné seznámení mezi učitelem a studenty, představení plánu na školní rok"
 ---
 
 <!-- _class: title -->
