@@ -19,37 +19,39 @@ Licence: CC BY-NC-SA
 
 # 🎯 Cíle lekce
 
-- pochopit, proč prezentace rozhoduje o úspěchu nápadu
+- pochopit, proč i sebelepší myšlenku může potopit špatná prezentace
 - rozlišit slabou a kvalitní prezentaci
+- osvojit si ověřené postupy pro tvorbu prezentací
 - umět připravit techniku bez stresu
-- nacvičit krátké vystoupení se zpětnou vazbou
+- naučit se poskytovat vhodnou zpětnou vazbu
+- nacvičit krátké vystoupení
 
 ---
 
 # ℹ️ Proč byste měli umět prezentovat
 
-- u maturity, seminárky i na pohovoru neprodáváte slidy, ale myšlenku
-- nestačí „vědět hodně“ , důležité je být srozumitelný
-- dobrá prezentace zvyšuje důvěru i šanci na úspěch
-- kdo mluví jasně, působí profesionálněji
+- dobrá myšlenka nestačí, je potřeba ji umět prodat
+- nestačí „vědět hodně“ , důležité je **být srozumitelný**
+- kvalitní prezentace zvyšuje důvěru i šanci na úspěch
+- kdo mluví jasně, působí profesionálně
 
 ---
 
 # ❌ 5 největších průšvihů v prezentaci
 
-- přeplněné slidy bez jasné hlavní myšlenky
+- **přeplněné slidy bez jasné hlavní myšlenky**
 - čtení textu ze slidu místo skutečného výkladu
-- chaos ve struktuře: publikum neví, kam směřujete
-- technické zdržení, které rozbije tempo vystoupení
 - nulový kontakt s publikem a monotónní přednes
+- chaos ve struktuře
+- technické zdržení, které zabije tempo vystoupení
 
 ---
 
-# ℹ️ Technika, která vás podrží
+# ℹ️ Ovládat techniku je základ
 
 - před začátkem vždy otestujte kabel a možnost připojení
 - použijte režim „Rozšířit“ nebo „Duplikovat“ (kláv. zkratka `Win + P`)
-- prezentační režim vám dává čas, poznámky a náhled dalších slidů
+- prezentační režim vám ukazuje čas, poznámky a náhled dalších slidů
 - mějte plán B: PDF v cloudu, náhradní adaptér, záložní médium
 
 ---
@@ -68,10 +70,11 @@ Licence: CC BY-NC-SA
 
 # ℹ️ Vystoupení naživo
 
-- řeč těla: postoj mimo kužel projektoru, oční kontakt, klidná gesta
-- krizové situace: zaseknuté video, výpadek obrazu, „okno“ v textu
-- v každé krizi funguje stejné pořadí: pauza → nádech → stručné shrnutí
-- prezentující má řídit místnost, ne být řízen technikou
+- základem je **dobrá příprava** (na přednes, ale i situace, které mohou a nemusí nastat)
+- v krizi (např. nefungující zobrazení) zachovejte chladnou hlavu:
+    - pauza → nádech → stručné shrnutí
+- prezentující řídí místnost (a tedy i techniku, publikum, celkový řád)
+- řeč těla: oční kontakt, klidná gesta, tělo otevřené směrem k publiku
 
 ---
 
@@ -81,45 +84,46 @@ Licence: CC BY-NC-SA
 - úvod (10 %): zaujmout a stručně říct, proč je téma důležité
 - jádro (80 %): 2-3 hlavní body, každý podpořený příkladem nebo ukázkou
 - závěr (10 %): shrnutí, hlavní sdělení a konkrétní výzva k akci
-- plynulé přechody mezi částmi udržují pozornost a logiku výkladu
 
 ---
 
 # ℹ️ Jak dávat zpětnou vazbu
 
-- začněte tím, co fungovalo: konkrétní silná stránka prezentace
+- metoda Start, Stop, Continue:
+    - **Start**: co zavést, aby se zaplnily mezery
+    - **Stop**: čemu se příště vyhnout
+    - **Continue**: v čem pokračovat a jak to posílit
 - buďte konkrétní: místo „bylo to slabé“ řekněte, co přesně zlepšit
 - mluvte věcně o projevu, ne osobně o člověku
-- nabídněte návrh: co udělat příště lépe a jak toho dosáhnout
-- držte poměr 1:1: ocenění + doporučení ke zlepšení
+- navrhněte změny: co udělat příště lépe a jak toho dosáhnout
 
 ---
 
 <!-- _class: task -->
 
-# 💼 Úkol: Týmová aktivita
+# 💼 Úkol: Tvorba rychloprezentace
 
-🎯 **Cíl:** Okamžitě si v praxi vyzkoušet tvorbu stručné a přesvědčivé prezentace
+🎯 **Cíl:** Vyzkoušet si tvorbu stručné a přesvědčivé prezentace pod tlakem
 
 📋 **Zadání:**
 
-- týmy po 3 dostanou 15 minut na vytvoření přesně 3 slidů na absurdní téma
+- každý tým má 15 minut na vytvoření přesně **3 slidů** na absurdní téma
 - příklady témat: „Proč jsou holubi ve skutečnosti vládní drony“ nebo „Proč by se ve škole mělo spát“
 - poté má každý tým 2 minuty na výstup
-- publikum hodnotí: srozumitelnost, strukturu, přesvědčivost
 
-✅ **Výstup:**:
-- tříslidová mini prezentace + stručná zpětná vazba od spolužáků
+✅ **Výstup:**
+- prezentace na 3 slidy (problém, důkaz, řešení) + stručná zpětná vazba od spolužáků (publikum slovně hodnotí srozumitelnost, strukturu, přesvědčivost)
+- prezentaci nahrajte do Google Classroom, uveďte členy týmu
 
 ---
 
 # 🧠 Souhrn lekce
 
-- prezentace rozhoduje o tom, zda nápad „projde“
-- nejčastější chyby jsou opravitelné
+- prezentace je účinný nástroj pro přesvědčování
+- většinu častých chyb lze jednoduše eliminovat vhodnou přípravou
 - struktura a stručnost zvyšují srozumitelnost
-- technická příprava snižuje stres a chyby
-- **zlaté pravidlo:** Jedna hlavní myšlenka na slide, jeden jasný cíl pro publikum
+- osvojení technických základů prezentování snižuje stres a chyby
+- zlaté pravidlo: **jedna myšlenka na jeden slide**
 
 ---
 
