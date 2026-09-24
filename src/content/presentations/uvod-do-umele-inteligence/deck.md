@@ -138,12 +138,14 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 
 ---
 
-# ℹ️ Proč LLM působí chytře?
+# ℹ️ Chytří asistenti využívající LLM
 
-- dovede napodobit různé styly a formáty
-- drží se instrukce a kontextu konverzace
-- spojuje známé jazykové vzorce novým způsobem
-- dokáže vysvětlovat, ale také chybovat velmi přesvědčivě
+- ChatGPT.com
+- Claude.ai
+- Grok.com
+- ollama.com
+
+> Dnes už můžete na výkonějších počítačích provozovat modely lokálně.
 
 ---
 
@@ -158,20 +160,14 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 
 # ℹ️ Základy dobrého promptu
 
+> Prompt = instrukce pro jazykový model
+
 1. **role:** Určete, v jaké roli má AI vystupovat.
 2. **úkol:** Co má vzniknout?
 3. **kontext:** Pro koho a v jaké situaci?
 4. **formát:** Tabulka, body, délka, jazyk?
 
----
-
-# ℹ️ Prompt je rozhovor, ne kouzlo
-
-- začněte jednoduchým návrhem
-- doplňte chybějící kontext
-- požádejte o jiný formát nebo úroveň vysvětlení
-- porovnejte dvě varianty
-- před použitím výsledek zkontrolujte
+> S dobrým promptem vám pomůže... jiný prompt!
 
 ---
 
@@ -184,12 +180,22 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 📋 **Zadání:**
 
 - použijte AI chatbot (LLM) vaší volby
-- zadajejte stejný úkol, ale postupně a s jiným kontextem, např:
+- zadejte stejný úkol, ale postupně a s jiným kontextem, pokaždé v novém okně, např:
 	- „Vysvětli, jak funguje počítačová síť.“
 	- „Chovej se jako naštvaný pirát a vysvětli, jak funguje počítačová síť.“
-	- „Vysvětli, jak funguje síť, jako bys to vysvětloval pětiletému dítěti pomocí Lega.“
+	- „Vysvětli, jak funguje síť, jako bys to vysvětloval pětiletému dítěti.“
 
 ✅ **Výstup:** diskuze
+
+---
+
+# ℹ️ Prompting je rozhovor, ne kouzlo
+
+- začněte jednoduchým návrhem
+- doplňte chybějící kontext
+- požádejte o jiný formát nebo úroveň vysvětlení
+- porovnejte dvě varianty
+- před použitím výsledek zkontrolujte
 
 ---
 
@@ -199,6 +205,22 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 - zdroj uvedený AI nemusí existovat nebo podporovat tvrzení
 - důležité informace porovnávejte alespoň se dvěma zdroji
 - u čísel, práva, zdraví a zpráv hledejte původní zdroj
+
+---
+
+<!-- _class: task -->
+
+# 💼 Úkol: AI a práce s fakty
+
+🎯 **Cíl:** ověříte jeden faktický výrok vytvořený AI
+
+📋 **Zadání:**
+
+- ve skupině zvolte jeden konkrétní výrok z odpovědi AI
+- najděte dva spolehlivé zdroje, z nichž jeden je primární nebo institucionální
+- rozhodněte: platí / neplatí / nelze ověřit
+
+✅ **Výstup:** diskuze
 
 ---
 
@@ -219,22 +241,6 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 
 ---
 
-<!-- _class: task -->
-
-# 💼 Úkol: Detektivové faktů
-
-🎯 **Cíl:** ověříte jeden faktický výrok vytvořený AI.
-
-📋 **Zadání:**
-
-- Ve skupině zvolte jeden konkrétní výrok z odpovědi AI
-- Najděte dva spolehlivé zdroje, z nichž jeden je primární nebo institucionální
-- Rozhodněte: platí / neplatí / nelze ověřit
-
-✅ **Výstup:** karta s tvrzením, odkazy na zdroje a vaším verdiktem
-
----
-
 # ℹ️ AI jako tvůrčí spolupracovník
 
 - nápady a varianty názvu
@@ -247,32 +253,47 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 
 ---
 
-# Postup, který funguje
+# ℹ️ Tipy na AI nástroje - Perplexity.com
 
-1. Vymezte problém a publikum
-2. Vytvořte návrh pomocí přesného promptu
-3. Vyberte užitečné části a upravte je vlastními slovy
-4. Ověřte fakta, licence a citlivá data
-5. Doplňte, co jste se rozhodli nepoužít - a proč
+- AI vyhledávač s citacemi
+- vložte váš článek a požádejte o ověření faktů
+
+![Perplexity search](perplexity.png)
 
 ---
 
-# Nástroje vybírejte podle účelu
+# ℹ️ Tipy na AI nástroje - NotebookLM.google.com
 
-| Potřeba | Vhodná funkce |
-|---|---|
-| Nápady, vysvětlení, návrh textu | konverzační asistent |
-| Hledání odpovědi se zdroji | vyhledávání s odkazy |
-| Dotazy nad vlastními podklady | asistent nad dokumenty |
-| Návrh vizuálu nebo prototypu | kreativní AI nástroj |
+- AI asistent pro práci s dokumenty a poznámkami;
+- lze se doptávat na informace z vámi poskytnutých zdrojů;
+- umí generovat podcast z vašeho kontextu - vložte článek a zkuste.
 
-*Funkce, podmínky účtu a věkové limity se mohou měnit. Před použitím je ověřte.*
+![NotebookLM](notebookLm.png)
+
+---
+
+# ℹ️ Tipy na AI nástroje - Google AI Studio
+
+- umí všechno jako předchozí aplikace, ale navíc také můžete spolu plynně konverzovat (přes audio i video)
+
+
+![Google AI studio](googleAiStudio.png)
+
+---
+
+# ℹ️ Tipy na AI nástroje - Canva AI
+
+- vibe coding aplikace - navrhněte vlastní appku nebo web
+- přihlaste se do Canvy pomocí osobního účtu (ne studentského):
+	- studentský účet nedisponuje funkcionalitou, kterou potřebujeme
+
+![Canva AI](canvaAi.png)
 
 ---
 
 <!-- _class: task -->
 
-# 💼 Závěrečný projekt: Pomoc pro školu
+# 💼 Pomoc pro školu
 
 🎯 **Cíl:** vytvoříte a obhájíte návrh řešení s rozumně použitou AI.
 
@@ -303,18 +324,6 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 - Přesvědčivá odpověď může být chybná
 - Citlivá data do veřejných nástrojů nepatří
 - **Vy rozhodujete, ověřujete a nesete odpovědnost.**
-
----
-
-# Zdroje a ověřování
-
-- Výchozí obsah: *03_umelaInteligence.pdf*, Podřipská škola
-- [OpenAI: Data Controls FAQ](https://help.openai.com/en/articles/7730893-chatgpt-data-controls-faq) - kontrola práce s konverzacemi
-- [Canva: Privacy](https://www.canva.com/trust/privacy/) - soukromí a vzdělávací účty
-- [AI Act Service Desk: článek 4](https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-4) - AI gramotnost
-- [NotebookLM Help](https://support.google.com/notebooklm/answer/16246230?hl=en) - práce se zdroji
-
-*Odkazy ověřeny 13. 9. 2026. Funkce nástrojů se mohou měnit.*
 
 ---
 
