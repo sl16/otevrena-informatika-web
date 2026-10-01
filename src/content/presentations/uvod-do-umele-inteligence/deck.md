@@ -212,13 +212,12 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 
 # 💼 Úkol: AI a práce s fakty
 
-🎯 **Cíl:** ověříte jeden faktický výrok vytvořený AI
+🎯 **Cíl:** uvědomit si, že AI si dokáže přesvědčivě vymýšlet (halucinovat)
 
 📋 **Zadání:**
 
-- ve skupině zvolte jeden konkrétní výrok z odpovědi AI
-- najděte dva spolehlivé zdroje, z nichž jeden je primární nebo institucionální
-- rozhodněte: platí / neplatí / nelze ověřit
+- vymyslete chyták - otázku na něco, co neexistuje, nebo logický nesmysl
+- např. „Kdo vyhrál mistrovství světa v podvodním hokeji v Roudnici nad Labem v roce 2024?"
 
 ✅ **Výstup:** diskuze
 
@@ -238,6 +237,22 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 - odpovědnost má člověk, který výstup použije
 - důležitá rozhodnutí vyžadují lidskou kontrolu
 - „AI to napsala“ není omluva
+
+---
+
+<!-- _class: task -->
+
+# 💼 Úkol: AI a práce s fakty
+
+🎯 **Cíl:** ověříte jeden faktický výrok vytvořený AI
+
+📋 **Zadání:**
+
+- ve skupině zvolte jeden konkrétní výrok z odpovědi AI
+- najděte dva spolehlivé zdroje, z nichž jeden je primární nebo institucionální
+- rozhodněte: platí / neplatí / nelze ověřit
+
+✅ **Výstup:** diskuze
 
 ---
 
@@ -293,27 +308,19 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 
 <!-- _class: task -->
 
-# 💼 Pomoc pro školu
+# 💼 Vibecoding s AI
 
-🎯 **Cíl:** vytvoříte a obhájíte návrh řešení s rozumně použitou AI.
+🎯 **Cíl:** s Canva AI vytvořte vlastní aplikaci nebo web, který řeší nějaký problém
 
 📋 **Zadání:**
 
-- Ve dvojici vyberte problém ze školy nebo okolí
-- Navrhněte řešení, publikum a jeden konkrétní přínos
-- S AI připravte návrh textu, vizuálu nebo jednoduchého prototypu
-- Uveďte jeden ověřený fakt, použitý prompt a jednu vlastní úpravu
+- ve dvojici vyberte problém (např. organizace školních akcí, usnadnění učení, podnikatelský nápad, revoluční technologie,…)
+- navrhněte řešení - váš produkt/služba/aplikace
+- s AI připravte návrh textu, vizuálu nebo jednoduchého prototypu
 
-✅ **Výstup:** čtyři snímky nebo jeden plakát + krátká reflexe použití AI.
-
----
-
-# Prezentace projektů
-
-- **1 minuta:** problém a cílová skupina
-- **1 minuta:** návrh řešení a ukázka
-- **30 sekund:** co vytvořila AI a co jste upravili vy
-- spolužáci dávají zpětnou vazbu: srozumitelnost, ověření, bezpečnost
+✅ **Výstup:**
+- vibecoded aplikace
+- prezentace představující váš nápad (3 slidy: problém, řešení problému, ukázka aplikace)
 
 ---
 
@@ -331,7 +338,7 @@ description: "Představení AI a jazykových modelů, základy bezpečného pou�
 
 # Děkuji za pozornost!
 
-## Co si ověříte před příštím použitím AI?
-
-Zdrojová předloha: Podřipská škola  
-Licence zdrojové předlohy: neuvedena
+🧑‍🏫 Autor: Mgr. Vojtěch Bartoš  
+© Licence: CC BY-NC-SA  
+Kontakt: [info@otevrenainformatika.cz](mailto:info@otevrenainformatika.cz)  
+www.otevrenainformatika.cz
