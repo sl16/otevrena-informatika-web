@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { nastroje, toolCategories } from '../../lib/nastroje';
+---
+
+<BaseLayout
+  title="Nástroje | Otevřená informatika"
+  description="Užitečné aplikace a weby pro výuku, tvorbu, bezpečnost i každodenní práci."
+>
+  <main class="min-h-screen">
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Nástroje</h1>
+          <p class="text-slate-400 mt-4 leading-relaxed">
+            Užitečné aplikace a weby pro výuku, tvorbu, bezpečnost i každodenní práci.
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-4">
+          <div class="flex flex-wrap gap-2" id="category-toggles" aria-label="Filtrovat podle kategorie">
+            <button
+              type="button"
+              data-category=""
+              aria-pressed="true"
+              class="category-toggle bg-brand-neon text-brand-dark border border-brand-neon rounded-xl px-4 py-2 font-mono text-xs font-bold tracking-[0.12em] uppercase"
+            >
+              Vše
+            </button>
+            {toolCategories.map((category) => (
+              <button
+                type="button"
+                data-category={category}
+                aria-pressed="false"
+                class="category-toggle bg-brand-card/50 backdrop-blur-sm border border-white/10 text-slate-200 rounded-xl px-4 py-2 font-mono text-xs font-bold tracking-[0.12em] uppercase hover:border-brand-neon/40 hover:text-white transition-colors"
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <label class="sr-only" for="search-input">Hledat nástroje</label>
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Hledat nástroje..."
+            class="bg-brand-card/50 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 font-mono text-sm focus:outline-none focus:border-brand-neon/50 w-full sm:w-96"
+          />
+        </div>
+
+        <div id="tools-grid" class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+          {nastroje.map((tool) => (
+            <article
+              class="tool-card bg-brand-card/50 backdrop-blur-sm rounded-3xl border border-white/5 overflow-hidden hover:border-brand-neon/30 hover:bg-brand-card transition-all duration-500 group flex flex-col shadow-2xl"
+              data-category={tool.category}
+              data-search={`${tool.title} ${tool.description} ${tool.category}`.toLocaleLowerCase('cs')}
+            >
+              <a
+                href={tool.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Otevřít nástroj: ${tool.title} (otevře se v novém panelu)`}
+                class="flex flex-col h-full"
+              >
+                {tool.image ? (
+                  <img
+                    src={tool.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full aspect-video object-cover bg-black/20"
+                  />
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    class="w-full aspect-video flex items-center justify-center bg-black/20 text-5xl"
+                  >
+                    🔗
+                  </div>
+                )}
+                <div class="p-6 flex flex-col flex-grow">
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-neon mb-4">
+                    {tool.category}
+                  </span>
+                  <h2 class="text-xl font-black text-white group-hover:text-brand-cyan transition-colors mb-3 leading-tight">
+                    {tool.title}
+                  </h2>
+                  <p class="text-slate-400 text-sm leading-relaxed">{tool.description}</p>
+                  <div class="mt-auto flex items-center justify-between pt-6">
+                    <span class="text-xs font-mono font-bold text-slate-400 group-hover:text-brand-neon transition-colors">
+                      Otevřít nástroj
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-brand-neon group-hover:text-brand-dark transition-all duration-300"
+                    >
+                      ↗
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <p id="no-results" class="hidden mt-12 text-center text-slate-500 font-mono text-sm">
+          Žádné nástroje neodpovídají vašemu hledání.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const toggleButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.category-toggle'));
+    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.tool-card'));
+    const noResults = document.getElementById('no-results');
+    const activeCategories = new Set<string>();
+
+    const setButtonActive = (button: HTMLButtonElement, active: boolean) => {
+      button.setAttribute('aria-pressed', String(active));
+      button.classList.toggle('bg-brand-neon', active);
+      button.classList.toggle('text-brand-dark', active);
+      button.classList.toggle('border-brand-neon', active);
+      button.classList.toggle('bg-brand-card/50', !active);
+      button.classList.toggle('text-slate-200', !active);
+      button.classList.toggle('border-white/10', !active);
+    };
+
+    const filterTools = () => {
+      const searchTerm = (searchInput?.value ?? '').toLocaleLowerCase('cs').trim();
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const category = card.dataset.category ?? '';
+        const searchText = card.dataset.search ?? '';
+        const matchesCategory = activeCategories.size === 0 || activeCategories.has(category);
+        const matchesSearch = !searchTerm || searchText.includes(searchTerm);
+        const visible = matchesCategory && matchesSearch;
+
+        card.style.display = visible ? 'flex' : 'none';
+        if (visible) visibleCount++;
+      });
+
+      noResults?.classList.toggle('hidden', visibleCount > 0);
+    };
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category ?? '';
+
+        if (!category) {
+          activeCategories.clear();
+          toggleButtons.forEach((item) => setButtonActive(item, item === button));
+        } else if (activeCategories.has(category)) {
+          activeCategories.delete(category);
+          setButtonActive(button, false);
+          setButtonActive(toggleButtons[0], activeCategories.size === 0);
+        } else {
+          activeCategories.add(category);
+          setButtonActive(button, true);
+          setButtonActive(toggleButtons[0], false);
+        }
+
+        filterTools();
+      });
+    });
+
+    searchInput?.addEventListener('input', filterTools);
+  </script>
+</BaseLayout>
