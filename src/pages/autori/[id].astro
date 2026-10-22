@@ -3,7 +3,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Prose from '../../components/Prose.astro';
 import Card from '../../components/Card.astro';
-import { getMaterials, getApps, getBlogPosts } from '../../lib/content';
+import { getMaterials, getBlogPosts } from '../../lib/content';
 import { ogImageUrl } from '../../lib/seo';
 
 export async function getStaticPaths() {
@@ -18,9 +18,8 @@ const { entry } = Astro.props as { entry: CollectionEntry<'authors'> };
 const author = entry.data;
 const { Content } = await render(entry);
 
-const [materials, apps, posts] = await Promise.all([getMaterials(), getApps(), getBlogPosts()]);
+const [materials, posts] = await Promise.all([getMaterials(), getBlogPosts()]);
 const authoredMaterials = materials.filter((m) => m.authorId === author.id);
-const authoredApps = apps.filter((a) => a.authorId === author.id);
 const authoredPosts = posts.filter((p) => p.authorId === author.id);
 ---
 
@@ -88,7 +87,7 @@ const authoredPosts = posts.filter((p) => p.authorId === author.id);
           </Prose>
         </div>
 
-        {(authoredMaterials.length > 0 || authoredApps.length > 0 || authoredPosts.length > 0) && (
+        {(authoredMaterials.length > 0 || authoredPosts.length > 0) && (
           <div class="mt-14 space-y-14">
             {authoredMaterials.length > 0 && (
               <div>
@@ -105,25 +104,6 @@ const authoredPosts = posts.filter((p) => p.authorId === author.id);
                       duration={m.duration}
                       targetAudience={m.targetAudience}
                       meta={{ author: author.name, date: m.dateCz }}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {authoredApps.length > 0 && (
-              <div>
-                <h2 class="text-2xl font-black text-white">Aplikace</h2>
-                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-                  {authoredApps.map((a) => (
-                    <Card
-                      href={`/aplikace/${a.id}`}
-                      iconName={a.iconName}
-                      title={a.name}
-                      description={a.description}
-                      category={a.category}
-                      tags={a.features}
-                      meta={{ author: author.name }}
                     />
                   ))}
                 </div>

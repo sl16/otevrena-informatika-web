@@ -56,22 +56,6 @@ const presentations = defineCollection({
     .passthrough(),
 });
 
-const apps = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/apps' }),
-  schema: z.object({
-    id: z.string(),
-    name: z.string(),
-    description: z.string(),
-    url: z.string(),
-    iconName: z.string(),
-    category: categoryEnum,
-    features: z.array(z.string()).default([]),
-    authorId: z.string().optional(),
-    runnerType: z.string().optional(),
-    certificateTitle: z.string().optional(),
-  }),
-});
-
 const blog = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
@@ -141,7 +125,6 @@ const prompts = defineCollection({
 
 export const collections = {
   materials,
-  apps,
   blog,
   authors,
   curriculum,

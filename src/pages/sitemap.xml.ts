@@ -12,9 +12,8 @@ const isoDate = (value?: string) => {
 export const GET: APIRoute = async ({ site }) => {
   const base = site?.toString().replace(/\/$/, '') ?? 'https://otevrenainformatika.cz';
 
-  const [materials, apps, posts, authors, presentations] = await Promise.all([
+  const [materials, posts, authors, presentations] = await Promise.all([
     getCollection('materials'),
-    getCollection('apps'),
     getCollection('blog'),
     getCollection('authors'),
     getCollection('presentations'),
@@ -23,7 +22,6 @@ export const GET: APIRoute = async ({ site }) => {
   const urls: Url[] = [
     { loc: `${base}/` },
     { loc: `${base}/materialy/` },
-    { loc: `${base}/aplikace/` },
     { loc: `${base}/tematicke-plany/` },
     { loc: `${base}/blog/` },
     { loc: `${base}/prezentace/` },
@@ -31,12 +29,6 @@ export const GET: APIRoute = async ({ site }) => {
 
   for (const m of materials) {
     urls.push({ loc: `${base}/materialy/${m.data.id}/`, lastmod: isoDate(m.data.date) });
-  }
-  for (const a of apps) {
-    urls.push({ loc: `${base}/aplikace/${a.data.id}/` });
-    if (a.data.url?.startsWith('/app/')) {
-      urls.push({ loc: `${base}${a.data.url.replace(/\/$/, '')}/` });
-    }
   }
   for (const p of posts) {
     urls.push({ loc: `${base}/blog/${p.data.id}/`, lastmod: isoDate(p.data.date) });

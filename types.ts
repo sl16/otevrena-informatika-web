@@ -46,20 +46,6 @@ export interface SupportingMaterial {
   url: string;
 }
 
-export interface AppInfo {
-  id: string;
-  name: string;
-  description: string;
-  longDescription: string;
-  url: string;
-  iconName: string;
-  category: Category;
-  features: string[];
-  authorId?: string;
-  runnerType?: string;
-  certificateTitle?: string;
-}
-
 export interface BlogPost {
   id: string;
   title: string;

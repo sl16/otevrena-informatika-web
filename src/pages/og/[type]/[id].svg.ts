@@ -78,16 +78,14 @@ function renderSvg(opts: { title: string; subtitle: string; kicker?: string }) {
 }
 
 export async function getStaticPaths() {
-  const [materials, apps, posts, authors] = await Promise.all([
+  const [materials, posts, authors] = await Promise.all([
     getCollection('materials'),
-    getCollection('apps'),
     getCollection('blog'),
     getCollection('authors'),
   ]);
 
   return [
     ...materials.map((m) => ({ params: { type: 'material', id: m.data.id } })),
-    ...apps.map((a) => ({ params: { type: 'app', id: a.data.id } })),
     ...posts.map((p) => ({ params: { type: 'blog', id: p.data.id } })),
     ...authors.map((au) => ({ params: { type: 'author', id: au.data.id } })),
   ];
@@ -102,7 +100,7 @@ export const GET: APIRoute = async ({ params }) => {
   }
 
   let title = 'Otevřená informatika';
-  let subtitle = 'Bezplatné materiály a aplikace pro výuku informatiky.';
+  let subtitle = 'Bezplatné materiály pro výuku informatiky.';
   let kicker = '';
 
   if (type === 'material') {
@@ -112,14 +110,6 @@ export const GET: APIRoute = async ({ params }) => {
       title = m.data.title;
       subtitle = m.data.description;
       kicker = m.data.category;
-    }
-  } else if (type === 'app') {
-    const apps = await getCollection('apps');
-    const a = apps.find((e) => e.data.id === id);
-    if (a) {
-      title = a.data.name;
-      subtitle = a.data.description;
-      kicker = a.data.category;
     }
   } else if (type === 'blog') {
     const posts = await getCollection('blog');

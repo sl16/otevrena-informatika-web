@@ -2,7 +2,6 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { formatCzDate, parseDate } from './date';
 
 type MaterialEntry = CollectionEntry<'materials'>;
-type AppEntry = CollectionEntry<'apps'>;
 type BlogEntry = CollectionEntry<'blog'>;
 type AuthorEntry = CollectionEntry<'authors'>;
 type CurriculumEntry = CollectionEntry<'curriculum'>;
@@ -29,19 +28,6 @@ export async function getMaterials() {
       authorRole: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.role : undefined,
     }))
     .sort((a, b) => b._dateSort - a._dateSort);
-}
-
-export async function getApps() {
-  const [items, authorsById] = await Promise.all([getCollection('apps'), buildAuthorIndex()]);
-  return items
-    .map((entry: AppEntry) => ({
-      ...entry.data,
-      body: entry.body,
-      entry,
-      authorName: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.name ?? entry.data.authorId : undefined,
-      authorRole: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.role : undefined,
-    }))
-    .sort((a, b) => (a.name.localeCompare(b.name, 'cs')));
 }
 
 export async function getBlogPosts() {

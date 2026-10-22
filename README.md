@@ -8,7 +8,6 @@ Cílem projektu je nabídnout učitelům i školám praktický, srozumitelný a 
 
 Na webu najdete:
 - metodicky připravené materiály k jednotlivým tématům,
-- vzdělávací aplikace použitelné přímo v hodinách,
 - tematické plány,
 - články a inspiraci z praxe.
 
@@ -24,4 +23,4 @@ Web je postavený na moderním frontendu:
 
 ## Poznámka
 
-Repozitář slouží jako zdrojový kód webu a obsahové databáze (materiály, aplikace, blog, tematické plány).
+Repozitář slouží jako zdrojový kód webu a obsahové databáze (materiály, blog, tematické plány).
