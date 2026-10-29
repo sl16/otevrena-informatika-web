@@ -3,6 +3,8 @@ marp: true
 theme: oi
 paginate: true
 id: medialni-gramotnost
+category: Mediální gramotnost
+date: 2026-06-08
 title: "Mediální gramotnost"
 description: "Mediální gramotnost aneb Jste to, co jíte (a čtete)"
 transition: cover

@@ -5,6 +5,8 @@ paginate: true
 title: Jak prezentovat (efektivně)
 description: Praktické tipy jak připravit a odprezentovat srozumitelnou prezentaci.
 id: jak-prezentovat-efektivne
+category: Jiné
+date: 2026-09-09
 transition: cover
 ---
 

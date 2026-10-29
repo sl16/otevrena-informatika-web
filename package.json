@@ -13,29 +13,13 @@
     "lint": "astro sync && node ./node_modules/@astrojs/check/dist/bin.js",
     "preview": "astro preview"
   },
-  "dependencies": {
-    "@react-pdf/renderer": "^4.3.2",
-    "buffer": "^6.0.3",
-    "gray-matter": "^4.0.3",
-    "html2pdf.js": "^0.14.0",
-    "jspdf": "^4.2.0",
-    "motion": "^12.34.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-markdown": "^10.1.0"
-  },
   "devDependencies": {
     "@astrojs/check": "^0.9.2",
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/rss": "^4.0.14",
     "@astrojs/tailwind": "^6.0.2",
     "@marp-team/marp-cli": "^4.3.1",
     "@tailwindcss/typography": "^0.5.19",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
     "astro": "^6.2.1",
     "autoprefixer": "^10.5.0",
-    "pdf-parse": "^2.4.5",
     "postcss": "^8.5.12",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.7.0"

@@ -1,48 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-
-const urlOrPath = z.union([
-  z.string().url(),
-  z.string().regex(/^\//, 'Expected an absolute URL or a path starting with /'),
-]);
-
-const categoryEnum = z.enum([
-  'Programování',
-  'Hardware',
-  'Umělá inteligence',
-  'Kyberbezpečnost',
-  'Kancelářský balík',
-  'Algoritmizace',
-  'Mediální gramotnost',
-]);
-
-const materials = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/materials' }),
-  schema: z.object({
-    id: z.string(),
-    title: z.string(),
-    description: z.string(),
-    category: categoryEnum,
-    author: z.string(),
-    authorId: z.string().optional(),
-    date: z.coerce.string(),
-    duration: z.string().optional(),
-    targetAudience: z.enum(['ZŠ', 'SŠ', 'ZŠ/SŠ']).optional(),
-    downloadUrl: urlOrPath,
-    iconName: z.string(),
-    tags: z.array(z.string()).default([]),
-    supportingMaterials: z
-      .array(
-        z.object({
-          id: z.string(),
-          title: z.string(),
-          type: z.enum(['video', 'presentation', 'link', 'file']),
-          url: urlOrPath,
-        })
-      )
-      .optional(),
-  }),
-});
+import { curriculumCategories } from './lib/curriculumCategories';
 
 const presentations = defineCollection({
   loader: glob({ pattern: '**/deck.md', base: './src/content/presentations' }),
@@ -51,23 +9,11 @@ const presentations = defineCollection({
       id: z.string(),
       title: z.string(),
       description: z.string(),
+      category: z.enum(curriculumCategories),
+      date: z.coerce.date().optional(),
     })
     // Allow Marp frontmatter fields like `marp`, `theme`, `paginate`, ...
     .passthrough(),
-});
-
-const blog = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
-  schema: z.object({
-    id: z.string(),
-    title: z.string(),
-    excerpt: z.string(),
-    author: z.string(),
-    authorId: z.string().optional(),
-    date: z.coerce.string(),
-    imageUrl: z.string(),
-    category: z.string(),
-  }),
 });
 
 const authors = defineCollection({
@@ -87,32 +33,6 @@ const authors = defineCollection({
   }),
 });
 
-const curriculum = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/curriculum' }),
-  schema: z.object({
-    id: z.string(),
-    schoolType: z.enum(['ZŠ', 'SŠ']),
-    title: z.string(),
-    description: z.string(),
-    blocks: z.array(
-      z.object({
-        id: z.string(),
-        title: z.string(),
-        iconName: z.string().optional(),
-        topics: z.array(
-          z.object({
-            id: z.string(),
-            title: z.string(),
-            description: z.string().optional(),
-            materialId: z.string().optional(),
-            status: z.enum(['available', 'planned']),
-          })
-        ),
-      })
-    ),
-  }),
-});
-
 const prompts = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/prompts' }),
   schema: z.object({
@@ -124,10 +44,7 @@ const prompts = defineCollection({
 });
 
 export const collections = {
-  materials,
-  blog,
   authors,
-  curriculum,
   prompts,
   presentations,
 };

@@ -5,6 +5,8 @@ paginate: true
 title: Umělá inteligence ve školní praxi
 description: Pedagogické školení AI pro asistenty pedagoga zaměřené na praktické využití umělé inteligence ve školní praxi.
 id: pedagogicke-skoleni-ai-pro-asistenty
+category: Umělá inteligence
+date: 2026-06-08
 ---
 
 <!-- _class: title -->

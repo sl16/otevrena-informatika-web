@@ -7,20 +7,20 @@ Web [otevrenainformatika.cz](https://otevrenainformatika.cz) sdružuje kvalitní
 Cílem projektu je nabídnout učitelům i školám praktický, srozumitelný a volně dostupný obsah, který lze okamžitě použít ve výuce.
 
 Na webu najdete:
-- metodicky připravené materiály k jednotlivým tématům,
-- tematické plány,
-- články a inspiraci z praxe.
+- metodicky připravené prezentace k jednotlivým tématům,
+- tematický plán,
+- vzdělávací nástroje.
 
 Obsah vzniká s důrazem na použitelnost ve třídě, vizuální přehlednost a dlouhodobou udržitelnost.
 
 ## Technologie
 
 Web je postavený na moderním frontendu:
-- React
+- Astro
 - TypeScript
-- Vite
 - Tailwind CSS
+- Marp pro tvorbu prezentací
 
 ## Poznámka
 
-Repozitář slouží jako zdrojový kód webu a obsahové databáze (materiály, blog, tematické plány).
+Repozitář slouží jako zdrojový kód webu a obsahové databáze (prezentace, tematický plán a nástroje).

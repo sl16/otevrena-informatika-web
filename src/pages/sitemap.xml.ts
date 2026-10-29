@@ -3,37 +3,21 @@ import { getCollection } from 'astro:content';
 
 type Url = { loc: string; lastmod?: string };
 
-const isoDate = (value?: string) => {
-  if (!value) return undefined;
-  const d = new Date(value);
-  return Number.isNaN(d.getTime()) ? undefined : d.toISOString().slice(0, 10);
-};
-
 export const GET: APIRoute = async ({ site }) => {
   const base = site?.toString().replace(/\/$/, '') ?? 'https://otevrenainformatika.cz';
 
-  const [materials, posts, authors, presentations] = await Promise.all([
-    getCollection('materials'),
-    getCollection('blog'),
+  const [authors, presentations] = await Promise.all([
     getCollection('authors'),
     getCollection('presentations'),
   ]);
 
   const urls: Url[] = [
     { loc: `${base}/` },
-    { loc: `${base}/materialy/` },
     { loc: `${base}/nastroje/` },
     { loc: `${base}/tematicke-plany/` },
-    { loc: `${base}/blog/` },
     { loc: `${base}/prezentace/` },
   ];
 
-  for (const m of materials) {
-    urls.push({ loc: `${base}/materialy/${m.data.id}/`, lastmod: isoDate(m.data.date) });
-  }
-  for (const p of posts) {
-    urls.push({ loc: `${base}/blog/${p.data.id}/`, lastmod: isoDate(p.data.date) });
-  }
   for (const au of authors) {
     urls.push({ loc: `${base}/autori/${au.data.id}/` });
   }

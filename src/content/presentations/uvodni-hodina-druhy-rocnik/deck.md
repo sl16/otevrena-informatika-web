@@ -3,6 +3,8 @@ marp: true
 theme: oi
 paginate: true
 id: uvodni-hodina-druhy-rocnik
+category: Jiné
+date: 2026-09-03
 title: "Úvodní hodina IKT pro 2. ročník střední školy"
 description: "Vzájemné seznámení mezi učitelem a studenty, představení plánu na školní rok"
 ---

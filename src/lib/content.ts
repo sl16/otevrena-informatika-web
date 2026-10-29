@@ -1,73 +1,14 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { formatCzDate, parseDate } from './date';
 
-type MaterialEntry = CollectionEntry<'materials'>;
-type BlogEntry = CollectionEntry<'blog'>;
-type AuthorEntry = CollectionEntry<'authors'>;
-type CurriculumEntry = CollectionEntry<'curriculum'>;
+type PresentationEntry = CollectionEntry<'presentations'>;
 
-async function buildAuthorIndex() {
-  const authors = await getCollection('authors');
-  const byId = new Map<string, AuthorEntry>();
-  for (const a of authors) {
-    byId.set(a.data.id, a);
-  }
-  return byId;
-}
-
-export async function getMaterials() {
-  const [items, authorsById] = await Promise.all([getCollection('materials'), buildAuthorIndex()]);
+export async function getPresentations() {
+  const items = await getCollection('presentations');
   return items
-    .map((entry: MaterialEntry) => ({
+    .map((entry: PresentationEntry) => ({
       ...entry.data,
-      body: entry.body,
       entry,
-      dateCz: formatCzDate(entry.data.date),
-      _dateSort: parseDate(entry.data.date)?.getTime() ?? 0,
-      authorName: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.name ?? entry.data.author : entry.data.author,
-      authorRole: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.role : undefined,
+      _dateSort: entry.data.date?.getTime() ?? 0,
     }))
-    .sort((a, b) => b._dateSort - a._dateSort);
-}
-
-export async function getBlogPosts() {
-  const [items, authorsById] = await Promise.all([getCollection('blog'), buildAuthorIndex()]);
-  return items
-    .map((entry: BlogEntry) => ({
-      ...entry.data,
-      body: entry.body,
-      entry,
-      dateCz: formatCzDate(entry.data.date),
-      _dateSort: parseDate(entry.data.date)?.getTime() ?? 0,
-      authorName: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.name ?? entry.data.author : entry.data.author,
-      authorRole: entry.data.authorId ? authorsById.get(entry.data.authorId)?.data.role : undefined,
-    }))
-    .sort((a, b) => b._dateSort - a._dateSort);
-}
-
-export async function getAuthors() {
-  const items = await getCollection('authors');
-  return items
-    .map((entry: AuthorEntry) => ({
-      ...entry.data,
-      body: entry.body,
-      entry,
-    }))
-    .sort((a, b) => a.name.localeCompare(b.name, 'cs'));
-}
-
-export async function getCurriculumPlans() {
-  const items = await getCollection('curriculum');
-  return items
-    .map((entry) => ({
-      ...entry.data,
-      body: entry.body,
-      entry,
-    }))
-    .sort((a, b) => {
-      if (a.schoolType === b.schoolType) {
-        return 0;
-      }
-      return a.schoolType === 'SŠ' ? -1 : 1;
-    });
+    .sort((a, b) => b._dateSort - a._dateSort || a.title.localeCompare(b.title, 'cs'));
 }

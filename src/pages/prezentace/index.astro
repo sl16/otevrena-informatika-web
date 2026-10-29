@@ -1,23 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PresentationCard from '../../components/PresentationCard.astro';
+import { getPresentations } from '../../lib/content';
+import { curriculumCategories } from '../../lib/curriculumCategories';
 import { ogImageUrl } from '../../lib/seo';
 
-const presentations = await getCollection('presentations');
-
-const items = presentations
-  .map((p) => ({
-    id: p.data.id,
-    title: p.data.title,
-    description: p.data.description,
-  }))
-  .sort((a, b) => a.title.localeCompare(b.title, 'cs'));
+const items = await getPresentations();
 ---
 
 <BaseLayout
   title="Prezentace | Otevřená informatika"
-  description="Prezentace vygenerované z Markdownu (Marp)."
+  description="Výukové prezentace připravené pro promítání a použití ve výuce."
   image={ogImageUrl({ type: 'home' })}
 >
   <main class="min-h-screen">
@@ -30,12 +23,112 @@ const items = presentations
           </p>
         </div>
 
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <div class="mt-8 flex flex-col gap-4">
+          <div class="flex flex-wrap gap-2" id="category-toggles" aria-label="Filtrovat podle kategorie">
+            <button
+              type="button"
+              data-category=""
+              aria-pressed="true"
+              class="category-toggle bg-brand-neon text-brand-dark border border-brand-neon rounded-xl px-4 py-2 font-mono text-xs font-bold tracking-[0.12em] uppercase"
+            >
+              Vše
+            </button>
+            {curriculumCategories.map((category) => (
+              <button
+                type="button"
+                data-category={category}
+                aria-pressed="false"
+                class="category-toggle bg-brand-card/50 backdrop-blur-sm border border-white/10 text-slate-200 rounded-xl px-4 py-2 font-mono text-xs font-bold tracking-[0.12em] uppercase hover:border-brand-neon/40 hover:text-white transition-colors"
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <label class="sr-only" for="search-input">Hledat prezentace</label>
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Hledat prezentace..."
+            class="bg-brand-card/50 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 font-mono text-sm focus:outline-none focus:border-brand-neon/50 w-full sm:w-96"
+          />
+        </div>
+
+        <div id="presentations-grid" class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {items.map((p) => (
-            <PresentationCard href={`/prezentace/${p.id}/index.html`} title={p.title} description={p.description} />
+            <PresentationCard
+              href={`/prezentace/${p.id}/index.html`}
+              title={p.title}
+              description={p.description}
+              category={p.category}
+              date={p.date}
+            />
           ))}
         </div>
+
+        <p id="no-results" class="hidden mt-12 text-center text-slate-500 font-mono text-sm">
+          Žádné prezentace neodpovídají vašemu hledání.
+        </p>
       </div>
     </section>
   </main>
+
+  <script>
+    const toggleButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.category-toggle'));
+    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.presentation-card'));
+    const noResults = document.getElementById('no-results');
+    const activeCategories = new Set<string>();
+
+    const setButtonActive = (button: HTMLButtonElement, active: boolean) => {
+      button.setAttribute('aria-pressed', String(active));
+      button.classList.toggle('bg-brand-neon', active);
+      button.classList.toggle('text-brand-dark', active);
+      button.classList.toggle('border-brand-neon', active);
+      button.classList.toggle('bg-brand-card/50', !active);
+      button.classList.toggle('text-slate-200', !active);
+      button.classList.toggle('border-white/10', !active);
+    };
+
+    const filterPresentations = () => {
+      const searchTerm = (searchInput?.value ?? '').toLocaleLowerCase('cs').trim();
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const category = card.dataset.category ?? '';
+        const searchText = card.dataset.search ?? '';
+        const matchesCategory = activeCategories.size === 0 || activeCategories.has(category);
+        const matchesSearch = !searchTerm || searchText.includes(searchTerm);
+        const visible = matchesCategory && matchesSearch;
+
+        card.style.display = visible ? 'flex' : 'none';
+        if (visible) visibleCount++;
+      });
+
+      noResults?.classList.toggle('hidden', visibleCount > 0);
+    };
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category ?? '';
+
+        if (!category) {
+          activeCategories.clear();
+          toggleButtons.forEach((item) => setButtonActive(item, item === button));
+        } else if (activeCategories.has(category)) {
+          activeCategories.delete(category);
+          setButtonActive(button, false);
+          setButtonActive(toggleButtons[0], activeCategories.size === 0);
+        } else {
+          activeCategories.add(category);
+          setButtonActive(button, true);
+          setButtonActive(toggleButtons[0], false);
+        }
+
+        filterPresentations();
+      });
+    });
+
+    searchInput?.addEventListener('input', filterPresentations);
+  </script>
 </BaseLayout>

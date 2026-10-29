@@ -2,7 +2,7 @@ export function absoluteUrl(pathname: string) {
   return new URL(pathname, 'https://otevrenainformatika.cz').toString();
 }
 
-export function ogImageUrl(opts: { type: 'home' | 'material' | 'app' | 'blog' | 'author'; id?: string }) {
+export function ogImageUrl(opts: { type: 'home' | 'app' | 'author'; id?: string }) {
   if (opts.type === 'home') {
     return absoluteUrl('/og/home.svg');
   }

@@ -4,13 +4,11 @@ Otevrenainformatika.cz je web s bezplatnými vzdělávacími materiály pro výu
 
 ## Důležité URL
 - Domů: https://otevrenainformatika.cz/
-- Materiály: https://otevrenainformatika.cz/materialy/
-- Tematické plány: https://otevrenainformatika.cz/tematicke-plany/
-- Blog: https://otevrenainformatika.cz/blog/
+- Prezentace: https://otevrenainformatika.cz/prezentace/
+- Tematický plán: https://otevrenainformatika.cz/tematicke-plany/
 
 ## Struktura obsahu
-- Materiály: /materialy/{id}
-- Články: /blog/{id}
+- Prezentace: /prezentace/{id}/index.html
 - Autoři: /autori/{id}
 
 ## Licence

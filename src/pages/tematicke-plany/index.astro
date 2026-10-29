@@ -1,15 +1,29 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import IconRenderer from '../../components/IconRenderer.astro';
-import { getMaterials } from '../../lib/content';
+import { getPresentations } from '../../lib/content';
+import { curriculumCategories, type CurriculumCategory } from '../../lib/curriculumCategories';
 import { ogImageUrl } from '../../lib/seo';
 
-const materials = await getMaterials();
-const materialById = new Map<string, any>(materials.map((m) => [m.id, m]));
+const presentations = await getPresentations();
+const presentationById = new Map(presentations.map((presentation) => [presentation.id, presentation]));
 
-const blocks = [
+type Topic = {
+  presentationId?: string;
+  title: string;
+  status: 'available' | 'planned';
+  description?: string;
+};
+
+type Block = {
+  title: CurriculumCategory;
+  iconName: string;
+  topics: Topic[];
+};
+
+const blocks: Block[] = [
   {
-    title: 'Umělá inteligence',
+    title: curriculumCategories[0],
     iconName: 'brain',
     topics: [
       { title: 'Algoritmizace', status: 'planned', description: 'Jak úkolovat lidi, a jak stroje?' },
@@ -18,15 +32,15 @@ const blocks = [
     ],
   },
   {
-    title: 'Mediální gramotnost',
+    title: curriculumCategories[1],
     iconName: 'newspaper',
     topics: [
-      { materialId: 'medialni-gramotnost', title: 'Mediální gramotnost', status: 'available', description: 'Seznámení se světem médií v éře informačního přehlcení.' },
-      { materialId: 'digitalni-stopa', title: 'Digitální stopa', status: 'available', description: 'Naše chování v kyberprostoru může mít nepředvídané dopady.' },
+      { presentationId: 'medialni-gramotnost', title: 'Mediální gramotnost', status: 'available', description: 'Seznámení se světem médií v éře informačního přehlcení.' },
+      { presentationId: 'digitalni-stopa', title: 'Digitální stopa', status: 'available', description: 'Naše chování v kyberprostoru může mít nepředvídané dopady.' },
     ],
   },
   {
-    title: 'Kyberbezpečnost',
+    title: curriculumCategories[2],
     iconName: 'shield-lock',
     topics: [
       { title: 'Bezpečná hesla a jejich prolamování', status: 'planned', description: 'Kryptografie v praxi a ochrana identity.' },
@@ -34,7 +48,7 @@ const blocks = [
     ],
   },
   {
-    title: 'Kancelářský balík',
+    title: curriculumCategories[3],
     iconName: 'layout',
     topics: [
       { title: 'Pokročilý textový editor', status: 'planned', description: 'Styly, revize a hromadná korespondence.' },
@@ -42,14 +56,14 @@ const blocks = [
     ],
   },
   {
-    title: 'Informace a data',
+    title: curriculumCategories[4],
     iconName: 'database',
     topics: [
       { title: 'Kódování informací', status: 'planned', description: 'Binární soustava, ASCII, UTF-8.' },
     ],
   },
   {
-    title: 'Algoritmizace a programování',
+    title: curriculumCategories[5],
     iconName: 'terminal',
     topics: [
       { title: 'Základy Pythonu', status: 'planned', description: 'Proměnné, cykly a podmínky.' },
@@ -57,7 +71,7 @@ const blocks = [
     ],
   },
   {
-    title: 'Digitální technologie',
+    title: curriculumCategories[6],
     iconName: 'smartphone',
     topics: [
       { title: 'Mobilní technologie', status: 'planned', description: 'Ekosystémy iOS a Android.' },
@@ -65,7 +79,7 @@ const blocks = [
     ],
   },
   {
-    title: 'Počítače a operační systémy',
+    title: curriculumCategories[7],
     iconName: 'cpu',
     topics: [
       { title: 'Sestav si svůj počítač', status: 'planned', description: 'Identifikace komponent a základní principy fungování.' },
@@ -73,7 +87,7 @@ const blocks = [
     ],
   },
   {
-    title: 'Jiné',
+    title: curriculumCategories[8],
     iconName: 'more-horizontal',
     topics: [
       { title: 'Právo v digitálním světě', status: 'planned', description: 'Autorské právo, licence a GDPR.' },
@@ -83,17 +97,17 @@ const blocks = [
 ---
 
 <BaseLayout
-  title="Tematické plány | Otevřená informatika"
-  description="Návrhy tematických plánů pro výuku informatiky na SŠ."
+  title="Tematický plán | Otevřená informatika"
+  description="Návrh tematického plánu pro výuku informatiky na SŠ."
   image={ogImageUrl({ type: 'home' })}
 >
   <main class="min-h-screen">
     <section class="py-16">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Tematické plány</h1>
+          <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Tematický plán</h1>
           <p class="text-slate-400 mt-4 leading-relaxed">
-            Doporučené rozložení témat a navazující materiály pro střední školy.
+            Doporučené rozložení témat a navazující prezentace pro střední školy.
           </p>
         </div>
 
@@ -109,9 +123,8 @@ const blocks = [
 
               <div class="grid grid-cols-1 gap-4">
                 {block.topics.map((topic) => {
-                  const material = topic.materialId ? materialById.get(topic.materialId) : undefined;
-                  const href = material ? `/materialy/${material.id}` : undefined;
-                  const duration = material?.duration;
+                  const presentation = topic.presentationId ? presentationById.get(topic.presentationId) : undefined;
+                  const href = presentation ? `/prezentace/${presentation.id}/index.html` : undefined;
 
                   return (
                     <a
@@ -130,12 +143,6 @@ const blocks = [
                             <p class="font-bold text-white">{topic.title}</p>
                           )}
                           {topic.description && <p class="text-sm text-slate-400 mt-1">{topic.description}</p>}
-                          {duration && (
-                            <div class="flex items-center gap-2 mt-2">
-                              <span>🕒</span>
-                              <p class="text-sm font-normal text-white">{duration}</p>
-                            </div>
-                          )}
                         </div>
                         <span
                           class={`text-[10px] font-mono uppercase tracking-[0.2em] px-2 py-1 rounded-md border shrink-0 ${

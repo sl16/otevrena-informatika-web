@@ -8,12 +8,11 @@ interface Props {
 const { currentPath = Astro.url.pathname } = Astro.props;
 
 const links: Array<{ href: string; label: string }> = [
-  { href: '/materialy', label: 'Materiály' },
+  { href: '/prezentace', label: 'Prezentace' },
   { href: '/vyplnovky', label: 'Výplňovky' },
   { href: '/nastroje', label: 'Nástroje' },
-  { href: '/tematicke-plany', label: 'Tematické plány' },
+  { href: '/tematicke-plany', label: 'Tematický plán' },
   { href: '/prompty', label: 'Prompty' },
-  { href: '/blog', label: 'Blog' },
 ];
 
 const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);

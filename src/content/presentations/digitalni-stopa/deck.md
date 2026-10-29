@@ -3,6 +3,8 @@ marp: true
 theme: oi
 paginate: true
 id: digitalni-stopa
+category: Mediální gramotnost
+date: 2026-05-16
 title: "Digitální stopa"
 description: "Digitální stopa aneb Internet nezapomíná"
 ---

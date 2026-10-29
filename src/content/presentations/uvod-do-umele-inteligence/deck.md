@@ -3,6 +3,8 @@ marp: true
 theme: oi
 paginate: true
 id: uvod-do-umele-inteligence
+category: Umělá inteligence
+date: 2026-10-01
 title: "Úvod do umělé inteligence"
 description: "Představení AI a jazykových modelů, základy bezpečného používání a ověřování informací" 
 ---

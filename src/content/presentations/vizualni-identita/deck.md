@@ -3,6 +3,8 @@ marp: true
 theme: oi
 paginate: true
 id: vizualni-identita
+category: Digitální technologie
+date: 2026-05-16
 title: "Vizuální identita"
 description: "Vizuální identita aneb Jak tvořit značku v 21. století"
 ---

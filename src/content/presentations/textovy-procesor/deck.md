@@ -3,6 +3,8 @@ marp: true
 theme: oi
 paginate: true
 id: textovy-procesor
+category: Kancelářský balík
+date: 2026-05-16
 title: "Textový procesor"
 description: "Textový procesor aneb Práce s Google Docs"
 ---

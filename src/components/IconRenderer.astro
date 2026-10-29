@@ -1,14 +1,11 @@
 ---
-import type { Category } from '../lib/types';
-
 interface Props {
   name?: string;
   size?: number;
   className?: string;
-  category?: Category;
 }
 
-const { name, size = 24, className = '', category } = Astro.props;
+const { name, size = 24, className = '' } = Astro.props;
 
 const getIcon = () => {
   switch (name) {
@@ -57,28 +54,10 @@ const getIcon = () => {
   }
 };
 
-const getBgColor = () => {
-  switch (category) {
-    case 'Programování':
-      return 'bg-brand-neon/10 text-brand-neon';
-    case 'Umělá inteligence':
-      return 'bg-brand-cyan/10 text-brand-cyan';
-    case 'Hardware':
-      return 'bg-orange-500/10 text-orange-400';
-    case 'Kyberbezpečnost':
-      return 'bg-red-500/10 text-red-400';
-    case 'Algoritmizace':
-      return 'bg-emerald-500/10 text-emerald-400';
-    case 'Kancelářský balík':
-      return 'bg-indigo-500/10 text-indigo-400';
-    default:
-      return 'bg-white/5 text-slate-400';
-  }
-};
 ---
 
 <div
-  class={`flex items-center justify-center rounded-3xl transition-all duration-500 ${getBgColor()} ${className}`}
+  class={`flex items-center justify-center rounded-3xl transition-all duration-500 bg-white/5 text-slate-400 ${className}`}
   style={`font-size: ${size}px;`}
 >
   {getIcon()}
