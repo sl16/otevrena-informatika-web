@@ -5,7 +5,7 @@ paginate: true
 title: Algoritmizace jednoduše
 description: Úvod do algoritmů kombinující fyzické i digitální postupy.
 id: algoritmizace-jednoduse
-category: Jiné
+category: Algoritmizace a programování
 date: 2026-11-03
 transition: cover
 ---
@@ -33,6 +33,7 @@ Licence: CC BY-NC-SA
 - postup **krok za krokem k dosažení cíle**
 - musí být jednoznačný a srozumitelný
 - výsledkem je řešení problému
+![diagram](diagram.png)
 
 ---
 
@@ -48,99 +49,144 @@ Licence: CC BY-NC-SA
 
 <!-- _class: task -->
 
-# 💼 Úkol: Skládání vlaštovky
+# 💼 Úkol: Skládání vlaštovky #1
 
-🎯 **Cíl:** Vyzkoušet si tvorbu stručné a přesvědčivé prezentace pod tlakem
+🎯 **Cíl:** vyzkoušet tvorbu i použití algoritmu
 
 📋 **Zadání:**
 
-- každý tým má 15 minut na vytvoření přesně **3 slidů** na absurdní téma
-- příklady témat: „Proč jsou holubi ve skutečnosti vládní drony“ nebo „Proč by se ve škole mělo spát“
-- poté má každý tým 2 minuty na výstup
+- rozdělte se do dvojicí
+- zadavatel instrukcí určuje pracovní postup složení vlaštovky
+- vykonavatel plní instrukce **přesně a doslovně** a vlaštovku skládá
 
 ✅ **Výstup:**
-- prezentace na 3 slidy (problém, důkaz, řešení) + stručná zpětná vazba od spolužáků (publikum slovně hodnotí srozumitelnost, strukturu, přesvědčivost)
-- prezentaci nahrajte do Google Classroom, uveďte členy týmu
-
----
-
-# ℹ️ Ovládat techniku je základ
-
-- před začátkem vždy otestujte kabel a možnost připojení
-- použijte režim „Rozšířit“ nebo „Duplikovat“ (kláv. zkratka `Win + P`)
-- prezentační režim vám ukazuje čas, poznámky a náhled dalších slidů
-- mějte plán B: PDF v cloudu, náhradní adaptér, záložní médium
-
----
-
-# ℹ️ Promítací režimy (Systém -> Obrazovka)
-
-![w:450px](windows-rozsireni.png)
-
----
-
-# ℹ️ Promítací režimy (kláv. zkratka `Win + P`)
-
-![w:300px](windows-p-zkratka.png)
-
----
-
-# ℹ️ Vystoupení naživo
-
-- základem je **dobrá příprava** (na přednes, ale i situace, které mohou a nemusí nastat)
-- v krizi (např. nefungující zobrazení) zachovejte chladnou hlavu:
-    - pauza → nádech → stručné shrnutí
-- prezentující řídí místnost (a tedy i techniku, publikum, celkový řád)
-- řeč těla: oční kontakt, klidná gesta, tělo otevřené směrem k publiku
-
----
-
-# ℹ️ Struktura prezentace
-
-- začněte jasným cílem: co si má publikum odnést po skončení
-- úvod (10 %): zaujmout a stručně říct, proč je téma důležité
-- jádro (80 %): 2-3 hlavní body, každý podpořený příkladem nebo ukázkou
-- závěr (10 %): shrnutí, hlavní sdělení a konkrétní výzva k akci
-
----
-
-# ℹ️ Jak dávat zpětnou vazbu
-
-- metoda Start, Stop, Continue:
-    - **Start**: co zavést, aby se zaplnily mezery
-    - **Stop**: čemu se příště vyhnout
-    - **Continue**: v čem pokračovat a jak to posílit
-- buďte konkrétní: místo „bylo to slabé“ řekněte, co přesně zlepšit
-- mluvte věcně o projevu, ne osobně o člověku
-- navrhněte změny: co udělat příště lépe a jak toho dosáhnout
+- diskuze
 
 ---
 
 <!-- _class: task -->
 
-# 💼 Úkol: Tvorba rychloprezentace
+# 💼 Úkol: Skládání vlaštovky #2
 
-🎯 **Cíl:** Vyzkoušet si tvorbu stručné a přesvědčivé prezentace pod tlakem
+🎯 **Cíl:** vyzkoušet tvorbu i použití algoritmu s omezením
 
 📋 **Zadání:**
 
-- každý tým má 15 minut na vytvoření přesně **3 slidů** na absurdní téma
-- příklady témat: „Proč jsou holubi ve skutečnosti vládní drony“ nebo „Proč by se ve škole mělo spát“
-- poté má každý tým 2 minuty na výstup
+- rozdělte se do dvojicí
+- zadavatel instrukcí určuje pracovní postup složení vlaštovky, ale je **otočen zády k vykonavateli**
+- vykonavatel plní instrukce **přesně a doslovně** a vlaštovku skládá
 
 ✅ **Výstup:**
-- prezentace na 3 slidy (problém, důkaz, řešení) + stručná zpětná vazba od spolužáků (publikum slovně hodnotí srozumitelnost, strukturu, přesvědčivost)
-- prezentaci nahrajte do Google Classroom, uveďte členy týmu
+- diskuze
+
+---
+
+<!-- _class: task -->
+
+# 💼 Úkol: Skládání vlaštovky #3
+
+🎯 **Cíl:** vyzkoušet tvorbu i použití algoritmu s ještě větším omezením
+
+📋 **Zadání:**
+
+- rozdělte se do dvojicí
+- zadavatel instrukcí určuje pracovní postup složení vlaštovky, ale je **otočen zády k vykonavateli**
+- vykonavatel plní instrukce **přesně a doslovně** a vlaštovku skládá, **nesmí při tom nic říkat**
+
+✅ **Výstup:**
+- diskuze
+
+---
+
+# ℹ️ Jak algoritmus zaznamenat?
+
+- přirozený jazyk (text, recept)
+- diagram (blokové schéma)
+- pseudokód (jednoduchý zápis podobný kódu)
+
+---
+
+# ℹ️ Základní stavební kameny algoritmu
+
+- sekvence: kroky jdou po sobě
+- podmínka (rozhodování): „pokud…, jinak…“
+- smyčka (opakování) – krok se opakuje vícekrát
+![diagram se sekvencí, podmínkou a smyčkou](diagram2.png)
+
+---
+
+<!-- _class: task -->
+
+# 💼 Úkol: Kreslení diagramu
+
+🎯 **Cíl:** zaznamenat algoritmus formou diagramu
+
+📋 **Zadání:**
+
+- běžte na [excalidraw.com](https://excalidraw.com)
+- nakreslete jednoduché schéma obsahující sekvenci, podmínku a smyčku
+
+✅ **Výstup:**
+- diskuze
+
+---
+
+<!-- _class: task -->
+
+# 💼 Úkol: Kreslení diagramu
+
+🎯 **Cíl:** zaznamenat vaše ranní stávání formou diagramu
+
+📋 **Zadání:**
+
+- běžte na [excalidraw.com](https://excalidraw.com)
+- nakreslete jednoduché schéma obsahující sekvenci, podmínku a smyčku
+- diagram musí zaznamenat vaší ranní rutinu před školou
+
+✅ **Výstup:**
+- odkaz na diagram nahrajte do Google Classroom
+
+---
+
+<!-- _class: task -->
+
+# 💼 Úkol: Vizuální programování
+
+🎯 **Cíl:** vyzkoušet algoritmizaci se smyčkami
+
+📋 **Zadání:**
+
+- běžte na [ligthbot.lu](https://lightbot.lu)
+- vyzkoušejte si projít co nejvíce úrovní v daném časovém limitu
+- začněte od 0. úrovně 
+
+✅ **Výstup:**
+- diskuze
+
+---
+
+<!-- _class: task -->
+
+# 💼 Úkol: Vizuální programování #2
+
+🎯 **Cíl:** vyzkoušet různé typy algoritmizace
+
+📋 **Zadání:**
+
+- běžte na [blockly.ganes](https://blockly.games/?lang=cs)
+- vyzkoušejte si projít co nejvíce úrovní v daném časovém limitu
+- začněte od 0. úrovně 
+
+✅ **Výstup:**
+- diskuze
 
 ---
 
 # 🧠 Souhrn lekce
 
-- prezentace je účinný nástroj pro přesvědčování
-- většinu častých chyb lze jednoduše eliminovat vhodnou přípravou
-- struktura a stručnost zvyšují srozumitelnost
-- osvojení technických základů prezentování snižuje stres a chyby
-- zlaté pravidlo: **jedna myšlenka na jeden slide**
+- algoritmus = **přesný postup řešení problému**
+- může být zapsán různými způsoby (slova, diagram, kód)
+- základní struktury: sekvence, podmínky, smyčky
 
 ---
 
@@ -150,5 +196,4 @@ Licence: CC BY-NC-SA
 
 🧑‍🏫 Autor: Mgr. Vojtěch Bartoš  
 © Licence: CC BY-NC-SA  
-Kontakt: [info@otevrenainformatika.cz](mailto:info@otevrenainformatika.cz)  
 www.otevrenainformatika.cz
