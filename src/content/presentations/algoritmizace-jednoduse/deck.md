@@ -156,7 +156,7 @@ Licence: CC BY-NC-SA
 
 📋 **Zadání:**
 
-- běžte na [ligthbot.lu](https://lightbot.lu)
+- běžte na [lightbot.lu](https://lightbot.lu)
 - vyzkoušejte si projít co nejvíce úrovní v daném časovém limitu
 - začněte od 0. úrovně 
 
