@@ -7,6 +7,7 @@ export const curriculumCategories = [
   'Algoritmizace a programování',
   'Digitální technologie',
   'Počítače a operační systémy',
+  'Internet',
   'Jiné',
 ] as const;
 
