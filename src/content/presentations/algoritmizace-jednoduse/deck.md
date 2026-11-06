@@ -117,7 +117,7 @@ Licence: CC BY-NC-SA
 
 <!-- _class: task -->
 
-# 💼 Úkol: Kreslení diagramu
+# 💼 Úkol: Kreslení diagramu #1
 
 🎯 **Cíl:** zaznamenat algoritmus formou diagramu
 
@@ -133,7 +133,7 @@ Licence: CC BY-NC-SA
 
 <!-- _class: task -->
 
-# 💼 Úkol: Kreslení diagramu
+# 💼 Úkol: Kreslení diagramu #2
 
 🎯 **Cíl:** zaznamenat vaše ranní stávání formou diagramu
 
@@ -150,7 +150,7 @@ Licence: CC BY-NC-SA
 
 <!-- _class: task -->
 
-# 💼 Úkol: Vizuální programování
+# 💼 Úkol: Vizuální programování #1
 
 🎯 **Cíl:** vyzkoušet algoritmizaci se smyčkami
 
