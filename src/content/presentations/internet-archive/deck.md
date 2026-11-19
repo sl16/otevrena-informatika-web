@@ -26,10 +26,10 @@ Představte téma: dnes se podíváme na webové stránky tak, jak byly zachycen
 
 # 🎯 Cíle lekce
 
-- vysvětlíte, proč se webové stránky archivují
+- pochopíte, proč se webové stránky archivují
 - najdete starší podobu webu ve **Wayback Machine**
 - rozlišíte datum archivace od data vzniku stránky
-- dohledáte archivní záznam a sdílíte odkaz na něj
+- dohledáte archivní záznam a nasdílíte odkaz na něj
 
 <!--
 Seznamte žáky s cíli: nejprve si vysvětlíme princip, potom si společně vyzkoušíme školní web a nakonec budete hledat sami. Nejde o nalezení dokonalé historie celého internetu, ale o práci s dochovanými záznamy.
@@ -116,8 +116,6 @@ Některé stránky byly pro roboty nedostupné nebo nebyly nalezeny; obsah můž
 2. do vyhledávacího pole vložte `podripskaskola.cz`
 3. potvrďte hledání a prohlédněte si časovou osu
 
-> Co podle vás najdeme na staré verzi školního webu?
-
 <!--
 Sdílejte obrazovku a zadejte adresu podripskaskola.cz do Wayback Machine. Vyzvěte žáky, aby před otevřením záznamu odhadli, jak mohl web vypadat. Kdyby služba neodpovídala, vysvětlete postup na příkladu a zkuste se k ukázce vrátit později.
 -->
@@ -150,33 +148,6 @@ Nechte žáky popsat alespoň dvě změny, například nabídku, grafiku nebo ob
 
 ---
 
-# ℹ️ Ověříme odkaz na záznam
-
-- v horní liště sledujte web a datum
-- po kliknutí na odkaz datum zkontrolujte znovu
-- adresu z prohlížeče můžete zkopírovat a sdílet
-
-> Odkaz na archivovaný záznam není totéž co odkaz na dnešní web.
-
-<!--
-Klikněte na některý odkaz na archivované školní stránce a ukažte, že cílová stránka může mít jiné datum záznamu, případně nemusí být dostupná. Zkopírujte adresu z adresního řádku; měla by ukazovat na web.archive.org a konkrétní zachycení. Vysvětlete, že právě takový odkaz budou žáci odevzdávat.
--->
-
----
-
-# ℹ️ Než začnete hledat
-
-- zadejte **adresu webu**, například `novinky.cz`
-- vybírejte rok a den s dostupným záznamem
-- pokud záznam chybí, zkuste jinou adresu nebo web
-- zapisujte datum a odkaz na konkrétní záznam
-
-<!--
-Připomeňte postup a rozdíl mezi adresou původního webu a odkazem na archivní záznam. Ukázat lze adresu novinky.cz, ale nenavádějte všechny ke stejnému výsledku. Pokud jejich oblíbený web není archivován nebo je záznam nefunkční, ať uvedou pokus a zvolí jiný oblíbený veřejný web. Nesdílejte soukromé údaje ani obsah neveřejných účtů.
--->
-
----
-
 <!-- _class: task -->
 
 # 💼 Úkol: Zpravodajství v roce 2009
@@ -189,7 +160,7 @@ Připomeňte postup a rozdíl mezi adresou původního webu a odkazem na archivn
 - ve Wayback Machine otevřete záznam z **roku 2009**
 - poznamenejte si jeden titulek nebo téma, které jste našli
 
-✅ **Výstup:** adresa webu, datum záznamu, titulek a odkaz na záznam do dokumentu v Google Classroom
+✅ **Výstup:** datum záznamu, titulek a odkaz na záznam do dokumentu v Google Classroom
 
 <!--
 Dejte žákům čas na hledání a pomáhejte s výběrem roku a dne. Kontrolujte, že jde o zpravodajský web a že datum zachycení je skutečně v roce 2009, nikoli pouze datum článku. Pokud vybraný web nemá dostupný záznam, mohou zvolit jiný. Záložní příklad při potížích je záznam novinky.cz z 18. června 2009: https://web.archive.org/web/20090618221258/http://www.novinky.cz/ . Dostupnost se může změnit.
@@ -209,7 +180,7 @@ Dejte žákům čas na hledání a pomáhejte s výběrem roku a dne. Kontrolujt
 - na časové ose najděte nejstarší dostupný záznam
 - poznamenejte si, čím se liší od dnešní podoby
 
-✅ **Výstup:** adresa webu, datum nejstaršího dostupného záznamu, rozdíl a odkaz na záznam do dokumentu v Google Classroom
+✅ **Výstup:** datum nejstaršího dostupného záznamu, popis rozdílu a odkaz na záznam do dokumentu v Google Classroom
 
 <!--
 Žáci hledají nejstarší dostupné zachycení zadané adresy, například úvodní stránky, nikoli nutně nejstarší zmínku o webu kdekoliv na internetu. Ať projdou nejstarší rok a v něm nejstarší dostupný den; pokud záznam nelze otevřít, pokračují k dalšímu a tuto skutečnost uvedou. Upozorněte, že jiné varianty adresy nebo starší doména mohou mít jiné záznamy. Pokud oblíbený web není dostupný, ať zaznamenají pokus a použijí jiný oblíbený veřejný web.
