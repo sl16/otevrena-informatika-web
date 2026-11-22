@@ -88,7 +88,7 @@ Prozkoumejte, co snižuje nebo zvyšuje délku prolomení.
 
 # ℹ️ Síla hesla podle počtu znaků
 
-![Síla hesla podle počtu znaků](password-strength-chart.png)
+![h:480px Síla hesla podle počtu znaků](password-strength-chart.png)
 
 ---
 
@@ -126,7 +126,7 @@ Připravte pro žáky, kteří nechtějí zadávat vlastní adresu, vhodný př�
 
 # ℹ️ Seznam častých českých hesel
 
-![Přehled častých českých hesel](seznam-castych-ceskych-hesel.png)
+![h:480px Přehled častých českých hesel](seznam-castych-ceskych-hesel.png)
 
 ---
 
@@ -160,7 +160,7 @@ Původní prezentace uvádí příklady jako modra-kocka-skace-pres-plot-2026 ne
 
 # ℹ️ Jaké heslo si tedy nastavit?
 
-![Komiks ilustrující vhodné heslo](xkcd-heslo.png)
+![h:480px Komiks ilustrující vhodné heslo](xkcd-heslo.png)
 
 ---
 
