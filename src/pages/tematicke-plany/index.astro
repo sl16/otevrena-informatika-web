@@ -2,98 +2,46 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import IconRenderer from '../../components/IconRenderer.astro';
 import { getPresentations } from '../../lib/content';
-import { curriculumCategories, type CurriculumCategory } from '../../lib/curriculumCategories';
+import type { CurriculumCategory } from '../../lib/curriculumCategories';
 import { ogImageUrl } from '../../lib/seo';
 
 const presentations = await getPresentations();
-const presentationById = new Map(presentations.map((presentation) => [presentation.id, presentation]));
-
-type Topic = {
-  presentationId?: string;
-  title: string;
-  status: 'available' | 'planned';
-  description?: string;
-};
-
-type Block = {
-  title: CurriculumCategory;
-  iconName: string;
-  topics: Topic[];
-};
-
-const blocks: Block[] = [
-  {
-    title: curriculumCategories[0],
-    iconName: 'brain',
-    topics: [
-      { title: 'Algoritmizace', status: 'planned', description: 'Jak úkolovat lidi, a jak stroje?' },
-      { title: 'Umělá inteligence jako parťák', status: 'planned', description: 'Promptování, seznámení s užitečnými AI nástroji.' },
-	  { title: 'Vibecoding s Canva AI', status: 'planned', description: 'Tvorba vizuálů a jednoduchých webů pomocí promptů.' },
-    ],
-  },
-  {
-    title: curriculumCategories[1],
-    iconName: 'newspaper',
-    topics: [
-      { presentationId: 'medialni-gramotnost', title: 'Mediální gramotnost', status: 'available', description: 'Seznámení se světem médií v éře informačního přehlcení.' },
-      { presentationId: 'digitalni-stopa', title: 'Digitální stopa', status: 'available', description: 'Naše chování v kyberprostoru může mít nepředvídané dopady.' },
-    ],
-  },
-  {
-    title: curriculumCategories[2],
-    iconName: 'shield-lock',
-    topics: [
-      { title: 'Bezpečná hesla a jejich prolamování', status: 'planned', description: 'Kryptografie v praxi a ochrana identity.' },
-      { title: 'Sociální inženýrství', status: 'planned', description: 'Psychologie útoků a jak se jim bránit.' },
-    ],
-  },
-  {
-    title: curriculumCategories[3],
-    iconName: 'layout',
-    topics: [
-      { title: 'Pokročilý textový editor', status: 'planned', description: 'Styly, revize a hromadná korespondence.' },
-      { title: 'Tabulkový procesor', status: 'planned', description: 'Funkce, kontingenční tabulky a grafy.' },
-    ],
-  },
-  {
-    title: curriculumCategories[4],
-    iconName: 'database',
-    topics: [
-      { title: 'Kódování informací', status: 'planned', description: 'Binární soustava, ASCII, UTF-8.' },
-    ],
-  },
-  {
-    title: curriculumCategories[5],
-    iconName: 'terminal',
-    topics: [
-      { title: 'Základy Pythonu', status: 'planned', description: 'Proměnné, cykly a podmínky.' },
-      { title: 'Datové struktury', status: 'planned', description: 'Seznamy, slovníky a jejich využití.' },
-    ],
-  },
-  {
-    title: curriculumCategories[6],
-    iconName: 'smartphone',
-    topics: [
-      { title: 'Mobilní technologie', status: 'planned', description: 'Ekosystémy iOS a Android.' },
-      { title: 'Internet věcí (IoT)', status: 'planned', description: 'Propojený svět a chytrá domácnost.' },
-    ],
-  },
-  {
-    title: curriculumCategories[7],
-    iconName: 'cpu',
-    topics: [
-      { title: 'Sestav si svůj počítač', status: 'planned', description: 'Identifikace komponent a základní principy fungování.' },
-      { title: 'Virtualizace a Cloud', status: 'planned', description: 'Moderní přístup k infrastruktuře.' },
-    ],
-  },
-  {
-    title: curriculumCategories[8],
-    iconName: 'more-horizontal',
-    topics: [
-      { title: 'Právo v digitálním světě', status: 'planned', description: 'Autorské právo, licence a GDPR.' },
-    ],
-  },
+const studentPresentations = presentations.filter(
+  (presentation) => presentation.id !== 'pedagogicke-skoleni-ai-pro-asistenty',
+);
+const categoryOrder: CurriculumCategory[] = [
+  'Umělá inteligence',
+  'Internet',
+  'Mediální gramotnost',
+  'Algoritmizace a programování',
+  'Kancelářský balík',
+  'Digitální technologie',
+  'Jiné',
+  'Kyberbezpečnost',
+  'Informace a data',
+  'Počítače a operační systémy',
 ];
+const categoryIcons: Record<CurriculumCategory, string> = {
+  'Umělá inteligence': 'brain',
+  'Mediální gramotnost': 'newspaper',
+  Kyberbezpečnost: 'shield-lock',
+  'Kancelářský balík': 'layout',
+  'Informace a data': 'database',
+  'Algoritmizace a programování': 'terminal',
+  'Digitální technologie': 'smartphone',
+  'Počítače a operační systémy': 'cpu',
+  Internet: 'globe',
+  Jiné: 'more-horizontal',
+};
+
+const categoriesInUse = new Set(studentPresentations.map((presentation) => presentation.category));
+const blocks = categoryOrder
+  .filter((category) => categoriesInUse.has(category))
+  .map((category) => ({
+    title: category,
+    iconName: categoryIcons[category],
+    presentations: studentPresentations.filter((presentation) => presentation.category === category),
+  }));
 ---
 
 <BaseLayout
@@ -122,41 +70,15 @@ const blocks: Block[] = [
               </div>
 
               <div class="grid grid-cols-1 gap-4">
-                {block.topics.map((topic) => {
-                  const presentation = topic.presentationId ? presentationById.get(topic.presentationId) : undefined;
-                  const href = presentation ? `/prezentace/${presentation.id}/index.html` : undefined;
-
-                  return (
-                    <a
-                      href={href ?? '#'}
-                      class={`rounded-2xl border p-5 ml-2 ${
-                        href
-                          ? 'bg-brand-card/40 border-white/10 hover:border-brand-cyan/40'
-                          : 'bg-black/20 border-white/5 pointer-events-none opacity-60'
-                      }`}
-                    >
-                      <div class="flex items-start justify-between gap-3">
-                        <div class="flex-1">
-                          {href ? (
-                            <p class="font-bold text-white hover:text-brand-cyan transition-colors">{topic.title}</p>
-                          ) : (
-                            <p class="font-bold text-white">{topic.title}</p>
-                          )}
-                          {topic.description && <p class="text-sm text-slate-400 mt-1">{topic.description}</p>}
-                        </div>
-                        <span
-                          class={`text-[10px] font-mono uppercase tracking-[0.2em] px-2 py-1 rounded-md border shrink-0 ${
-                            topic.status === 'available'
-                              ? 'text-emerald-300 bg-emerald-400/10 border-emerald-400/20'
-                              : 'text-slate-300 bg-white/5 border-white/10'
-                          }`}
-                        >
-                          {topic.status === 'available' ? 'Dostupné' : 'Plánované'}
-                        </span>
-                      </div>
-                    </a>
-                  );
-                })}
+                {block.presentations.map((presentation) => (
+                  <a
+                    href={`/prezentace/${presentation.id}/index.html`}
+                    class="rounded-2xl border p-5 ml-2 bg-brand-card/40 border-white/10 hover:border-brand-cyan/40"
+                  >
+                    <p class="font-bold text-white hover:text-brand-cyan transition-colors">{presentation.title}</p>
+                    <p class="text-sm text-slate-400 mt-1">{presentation.description}</p>
+                  </a>
+                ))}
               </div>
             </div>
           ))}
