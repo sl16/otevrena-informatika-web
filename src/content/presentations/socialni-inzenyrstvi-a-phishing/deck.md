@@ -22,20 +22,27 @@ Licence: CC BY-NC-SA
 
 # 🎯 Cíle lekce
 
-- rozpoznáte znaky phishingu a sociálního inženýrství
+- rozpoznáte znaky phishingu a jiných typů sociálního inženýrství
 
 ---
 
-# ℹ️ Sociální inženýrství: hackování lidí
+# ℹ️ Sociální inženýrství = hackování lidí
 
 - útočník využívá důvěru a emoce, například strach nebo zvědavost
+- **phishing**: původce mailu se tváří jako autorita (např. Google)
 - **vishing**: falešný bankéř volá kvůli „napadenému účtu“
 - **smishing**: SMS žádá doplatek za údajný balíček
-- **baiting**: lákadlem je třeba nalezená označená flashka
+- **baiting**: nastražení infikované flešky na parkovišti firmy
 
 <!--
 Vysvětlete, že i dobře zabezpečený systém může být obejit manipulací uživatele. U nalezených médií doporučte nepřipojovat je k zařízení a předat je odpovědné osobě.
 -->
+
+---
+
+# ℹ️ Sociální inženýrství je na vzestupu
+
+![Příklady sociální inženýrství z českého rybníčku](priklady-socialniho-inzenyrstvi.png)
 
 ---
 
@@ -62,7 +69,7 @@ Původní snímek odkazuje na dvě zprávy: [škody a oběti kyberpodvodů](http
 🎬 [Video: ukázka kombinovaného podvodu](https://www.youtube.com/watch?v=auGnJQY7J-U)
 
 <!--
-Pusťte video z původní prezentace a proberte jednotlivé kroky útoku. Připomeňte, že údaje ani kódy nesdělujeme volajícímu jen proto, že působí důvěryhodně.
+Pusťte video a proberte jednotlivé kroky útoku. Připomeňte, že údaje ani kódy nesdělujeme volajícímu jen proto, že působí důvěryhodně.
 -->
 
 ---
@@ -84,15 +91,7 @@ Phishing je forma sociálního inženýrství. SMS varianta se nazývá smishing
 
 # ℹ️ Ukázka podvodného e-mailu
 
-> **Předmět:** Váš účet je zablokován!  
-> **Odesílatel:** „Podpora“ z neznámé adresy  
-> „Vážený zákazníku, potvrďte údaje do 24 hodin kliknutím na odkaz.“
-
-**Co je na této zprávě podezřelé?**
-
-<!--
-Jde o zjednodušenou fiktivní ukázku podle snímku s údajným e-mailem od PayPalu v původní prezentaci. Nechte žáky najít tlak na čas, obecné oslovení, podezřelou adresu a výzvu k zadání údajů. Žádný odkaz zde není aktivní.
--->
+![Ukázka phishingového mailu](ukazka-phishingu.png)
 
 ---
 
@@ -114,7 +113,8 @@ Jde o zjednodušenou fiktivní ukázku podle snímku s údajným e-mailem od Pay
 - text odkazu může ukazovat jinam, než tvrdí
 - před kliknutím zkontrolujte skutečný cíl odkazu
 - **typosquatting** využívá podobné nebo chybně napsané domény
-- například `facebook.com` a `faceboook.com` nejsou totéž
+> `facebook.com` a `faceboook.com` nejsou totéž
+> `rnicrosoft.com` (r + n vypadá jako m)
 
 <!--
 Na počítači ukažte náhled cíle po najetí myší; na mobilu může pomoci podržení odkazu, ale postup záleží na zařízení. Překlep není jediná možnost: rn může připomínat m. Ani správně vypadající odkaz nebo HTTPS samy o sobě nezaručují bezpečnost.
@@ -137,7 +137,7 @@ Na počítači ukažte náhled cíle po najetí myší; na mobilu může pomoci 
 ✅ **Výstup:** společná diskuse nad výsledky
 
 <!--
-Předem upozorněte, že jde o simulaci a žáci nemají zadávat skutečná hesla. Pokud služba žádá jméno či e-mail, mohou použít fiktivní údaje. Diskutujte, proč se některé příklady poznávají obtížně.
+Diskutujte, proč se některé příklady poznávají obtížně.
 -->
 
 ---
@@ -157,10 +157,13 @@ Banku kontaktujte číslem z oficiálního webu, aplikace nebo platební karty, 
 
 # 🧠 Souhrn lekce
 
-- podezřelé zprávy ověřujeme nezávislým způsobem
+- sociální inženýrství manipuluje důvěrou a emocemi
+- útočníci mohou kombinovat zprávy, weby i telefonáty
+- urgence, podezřelá adresa, nečekaná výzva nebo žádost o heslo či kód mohou značit podvod
+- zpomalíme, neotevíráme podezřelé přílohy a nesdělujeme hesla ani ověřovací kódy
 
 <!--
-Požádejte žáky, aby vysvětlili rozdíl mezi phishingem a malwarem a popsali postup při podezřelé zprávě.
+Požádejte žáky, aby vysvětlili phishing a popsali postup při podezřelé zprávě.
 -->
 
 ---
