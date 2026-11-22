@@ -56,7 +56,7 @@ Ptejte se na možné dopady, například ztrátu dat, vydávání se za majitele
 - sílu ovlivňuje délka a především **nepředvídatelnost**
 - odhad si můžete vyzkoušet na [Password Meteru](https://passwordmeter.com/) nebo v [Bitwarden Password Strength Testu](https://bitwarden.com/password-strength/)
 - zadávejte pouze **vymyšlená hesla**, která nikde nepoužíváte
-- výsledek je orientační, nikoli záruka bezpečnosti
+- výsledek (úroveň neprolomitelnosti) je orientační
 
 <!--
 Skutečná hesla nezadávejte do online testů. Porovnejte jen fiktivní příklady a upozorněte, že různé nástroje používají odlišné modely.
@@ -72,8 +72,23 @@ Skutečná hesla nezadávejte do online testů. Porovnejte jen fiktivní příkl
 - odhady typu „minuty“ nebo „staletí“ nejsou předpověď
 
 <!--
-Původní příklady sahají od 1234 přes J1rk4 a v0jt!!k po delší fráze. Odhady v prezentaci byly od 0 sekund až po staletí, ale závisí na metodice. Rozlišujte online hádání s omezením pokusů a offline útok na uniklé hashe: rychlost zásadně ovlivňuje také způsob uložení hesel.
+Příklady - vypište postupně na tabuli a ptejte se studentů na jejich odhad délky prolomení.
+Prozkoumejte, co snižuje nebo zvyšuje délku prolomení.
+[1234] - 0 sekund
+[123456789] - 0 sekund
+[J1rk4] - 10 sekund
+[v0jt!!k] - 17 minut
+[xx!Pepino12!] - 5 měsíců
+[5@sa4:\d562122!] - staletí
+[Pestuju4Papriky!] - staletí
+
 -->
+
+---
+
+# ℹ️ Síla hesla podle počtu znaků
+
+![Síla hesla podle počtu znaků](password-strength-chart.png)
 
 ---
 
@@ -90,14 +105,39 @@ Ukažte například [seznam častých hesel](https://nordpass.com/most-common-pa
 
 ---
 
+<!-- _class: task -->
+
+# 💼 Úkol: Unikly vaše soukromé údaje?
+
+🎯 **Cíl:** ověřit, zda bylo vaše heslo ukradeno
+
+📋 **Zadání:**
+
+- otevřete [Have I Been Pwned](https://haveibeenpwned.com/)
+- ověřte svůj e-mail, nebo použijte příklad
+
+✅ **Výstup:** diskuze
+
+<!--
+Připravte pro žáky, kteří nechtějí zadávat vlastní adresu, vhodný příklad. Nevyžadujte sdílení adres ani výsledků a nezadávejte skutečná hesla. Nález neznamená, že je účet právě napaden; nepřítomnost adresy v databázi není důkaz, že k úniku nikdy nedošlo. Při úniku změňte dotčené heslo i všude, kde bylo použito znovu, a zapněte 2FA, pokud je dostupné.
+-->
+
+---
+
+# ℹ️ Seznam častých českých hesel
+
+![Přehled častých českých hesel](seznam-castych-ceskych-hesel.png)
+
+---
+
 # ℹ️ Co dělá heslo silným?
 
-- důležitá je **délka** a způsob vytvoření hesla
-- náhodný výběr zvyšuje jeho nepředvídatelnost
-- samotné přidání číslice či speciálního znaku nestačí
-- bezpečné heslo musí být také použitelné a jedinečné
-
-> Které heslo se vám bude lépe pamatovat: směs znaků, nebo fráze?
+- hackeři dokáží otestovat miliardy kombinací za sekundu a jejich možnosti se neustále zlepšují
+- délka hesla - čím více znaků, tím lépe
+- sada znaků, kterou používáme - čím více různých znaků, tím lépe;
+- entropie = míra nepředvídatelnosti ✖️ zapamatovatelnost
+> Které z hesel je bezpečnější?
+> [P4!r1pm$65.] ✖️ [KoupilJsemSi2Psy]
 
 <!--
 Vysvětlete entropii jako míru nepředvídatelnosti hesla. Složitě vypadající známé vzory mohou být snadno uhádnutelné. Délka sama nezachrání předvídatelnou frázi; porovnávané příklady proto nejsou návodem k použití.
@@ -118,16 +158,18 @@ Původní prezentace uvádí příklady jako modra-kocka-skace-pres-plot-2026 ne
 
 ---
 
+# ℹ️ Jaké heslo si tedy nastavit?
+
+![Komiks ilustrující vhodné heslo](xkcd-heslo.png)
+
+---
+
 # ℹ️ Bezpečnost a zapamatovatelnost
 
 - změť znaků může být obtížná k zapamatování
 - fráze z náhodných slov se může pamatovat lépe
 - ani dlouhé heslo není bezpečné, pokud je známé nebo použité jinde
 - správce hesel pomůže s jedinečnými hesly pro jednotlivé účty
-
-<!--
-Původní obrázek porovnává zapamatovatelnost složitého hesla a fráze z náhodných slov. Pointou není doslova převzít známou frázi: heslo musí být vytvořeno nezávisle. Bezpečně uložená písemná záloha může být vhodná; lísteček u monitoru nikoli.
--->
 
 ---
 
@@ -147,12 +189,11 @@ Dva faktory pocházejí z různých kategorií. Ověření aplikací nebo bezpe�
 # ℹ️ Co dělat, když mám více účtů?
 
 - opakované heslo ohrožuje při úniku více účtů
-- [Have I Been Pwned](https://haveibeenpwned.com/) umožňuje ověřit, zda se e-mail objevil ve známém úniku
 - **správce hesel** ukládá a generuje jedinečná hesla
 - chraňte jej silným hlavním heslem a pokud možno 2FA
 
 <!--
-Příklady správců: Bitwarden, Apple Passwords a Google Password Manager. Při ukázce nevyžadujte zadání osobní adresy před třídou ani zadávání skutečného hesla. Nepřítomnost adresy v databázi není důkaz, že k úniku nikdy nedošlo. Připomeňte bezpečné uložení obnovovacích údajů.
+Příklady správců: Bitwarden, Apple Passwords a Google Password Manager.
 -->
 
 ---
@@ -199,8 +240,9 @@ Diskutujte rovnováhu mezi bezpečností a použitelností. Pravidla mohou zahrn
 
 # 🧠 Souhrn lekce
 
-- dlouhá, nepředvídatelná a jedinečná hesla chrání účty
-- správce hesel a 2FA přidávají další vrstvy ochrany
+- kvalitní heslo je dlouhé, nepředvídatelné, ale zapamatovatelné
+- každý účet by měl mít svoje vlastní, jedinečné heslo
+- správci hesel a 2FA přidávají další vrstvy ochrany
 
 <!--
 Požádejte žáky, aby uvedli, proč není vhodné opakovat hesla.
